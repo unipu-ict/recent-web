@@ -14,6 +14,6 @@ class DefaultController extends Controller
     public function showAction()
     {
         // replace this example code with whatever you need
-        return new Response("NFC je vrh!");
+        return new Response("NFC je vrh! Prva Symfony app");
     }
 }
