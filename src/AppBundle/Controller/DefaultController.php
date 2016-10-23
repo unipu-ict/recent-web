@@ -11,9 +11,10 @@ class DefaultController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-    public function showAction()
+    public function indexAction()
     {
         // replace this example code with whatever you need
-        return new Response("NFC je vrh! Prva Symfony app");
+        return $this->render('default/index.html.twig');
     }
+    
 }
