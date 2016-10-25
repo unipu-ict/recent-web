@@ -4,26 +4,13 @@
 
 {% block stylesheets %}
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-<link rel="stylesheet" href="{{  asset('style/style.css') }}" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{  asset('style/style.css') }}" crossorigin="anonymous">
 
 {% endblock %}
 
-
 {% block body %}
-    <div class="carousel-inner hero1" role="listbox">
-        <div class="item active">
-            <img class="slide" src="{{ asset('images/hero1.jpeg') }}" alt="First slide">
-            <div class="container">
-                <div class="carousel-caption">
-                    <h1>Suvremeno rješenje za evidenciju radnika</h1>
-                    <p>RecENT aplikacija pomaže vašoj organizaciji u evidenciji radnog vremena zaposlenika, koristeći <b>suvremene</b> načine prijave i izvještavanja</p>
-                    <p><a class="btn btn-lg btn-primary" href="{{ path('o-recent') }}" role="button">Saznaj više</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="container marketing">
 
@@ -63,9 +50,6 @@
             </div>
         </div>
 
-        <!-- /END THE FEATURETTES -->
-
-
         <hr class="featurette-divider">
 
         <h3 class="bottom">Sviđa vam se <b>RecENT</b>? Želite unaprijediti Vaš sustav evidencije radnog vremena?</h3>
@@ -73,7 +57,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="text-center">
-                   <a href="{{ path('kontakt') }}" ><button class="btn btn-lg btn-primary" id="singlebutton"> Zatražite ponudu</button></a>
+                    <a href="{{ path('kontakt') }}" ><button class="btn btn-lg btn-primary" id="singlebutton"> Zatražite ponudu</button></a>
                 </div>
             </div>
         </div>
@@ -89,7 +73,6 @@
 
 
         <hr class="featurette-divider">
-
         <footer>
             <p class="pull-right"><a href="#">Natrag na vrh</a></p>
             <p>© 2016 RecENT · Mihovil Petković · Antun Kovačević · Marino Pereša · Patrik Grof · Masimo Orbanić ·<a href="#">Terms</a></p>
