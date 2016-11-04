@@ -36,6 +36,12 @@ footer {margin: 40px auto; }
 }
 
 
+.tekst-statusa-prijave {
+  margin-top: 14px;
+  font-size: 16px;
+  color: #eaeaea;
+}
+
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
 
@@ -48,6 +54,10 @@ footer {margin: 40px auto; }
   z-index: 10;
   height: 400px;
   background-color: #777;
+}
+
+.main-description {
+  text-shadow: 1px 2px 1px #111;
 }
 
 /* Declare heights because of positioning of img element */
@@ -265,6 +275,53 @@ Kontatk
   margin-top: 50px;
 }
 
+.from-top-100 {
+  margin-top: 100px;
+}
+
 h1 {
   text-align: center;
+}
+
+
+/***+
+Profile
+-------------------------------------
+*/
+
+.fos_user_user_show {
+  margin: 80px auto;
+  text-align: center;
+
+}
+
+.fos_user_user_show p {
+  font-size: 20px;
+}
+
+/***+
+Amdmin
+-------------------------------------
+*/
+.users-list {
+  margin: 10px;
+  padding: 0;
+}
+
+.users-list li{
+  padding: 5px;
+  margin: 0;
+}
+
+.users-list li:nth-child(odd){
+  background: #EEE;
+}
+
+.users-list li button{
+  float: right;
+
+}
+
+.forma-admin-promjena label {
+  width: 60px;
 }

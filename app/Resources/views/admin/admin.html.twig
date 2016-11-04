@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title  %} RecENT - Admin {% endblock %}
+
+{% block stylesheets %}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<link rel="stylesheet" href="{{  asset('style/style.css') }}" crossorigin="anonymous">
+
+
+{% endblock %}
+
+{% block javascripts %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+
+{% endblock %}
+
+
+{% block body %}
+
+<body>
+
+<div class="container marketing from-top-100">
+  <h1>Administracija</h1>
+  <div class="row" ng-app="myApp" ng-controller="myCtrl">
+	<div class="col-md-4" >
+		<h2>Korisnici</h2>
+		<ul class="users-list" type="none">
+		{% for user in users %}
+		<li > {{ user.name|e }} {{ user.surname|e }} 
+			<button class="btn btn-primary btn-xs" ng-click="promjeniPodatke('{{ user.name|e }}','{{ user.surname|e }}','{{ user.id|e }}','{{ user.email|e }}','{{ user.username|e }}')">Detalji/Promjeni</button>
+		</li>
+		{% endfor %}
+		</ul>
+
+		<br>
+	</div>
+
+
+
+	<div class="col-md-4 forma-admin-promjena">
+	<h2>Podaci korisnika</h2>
+		<form method="post" action="">
+		<label>Ime</label>
+			<input type="text" name="name" placeholder="ime korisnika" value="{%  verbatim  %} {{ ime }} {% endverbatim  %}" /><br>
+		<label>Prezme</label>	
+			<input type="text" name="surname" placeholder="prezime korisnika" value="{%  verbatim  %} {{ prezime }} {% endverbatim  %}" /><br>
+		<label><small>Kor. ime</small></label>	
+			<input type="text" name="username" placeholder="username korisnika" value="{%  verbatim  %} {{ username }} {% endverbatim  %}"/><br>	
+		
+			<input type="hidden" name="id" placeholder="id korisnika" value="{%  verbatim  %} {{ id }} {% endverbatim  %}" />
+		<label>Email</label>	
+			<input type="text" name="email" placeholder="novi email korisnika" value="{%  verbatim  %} {{ email }} {% endverbatim  %}"/><br>
+			<button type="submit">Promjeni</button>
+		</form>	
+	</div>
+	<div class="col-md-4">
+	<h2>Poruke administracije</h2>
+		{{ message }}
+	</div>
+</div>
+<!--angular za podatke -->
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    $scope.count = 0;
+    $scope.ime = "Ime";
+    $scope.prezime = "Prezime";
+    $scope.id = "ID";
+    $scope.email = "Email";
+    $scope.username = "Korisnicko ime";
+    $scope.promjeniPodatke = function(ime, prezime,id,email,username) {
+    	$scope.ime = ime;
+    	$scope.prezime = prezime;
+    	$scope.id = id;
+    	$scope.email = email;
+    	$scope.username = username;
+        $scope.count++;
+    }
+});
+</script>
+
+
+</div>
+<!------ asdasdasd -->
+
+
+
+
+{% endblock %}

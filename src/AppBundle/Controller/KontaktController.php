@@ -7,13 +7,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class KontaktController extends Controller
 {
-    /**
-     * @Route("/kontakt", name="kontakt")
-     */
-    public function indexAction()
+   
+    public function kontaktAction()
     {
         return $this->render('kontakt/kontakt.html.twig', array(
-            'webpage_title' => 'Kontekt - RecENT '
+            'webpage_title' => 'Kontakt - RecENT '
         ));
     }
 }

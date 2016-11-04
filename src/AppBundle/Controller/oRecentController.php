@@ -7,12 +7,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class oRecentController extends Controller
 {
-    /**
-     * @Route("/o-recent", name="orecent")
-     */
-    public function indexAction()
+   
+    public function orecentAction()
     {
-        return $this->render('o-recent/o-recent.html.twig', array(
+        return $this->render('orecent/orecent.html.twig', array(
             'webpage_title' => 'O RecENT - karakteristike'
         ));
     }

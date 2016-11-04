@@ -11,15 +11,14 @@ class DefaultController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-    public function homepageAction()
+    public function indexAction()
     {
         // replace this example code with whatever you need
 
-        return $this->render('default/index.html.twig', array(
-            'webpage_title' => 'RecENT - suvremeni način evidencije radnog vremena'
-        ));
+        return $this->render('Default/index.html.twig');
     }
 
 
     
 }
+
