@@ -8,3 +8,10 @@ app:
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+fos_rest:
+    type:     rest
+    prefix:   /api
+    resource: "api-routing.yml"
+
+    

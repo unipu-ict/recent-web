@@ -19,3 +19,13 @@ $container->setDefinition(
 );
 
 */
+/*
+$container->setDefinition(
+    'custom_user_manager_id',
+    new Definition(
+        'RecENT\UserBundle\Doctorine\CustomUserManager'
+        
+    )
+);
+
+*/

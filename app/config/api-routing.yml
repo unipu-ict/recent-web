@@ -1,0 +1,24 @@
+user_all:
+    path:  /users
+    defaults: { _controller: AppBundle:Api/Users:all , _format: json }
+    requirements:
+        _method: GET
+
+user_get:
+    path:  /users/{id}
+    defaults: { _controller: AppBundle:Api/Users:get , _format: json }
+    requirements:
+        _method: GET
+        id: '\d+'      
+
+user_info:
+    path:  /userInfo
+    defaults: { _controller: AppBundle:Api/Users:userInfo , _format: json }
+    requirements:
+        _method: GET
+        
+user_update_email:
+    path:  /userUpdateEmail
+    defaults: { _controller: AppBundle:Api/Users:userUpdateEmail , _format: json }
+    requirements:
+        _method: POST

@@ -54,10 +54,10 @@ class SecurityController extends BaseController
             ? $this->get('security.csrf.token_manager')->getToken('authenticate')->getValue()
             : null;
 
+
         $routeName = $request->get('_route');   
         
-
-        if($routeName!="fos_user_security_login"){
+        if($routeName!="fos_user_security_login"){ //dodano renderiranje za login straicu i za !login stranicu
             return $this->renderLoginNotLoginPage(array(
                 'last_username' => $lastUsername,
                 'error' => $error,

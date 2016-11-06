@@ -32,6 +32,7 @@ class AdminController extends Controller
 		     }
 	     }
 	     else { $message="Nepostojeći korisnik!";}   
+        
         return $this->render('admin/admin.html.twig', array('users' =>  $users, 'message' => $message));
     }
 
