@@ -1,0 +1,24 @@
+{% trans_default_domain 'RecENTUserBundle' %}
+
+
+
+<form action="{{ path("fos_user_security_check") }}" method="post" class="form-signin">
+ <h2 class="form-signin-heading">Prijava</h2>
+ {% if error %}
+    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+    {% if csrf_token %}
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+    {% endif %}
+
+    <label for="username" class="sr-only">{{ 'form.username'|trans }}</label>
+    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" class="form-control" placeholder="Korisničko ime" />
+
+    <label for="password" class="sr-only">{{ 'form.password'|trans }}</label>
+    <input type="password" id="password" name="_password" required="required" class="form-control" placeholder="Lozinka"  />
+
+    <input type="checkbox" id="remember_me" name="_remember_me" value="on" class="form-control" />
+    <label for="remember_me">{{ 'Zapamti me'|trans }}</label>
+
+    <button class="btn btn-lg btn-primary btn-block"  type="submit" id="_submit" name="_submit" value="{{ 'layout.login'|trans }}" />Prijava</button>
+</form>
