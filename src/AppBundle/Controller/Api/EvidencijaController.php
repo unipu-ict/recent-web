@@ -32,14 +32,15 @@ class EvidencijaController extends FOSRestController
 
         $em = $this->getDoctrine()->getManager();
 
-        // tells Doctrine you want to (eventually) save the Product (no queries yet)
+        // tells Doctrine you want to (eventually) save the Evidencija (no queries yet)
         $em->persist($evidencija);
 
         // actually executes the queries (i.e. the INSERT query)
         $em->flush();
 
 
-        $data = ['Hi' => 'user :) '];
+        $data = ['Uspjeh' => 'DA'];
+
         $view = $this->view($data, Response::HTTP_OK);
         return $view;
 

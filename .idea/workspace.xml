@@ -24,45 +24,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="oRecentController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/oRecentController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-              <folding>
-                <marker date="1478411790000" expanded="false" signature="44:157" ph="..." />
-                <marker date="1478411790000" expanded="true" signature="201:393" ph="{...}" />
-                <marker date="1478411790000" expanded="true" signature="314:382" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="base.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="792">
-              <caret line="36" column="66" selection-start-line="36" selection-start-column="66" selection-end-line="36" selection-end-column="66" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/default/index.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="24" column="14" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Evidencija.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Evidencija.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
+            <state relative-caret-position="-561">
               <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EvidencijaController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Api/EvidencijaController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="352">
+              <caret line="41" column="32" selection-start-line="41" selection-start-column="32" selection-end-line="41" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -71,7 +47,7 @@
       <file leaf-file-name="UsersController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Api/UsersController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1080">
+            <state relative-caret-position="411">
               <caret line="41" column="23" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="23" />
               <folding>
                 <element signature="e#45#95#0#PHP" expanded="true" />
@@ -83,33 +59,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EvidencijaController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Api/EvidencijaController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="42" column="54" selection-start-line="42" selection-start-column="54" selection-end-line="42" selection-end-column="54" />
-              <folding>
-                <element signature="e#44#76#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="api-routing.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/config/api-routing.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="473">
-              <caret line="29" column="21" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="parameters.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="4" column="30" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
+            <state relative-caret-position="341">
+              <caret line="27" column="66" selection-start-line="27" selection-start-column="54" selection-end-line="27" selection-end-column="66" />
               <folding />
             </state>
           </provider>
@@ -408,7 +362,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1477498222254</updated>
-      <workItem from="1478793021082" duration="3241000" />
+      <workItem from="1478793021082" duration="6162000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <created>1477499154386</created>
@@ -428,7 +382,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3241000" />
+    <option name="totallyTimeSpent" value="6162000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="7" />
@@ -500,11 +454,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
           <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding>
-            <marker date="1478411790000" expanded="false" signature="44:157" ph="..." />
-            <marker date="1478411790000" expanded="true" signature="201:393" ph="{...}" />
-            <marker date="1478411790000" expanded="true" signature="314:382" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -512,7 +462,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="616">
           <caret line="28" column="66" selection-start-line="28" selection-start-column="66" selection-end-line="28" selection-end-column="66" />
-          <folding />
+          <folding>
+            <element signature="e#1632#1640#0#Twig" expanded="true" />
+            <element signature="e#1998#2006#0#Twig" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -528,11 +481,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding>
-            <marker date="1478411790000" expanded="false" signature="44:157" ph="..." />
-            <marker date="1478411790000" expanded="true" signature="201:393" ph="{...}" />
-            <marker date="1478411790000" expanded="true" signature="314:382" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -540,7 +489,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="28" column="66" selection-start-line="28" selection-start-column="66" selection-end-line="28" selection-end-column="66" />
-          <folding />
+          <folding>
+            <element signature="e#1632#1640#0#Twig" expanded="true" />
+            <element signature="e#1998#2006#0#Twig" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -577,11 +529,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding>
-            <marker date="1478411790000" expanded="false" signature="44:157" ph="..." />
-            <marker date="1478411790000" expanded="true" signature="201:393" ph="{...}" />
-            <marker date="1478411790000" expanded="true" signature="314:382" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -589,7 +537,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="15" column="47" selection-start-line="15" selection-start-column="47" selection-end-line="15" selection-end-column="47" />
-          <folding />
+          <folding>
+            <element signature="e#1632#1640#0#Twig" expanded="true" />
+            <element signature="e#1998#2006#0#Twig" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -618,11 +569,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding>
-            <marker date="1478411790000" expanded="false" signature="44:157" ph="..." />
-            <marker date="1478411790000" expanded="true" signature="201:393" ph="{...}" />
-            <marker date="1478411790000" expanded="true" signature="314:382" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -630,7 +577,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="11" column="37" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
-          <folding />
+          <folding>
+            <element signature="e#1632#1640#0#Twig" expanded="true" />
+            <element signature="e#1998#2006#0#Twig" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -667,11 +617,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1478411790000" expanded="false" signature="44:157" ph="..." />
-            <marker date="1478411790000" expanded="true" signature="201:393" ph="{...}" />
-            <marker date="1478411790000" expanded="true" signature="314:382" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -679,7 +625,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="28" column="149" selection-start-line="28" selection-start-column="149" selection-end-line="28" selection-end-column="149" />
-          <folding />
+          <folding>
+            <element signature="e#1632#1640#0#Twig" expanded="true" />
+            <element signature="e#1998#2006#0#Twig" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -753,15 +702,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/oRecentController.php">
+    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding>
-            <marker date="1478411790000" expanded="false" signature="44:157" ph="..." />
-            <marker date="1478411790000" expanded="true" signature="201:393" ph="{...}" />
-            <marker date="1478411790000" expanded="true" signature="314:382" ph="..." />
-          </folding>
+        <state relative-caret-position="-2101">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -775,47 +720,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="792">
+        <state relative-caret-position="-425">
           <caret line="36" column="66" selection-start-line="36" selection-start-column="66" selection-end-line="36" selection-end-column="66" />
-          <folding />
+          <folding>
+            <element signature="e#1632#1640#0#Twig" expanded="true" />
+            <element signature="e#1998#2006#0#Twig" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/default/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
+        <state relative-caret-position="-1569">
           <caret line="24" column="14" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Evidencija.php">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/oRecentController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2101">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="352">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/config/api-routing.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="473">
-          <caret line="29" column="21" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
+        <state relative-caret-position="341">
+          <caret line="27" column="66" selection-start-line="27" selection-start-column="54" selection-end-line="27" selection-end-column="66" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Api/UsersController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1080">
+        <state relative-caret-position="411">
           <caret line="41" column="23" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="23" />
           <folding>
             <element signature="e#45#95#0#PHP" expanded="true" />
@@ -826,13 +766,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Evidencija.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-561">
+          <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Api/EvidencijaController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="42" column="54" selection-start-line="42" selection-start-column="54" selection-end-line="42" selection-end-column="54" />
-          <folding>
-            <element signature="e#44#76#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="352">
+          <caret line="41" column="32" selection-start-line="41" selection-start-column="32" selection-end-line="41" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>
