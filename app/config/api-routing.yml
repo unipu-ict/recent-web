@@ -22,3 +22,14 @@ user_update_email:
     defaults: { _controller: AppBundle:Api/Users:userUpdateEmail , _format: json }
     requirements:
         _method: POST
+
+evidencija_pod:
+    path:  /evidencija
+    defaults: { _controller: AppBundle:Api/Evidencija:unesipodatke , _format: json }
+    requirements:
+        _method: POST        
+
+
+
+        
+

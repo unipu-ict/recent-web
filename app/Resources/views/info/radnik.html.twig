@@ -1,0 +1,439 @@
+{% extends 'base.html.twig' %}
+
+{% block title  %} RecENT - suvremeni način evdencije radnog vremena {% endblock %}
+
+{% block stylesheets %}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<link rel="stylesheet" href="{{  asset('style/style.css') }}" crossorigin="anonymous">
+<link rel="stylesheet" href="{{  asset('style/worker.css') }}" crossorigin="anonymous">
+
+{% endblock %}
+
+
+{% block body %}
+   <div class="workerInfo container">
+  	<h1>Evidencija podataka o radniku</h1>
+  	<div class="row row-eq-height">
+  		<div class="col-xs-4">1) IME I PREZIME RADNIKA</div>
+  		<div class="col-xs-8">Pero Perić</div>
+  	</div>
+  	<div class="row row-eq-height">
+  		<div class="col-xs-4">2) OIB</div>
+  		<div class="col-xs-8">179345223</div>
+  	</div>
+  	<div class="row row-eq-height">
+  		<div class="col-xs-4">3) SPOL</div>
+  		<div class="col-xs-8">M Ž</div>
+  	</div>
+  	<div class="row row-eq-height">
+  		<div class="col-xs-5">4) DAN, MJESEC I GODINA ROĐENJA</div>
+  		<div class="col-xs-7">8.2.1991</div>
+  	</div>
+
+  	<div class="row row-eq-height">
+  		<div class="col-xs-5">5) MJESTO ROĐENJA <small>(država ako je mjesto izvan RH)</small></div>
+  		<div class="col-xs-7">Pula</div>
+  	</div>
+
+  	<div class="row row-eq-height">
+  		<div class="col-xs-5">6) DRŽAVLJANSTVO</div>
+  		<div class="col-xs-7">Hrvatsko</div>
+  	</div>
+
+  	<div class="row row-eq-height">
+  		<div class="col-xs-5">7) PREBIVALIŠTE odnosno BORAVIŠTE</div>
+  		<div class="col-xs-7">Pula, Koparska 23c</div>
+  	</div>
+
+  	<div class="row row-eq-height">
+  		<div class="col-xs-5">8) DOZVOLA ZA BORAVAK I RAD <small>za strance ili potvrda o prijavi</small></div>
+  		<div class="col-xs-7">nije stranac</div>
+  	</div>
+
+  	<div class="row row-eq-height">
+  		<div class="col-xs-4 ">9) OBRAZOVANJE</div>
+  		<div class="col-xs-8 no-padding">
+  			
+  			<div class="row row-eq-height no-margin">
+  				<div class="col-xs-12 border-bottom">stručno obrazovanje</div>
+  			</div>
+  			<div class="row row-eq-height no-margin">	
+  				<div class="col-xs-12 no-border">posebni ispiti, tečajevi i slično:</div>
+  			</div>
+  		</div>
+  	</div>
+
+  	
+  	<div class="row row-eq-height">
+  		<div class="col-xs-4 ">10) DAN POČETKA RADA</div>
+  		<div class="col-xs-8 ">16.11.2016</div>
+  	</div>
+
+	<div class="row row-eq-height">
+  		<div class="col-xs-4 ">11) ZANIMANJE, NAZIV POSLA, NARAV I VRSTA RADA <small>koje radnik obavlja</small></div>
+  		<div class="col-xs-8 ">Zidar, na lopati</div>
+  	</div>
+
+  	<div class="row row-eq-height">
+  		<div class="col-xs-4 ">12) UGOVOR O RADU SKLOPLJEN NA</div>
+  		<div class="col-xs-8 no-padding">
+  				<div class="row row-eq-height no-margin"> <!--prvi stupac prvi red red  -->
+  					<div class="col-xs-3 border-bottom">ODREĐENO VRIJEME</div>
+  					<div class="col-xs-9 no-padding no-border">
+	  					<div class="row row-eq-height no-margin">
+				  			<div class="col-xs-12 no-border no-padding ">
+				  				<div class="row row-eq-height no-margin">
+							  		<div class="col-xs-6  "> od</div>
+							  		<div class="col-xs-6 ">do</div>
+							  	</div>
+							  	<div class="row row-eq-height no-margin">
+							  		<div class="col-xs-6 ">od</div>
+							  		<div class="col-xs-6 ">do</div>
+							  	</div>
+							  	<div class="row row-eq-height no-margin">
+							  		<div class="col-xs-12 ">odredivo do:</div>
+							  	</div>
+				  				
+				  			</div>
+
+				  		</div>
+			  		</div>
+			  	</div>
+
+
+			  	<div class="row row-eq-height no-margin no-padding">	
+			  		<div class="col-xs-12 no-border">NEODREĐENO VRIJEME</div>
+			  	</div>
+
+
+  		</div>
+  	</div>
+
+  	<div class="row row-eq-height">
+  		<div class="col-xs-1">13)</div>
+  		<div class="col-xs-11 no-border no-padding">
+  			<div class="row row-eq-height no-margin">
+  				<div class="col-xs-3"><small><small>UGOVR čl. 61. st.3. ZOR</small></small></div>
+  				<div class="col-xs-9 no-padding no-border">
+  					<div class="row row-eq-height no-margin">
+  						<div class="col-xs-2"><small>br sati</small></div>
+  						<div class="col-xs-2"></div>
+  						<div class="col-xs-8"><small>suglasnost poslodavca s punim r.v.</small></div>
+  					</div>
+  					<div class="row row-eq-height no-margin">
+  						<div class="col-xs-2"><small>br sati</small></div>
+  						<div class="col-xs-2"></div>
+  						<div class="col-xs-8"><small>suglasnost svih poslodavaca s nepunim r.v.</small></div>
+  					</div>
+  				</div>
+  				
+  			</div>
+  			<div class="row row-eq-height no-margin">
+  				<div class="col-xs-3"><small><small>UGOVR čl. 62. st.3. ZOR</small></small></div>
+  				<div class="col-xs-9 no-padding no-border">
+  					<div class="row row-eq-height no-margin">
+  						<div class="col-xs-2"><small>br sati</small></div>
+  						<div class="col-xs-2"></div>
+  						<div class="col-xs-8"><small>obavijest poslodavcima o radu za nepuno r.v</small></div>
+  					</div>
+  				</div>
+  				
+  			</div>
+  		</div>
+  	</div>
+  
+    <div class="row row-eq-height">
+  		<div class="col-xs-4 ">14) VRIJEME TRAJANJA PROBNOG RADA- ako je ugovoreno</div>
+  		<div class="col-xs-8 ">16.11.2016</div>
+    </div>
+
+
+    <div class="row row-eq-height">
+  		<div class="col-xs-4 ">15) PRIPRAVNIČKI STAŽ - ako je ugovoren</div>
+  		<div class="col-xs-8 no-padding">
+  			
+  			<div class="row row-eq-height no-margin">
+  				<div class="col-xs-12 border-bottom">trajanje</div>
+  			</div>
+  			<div class="row row-eq-height no-margin">	
+  				<div class="col-xs-12 no-border">vrijeme i rezultat polaganja stručnog ispita <br>- ako je predviđen i obavljen</div>
+  			</div>
+  		</div>
+  	</div>
+
+  	<div class="row row-eq-height">
+  		<div class="col-xs-4 ">16) RAD U INOZEMSTVU</div>
+  		<div class="col-xs-8 no-padding">
+  			
+  			<div class="row row-eq-height no-margin">
+  				<div class="col-xs-12 border-bottom">trajanje</div>
+  			</div>
+  			<div class="row row-eq-height no-margin">	
+  				<div class="col-xs-12 no-border">država i mjesto rada</div>
+  			</div>
+  		</div>
+  	</div>
+
+  	<div class="row row-eq-height">
+  		<div class="col-xs-4 ">17) PRIVREMENO USTUPANJE RADNIKA U POVEZANO DRUŠTVO</div>
+  		<div class="col-xs-8 no-padding">
+  			
+  			<div class="row row-eq-height no-margin">
+  				<div class="col-xs-12 border-bottom">trajanje</div>
+  			</div>
+  			<div class="row row-eq-height no-margin">	
+  				<div class="col-xs-12 no-border">sjedište i mjesto rada</div>
+  			</div>
+  			<div class="row row-eq-height no-margin">	
+  				<div class="col-xs-12 no-border">država za ustupanje u inozemstvo</div>
+  			</div>
+  		</div>
+  	</div>
+
+  	<div class="row row-eq-height">
+  		<div class="col-xs-4 ">18) POSLOVI NA KOJIMA SE STAŽ OSIGURANJA RAČUNA S POVEĆANIM TRAJANJEM</div>
+  		<div class="col-xs-8 no-padding">
+  			
+  			<div class="row row-eq-height no-margin">
+  				<div class="col-xs-12 border-bottom">DA     NE</div>
+  			</div>
+  			<div class="row row-eq-height no-margin">	
+  				<div class="col-xs-12 no-border">način računanja</div>
+  			</div>
+  		</div>
+  	</div>
+
+  	<div class="row row-eq-height">
+  		<div class="col-xs-4 ">19) POSLOVI NA KOJIMA RADNIK MOŽE RADITI SAMO NAKON PRETHODNOG I REDOVITOG UTVRĐIVANJA ZDRAVSTVENE SPOSOBNOSTI</div>
+  		<div class="col-xs-8 no-padding">
+  			
+  			<div class="row row-eq-height no-margin">
+  				<div class="col-xs-12 border-bottom">DA     NE</div>
+  			</div>
+  			<div class="row row-eq-height no-margin">	
+  				<div class="col-xs-12 no-border">redovito utvrđivanje zdravstvene sposobnosti</div>
+  			</div>
+  		</div>
+  	</div>
+
+  	<div class="row row-eq-height">
+  		<div class="col-xs-4 ">20) MJESTO RADA</div>
+  		<div class="col-xs-8 no-padding">
+  			
+  			<div class="row row-eq-height no-margin">
+  				<div class="col-xs-12 border-bottom">stalno ili glavno</div>
+  			</div>
+  			<div class="row row-eq-height no-margin">	
+  				<div class="col-xs-12 no-border">rad na različitim mjestima   DA   NE</div>
+  			</div>
+  		</div>
+  	</div>
+
+  	<div class="row row-eq-height">
+  		<div class="col-xs-4 ">21) TJEDNO RADNO VRIJEME - u satima</div>
+  		<div class="col-xs-8 no-padding">
+  			
+  			<div class="row row-eq-height no-margin">
+  				<div class="col-xs-12 no-border no-padding">
+  					<div class="row row-eq-height no-margin ">
+		  				<div class="col-xs-12 ">PUNO</div>
+		  				<div class="col-xs-12 ">NEPUNO</div>
+		  			</div>
+  				</div>
+  			</div>
+  			<div class="row row-eq-height no-margin">	
+  				<div class="col-xs-12 no-border">SKRAĆENO</div>
+  			</div>
+  		</div>
+  	</div>
+
+  	<div class="row row-eq-height">
+  		<div class="col-xs-4 ">22) MIROVINSKI STAŽ DO POČETKA RADA KOD POSLODAVCA</div>
+  		<div class="col-xs-8 no-padding">
+  			
+  		</div>
+  	</div>
+
+  	<div class="row row-eq-height">
+  		<div class="col-xs-4 ">23) VRIJEME MIROVANJA RADNOG ODNOSA</div>
+  		<div class="col-xs-8 no-padding">
+  			<div class="row row-eq-height no-margin ">
+		  		<div class="col-xs-12 ">MIROVANJE</div>
+		  		<div class="col-xs-12 ">od</div>
+		  		<div class="col-xs-12 ">do</div>
+		  	</div>
+		  	<div class="row row-eq-height no-margin ">
+		  		<div class="col-xs-12 ">RODILJNI</div>
+		  		<div class="col-xs-12 ">od</div>
+		  		<div class="col-xs-12 ">do</div>
+		  	</div>
+		  	<div class="row row-eq-height no-margin ">
+		  		<div class="col-xs-12 ">RODITELJSKI</div>
+		  		<div class="col-xs-12 ">od</div>
+		  		<div class="col-xs-12 ">do</div>
+		  	</div>
+  		</div>
+  	</div>
+
+  	<div class="row row-eq-height">
+  		<div class="col-xs-4 ">24) DAN PRESTANKA RADNOG ODNOSA</div>
+  		<div class="col-xs-8 ">
+  			
+  		</div>
+  	</div>
+
+  	<div class="row row-eq-height">
+  		<div class="col-xs-4 ">25) RAZLOG PRESTANKA RADNOG ODNOSA</div>
+  		<div class="col-xs-8 ">
+  			
+  		</div>
+  	</div>
+
+  	<div class="row row-eq-height">
+  		<div class="col-xs-12 "><h4 class="text-center black">DRUGI PODACI KOJE JE PRIJAVIO RADNIK ILI NADLEŽNO TIJELO</h4></div>
+  		
+  	</div>
+
+  	<div class="row row-eq-height">
+  		<div class="col-xs-8 ">TRUDNOĆA</div>
+  		<div class="col-xs-4 ">
+  			
+  		</div>
+  	</div>
+
+  	<div class="row row-eq-height">
+  		<div class="col-xs-8 ">MAJČINSTVO/OČINSTVO</div>
+  		<div class="col-xs-4 ">
+  			
+  		</div>
+  	</div>
+
+  	<div class="row row-eq-height">
+  		<div class="col-xs-8 ">DOJENJE DJETETA</div>
+  		<div class="col-xs-4 ">
+  			
+  		</div>
+  	</div>
+
+  	<div class="row row-eq-height">
+  		<div class="col-xs-8 ">STATUS SAMOHRANOG RODITELJA</div>
+  		<div class="col-xs-4 ">
+  			
+  		</div>
+  	</div>
+
+  	<div class="row row-eq-height">
+  		<div class="col-xs-8 ">STATUS POSVOJITELJA</div>
+  		<div class="col-xs-4 ">
+  			
+  		</div>
+  	</div>
+
+  	<div class="row row-eq-height">
+  		<div class="col-xs-8 ">PROFESIONALNA BOLEST</div>
+  		<div class="col-xs-4 ">
+  			
+  		</div>
+  	</div>
+
+  	<div class="row row-eq-height">
+  		<div class="col-xs-8 ">OZLJEDA NA RADU</div>
+  		<div class="col-xs-4 ">
+  			
+  		</div>
+  	</div>
+
+  	<div class="row row-eq-height">
+  		<div class="col-xs-8 ">PROFESIONALNA NESPOSOBNOST ZA RAD</div>
+  		<div class="col-xs-4 ">
+  			
+  		</div>
+  	</div>
+
+  	<div class="row row-eq-height">
+  		<div class="col-xs-8 ">SMANJENJE RADNE SPOSOBNOSTI 
+		uz preostalu radnu sposobnost</div>
+  		<div class="col-xs-4 ">
+  			
+  		</div>
+  	</div>
+  	<div class="row row-eq-height">
+  		<div class="col-xs-8 ">SMANJENJE RADNE SPOSOBNOSTI
+		uz djelomičan gubitak radne sposobnosti</div>
+  		<div class="col-xs-4 ">
+  			
+  		</div>
+  	</div>
+  	<div class="row row-eq-height">
+  		<div class="col-xs-8 ">NEPOSREDNA OPASNOST OD NASTANKA
+		SMANJENJA RADNE SPOSOBNOSTI</div>
+  		<div class="col-xs-4 ">
+  			
+  		</div>
+  	</div>
+  	<div class="row row-eq-height">
+  		<div class="col-xs-8 ">NEPOSREDNA OPASNOST OD NASTANKA INVALIDNOSTI </div>
+  		<div class="col-xs-4 ">
+  			
+  		</div>
+  	</div>
+  	<div class="row row-eq-height">
+  		<div class="col-xs-8 ">INVALIDNOST</div>
+  		<div class="col-xs-4 ">
+  			
+  		</div>
+  	</div>
+  	<div class="row row-eq-height">
+  		<div class="col-xs-8 ">INVALIDSKA MIROVINA zbog djelomičnog gubitka radne sposobnosti</div>
+  		<div class="col-xs-4 ">
+  			
+  		</div>
+  	</div>
+  	<div class="row row-eq-height">
+  		<div class="col-xs-8 ">OBVEZE UZDRŽAVANJA KOJE TERETE RADNIKA</div>
+  		<div class="col-xs-4 ">
+  			
+  		</div>
+  	</div>
+  	<div class="row row-eq-height">
+  		<div class="col-xs-8 ">PODATAK O DRUGIM POSLODAVCIMA
+		- za radnika koji radi u nepunom radnom vremenu</div>
+  		<div class="col-xs-4 ">
+  			
+  		</div>
+  	</div>
+
+  	<div class="row row-eq-height">
+  		<div class="col-xs-8 ">UGOVORNA ZABRANA NATJECANJA</div>
+  		<div class="col-xs-4 no-padding">
+  			
+  			<div class="row row-eq-height no-margin">
+  				<div class="col-xs-12 border-bottom">DA  NE</div>
+  			</div>
+  			<div class="row row-eq-height no-margin">	
+  				<div class="col-xs-12 no-border">trajanje</div>
+  			</div>
+  		</div>
+  	</div>
+
+Napomena: poslodavac nije obavezan voditi podatke koji kod radnika ne postoje
+
+   </div>
+
+
+
+   </div>
+{% endblock %}
+
+
+{% block javascripts %}
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+{% endblock %}

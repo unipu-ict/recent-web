@@ -1,5 +1,6 @@
 <?php
 
+
 namespace AppBundle\Controller\Api;
  
 use FOS\RestBundle\Controller\Annotations as Rest;
@@ -11,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Bundle\FrameworkBundle\Validator;
+
 
 class UsersController extends FOSRestController
 {
@@ -98,6 +100,8 @@ class UsersController extends FOSRestController
         return $view = $this->view($content, Response::HTTP_INTERNAL_SERVER_ERROR);
 
     }
+
+
 
     protected function getContentAsArray(Request $request){ //pomocna funkcjia za vratit json iz respnsa
         $content = $request->getContent();
