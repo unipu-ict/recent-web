@@ -15,7 +15,6 @@ class Tag_user
 {
 	/**
      * @ORM\Column(type="integer")
-     * @ORM\Id
      */
     protected $id;
 
