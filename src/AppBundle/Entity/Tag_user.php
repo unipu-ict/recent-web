@@ -15,8 +15,16 @@ class Tag_user
 {
 	/**
      * @ORM\Column(type="integer")
+     * @ORM\Id
      */
     protected $id;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="user_id", type="integer")
+     */
+    private $userId;
 
 	/**
      * @ORM\Column(type="string", length=100)
@@ -70,5 +78,29 @@ class Tag_user
     public function getUserTag()
     {
         return $this->user_tag;
+    }
+
+    /**
+     * Set userId
+     *
+     * @param integer $userId
+     *
+     * @return Tag_user
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Get userId
+     *
+     * @return integer
+     */
+    public function getUserId()
+    {
+        return $this->userId;
     }
 }
