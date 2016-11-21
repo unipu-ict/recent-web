@@ -35,22 +35,13 @@ footer {margin: 40px auto; }
   width: auto;
 }
 
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> masimo
 .tekst-statusa-prijave {
   margin-top: 14px;
   font-size: 16px;
   color: #eaeaea;
 }
 
-<<<<<<< HEAD
->>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
-=======
->>>>>>> masimo
+
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
 
@@ -65,19 +56,12 @@ footer {margin: 40px auto; }
   background-color: #777;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> masimo
+
 .main-description {
   text-shadow: 1px 2px 1px #111;
 }
 
-<<<<<<< HEAD
->>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
-=======
->>>>>>> masimo
+
 /* Declare heights because of positioning of img element */
 .hero1 .item {
   height: 400px;
@@ -293,21 +277,15 @@ Kontatk
   margin-top: 50px;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 h1 {
   text-align: center;
 }
-=======
-=======
->>>>>>> masimo
+
 .from-top-100 {
   margin-top: 100px;
 }
 
-h1 {
-  text-align: center;
-}
+
 
 
 /***+
@@ -351,10 +329,8 @@ Amdmin
 .forma-admin-promjena label {
   width: 60px;
 }
-<<<<<<< HEAD
->>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
-=======
+
 
 
 /* Ostalo *//
->>>>>>> masimo
+
