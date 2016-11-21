@@ -33,8 +33,7 @@ body {
 .sidebar {
   display: none;
 }
-<<<<<<< HEAD
-=======
+
 
 .inline {
   display: inline;
@@ -65,7 +64,7 @@ body {
   align-items: center;
 }
 
->>>>>>> masimo
+
 @media (min-width: 768px) {
   .sidebar {
     position: fixed;

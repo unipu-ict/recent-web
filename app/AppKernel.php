@@ -2,14 +2,7 @@
 
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 use JMS\Serializer\SerializerBuilder;
->>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
-=======
-use JMS\Serializer\SerializerBuilder;
->>>>>>> masimo
 
 class AppKernel extends Kernel
 {
@@ -24,19 +17,10 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> masimo
             new FOS\UserBundle\FOSUserBundle(),
             new RecENT\UserBundle\RecENTUserBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new Nelmio\CorsBundle\NelmioCorsBundle(),
-<<<<<<< HEAD
->>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
-=======
->>>>>>> masimo
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

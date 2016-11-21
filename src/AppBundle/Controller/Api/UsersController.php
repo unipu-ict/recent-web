@@ -1,9 +1,6 @@
 <?php
 
-<<<<<<< HEAD
-=======
 
->>>>>>> masimo
 namespace AppBundle\Controller\Api;
  
 use FOS\RestBundle\Controller\Annotations as Rest;
@@ -16,10 +13,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Bundle\FrameworkBundle\Validator;
 
-<<<<<<< HEAD
-=======
 
->>>>>>> masimo
 class UsersController extends FOSRestController
 {
     /**
@@ -107,11 +101,7 @@ class UsersController extends FOSRestController
 
     }
 
-<<<<<<< HEAD
-=======
 
-
->>>>>>> masimo
     protected function getContentAsArray(Request $request){ //pomocna funkcjia za vratit json iz respnsa
         $content = $request->getContent();
 

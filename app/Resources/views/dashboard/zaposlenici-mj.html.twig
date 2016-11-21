@@ -72,95 +72,17 @@
                 </tr>
               </thead>
               <tbody>
+                {% for korisnik in users %}
                 <tr>
-                  <td>1</td>
-                  <td>Ivo Ivić</td>
-                  <td>106 </td>
-                  <td>6</td>
-                  <td>2</td>
-                  <td><a href="/dashboard/radnik"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a></td>
+                    
+                    <td>{{ korisnik.Id }}</td>
+                    <td>{{ korisnik.name }} {{ korisnik.surname }}</td>
+                    <td>202 </td>
+                    <td>6</td>
+                    <td>2</td>
+                    <td><a href="/dashboard/radnik"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a></td>
                 </tr>
-               
-                <tr>
-                  <td>2</td>
-                  <td>Ivo Andrić</td>
-                  <td>105 </td>
-                  <td>6</td>
-                  <td>2</td>
-                  <td><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Mihovil Petković</td>
-                  <td>190 </td>
-                  <td>6</td>
-                  <td>2</td>
-                  <td><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>Antun Kovačević</td>
-                  <td>109 </td>
-                  <td>6</td>
-                  <td>2</td>
-                  <td><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>Marino Pereša</td>
-                  <td>116 </td>
-                  <td>6</td>
-                  <td>2</td>
-                  <td><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></td>
-                </tr>
-                <tr>
-                  <td>6</td>
-                  <td>Patrik Grof</td>
-                  <td>126 </td>
-                  <td>6</td>
-                  <td>2</td>
-                  <td><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></td>
-                </tr>
-                <tr>
-                  <td>7</td>
-                  <td>Peđa Grbin</td>
-                  <td>6 </td>
-                  <td>6</td>
-                  <td>2</td>
-                  <td><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></td>
-                </tr>
-                <tr>
-                  <td>8</td>
-                  <td>NeznamIme Plenković</td>
-                  <td>2 </td>
-                  <td>100</td>
-                  <td>2</td>
-                  <td><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></td>
-                </tr>
-                <tr>
-                  <td>9</td>
-                  <td>Stjepan Mesić</td>
-                  <td>216 </td>
-                  <td>2</td>
-                  <td>20</td>
-                  <td><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></td>
-                </tr>
-                <tr>
-                  <td>10</td>
-                  <td>Juraj Dobrila</td>
-                  <td>103 </td>
-                  <td>6</td>
-                  <td>2</td>
-                  <td><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></td>
-                </tr>
-                <tr>
-                  <td>11</td>
-                  <td>Giorgio Sinković</td>
-                  <td>202 </td>
-                  <td>6</td>
-                  <td>2</td>
-                  <td><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></td>
-                </tr>
+                {% endfor %}
                 
               </tbody>
             </table>

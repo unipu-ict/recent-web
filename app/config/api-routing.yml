@@ -27,13 +27,5 @@ evidencija_pod:
     path:  /evidencija
     defaults: { _controller: AppBundle:Api/Evidencija:unesipodatke , _format: json }
     requirements:
-<<<<<<< HEAD
         _method: POST
-=======
-        _method: POST        
-
-
-
-        
-
->>>>>>> masimo
+       

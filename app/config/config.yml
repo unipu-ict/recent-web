@@ -2,39 +2,16 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     - { resource: "@RecENTUserBundle/Resources/config/services.php" }
->>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
-=======
-    - { resource: "@RecENTUserBundle/Resources/config/services.php" }
->>>>>>> masimo
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-<<<<<<< HEAD
-<<<<<<< HEAD
-    locale: en
-
-framework:
-    #esi:             ~
-    #translator:      { fallbacks: ["%locale%"] }
-=======
     locale: hr
 
 framework:
     #esi:             ~
     translator:      { fallbacks: ["%locale%"] }
->>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
-=======
-    locale: hr
-
-framework:
-    #esi:             ~
-    translator:      { fallbacks: ["%locale%"] }
->>>>>>> masimo
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -42,15 +19,7 @@ framework:
     form:            ~
     csrf_protection: ~
     validation:      { enable_annotations: true }
-<<<<<<< HEAD
-<<<<<<< HEAD
-    #serializer:      { enable_annotations: true }
-=======
     serializer:      { enable_annotations: true } ##za fosrest bundle
->>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
-=======
-    serializer:      { enable_annotations: true } ##za fosrest bundle
->>>>>>> masimo
     templating:
         engines: ['twig']
     default_locale:  "%locale%"
@@ -63,15 +32,7 @@ framework:
     fragments:       ~
     http_method_override: true
     assets: ~
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
     
->>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
-=======
-    
->>>>>>> masimo
 # Twig Configuration
 twig:
     debug:            "%kernel.debug%"
@@ -99,14 +60,7 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
->>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
-=======
-
->>>>>>> masimo
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
@@ -114,11 +68,6 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> masimo
 
 #fos user
 fos_user:
@@ -163,8 +112,4 @@ fos_rest:
         view_response_listener: 'force'
         formats:
             json: true
-<<<<<<< HEAD
->>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
-=======
 
->>>>>>> masimo
