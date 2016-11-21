@@ -1,0 +1,5 @@
+{% extends ["RecENTUserBundle::layout.html.twig", "AppBundle::base.html.twig"] %}
+
+{% block fos_user_content %}
+    {{ include('RecENTUserBundle:Security:login_content.html.twig') }}
+{% endblock fos_user_content %}

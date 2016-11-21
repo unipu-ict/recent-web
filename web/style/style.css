@@ -36,6 +36,15 @@ footer {margin: 40px auto; }
 }
 
 
+<<<<<<< HEAD
+=======
+.tekst-statusa-prijave {
+  margin-top: 14px;
+  font-size: 16px;
+  color: #eaeaea;
+}
+
+>>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
 
@@ -50,6 +59,13 @@ footer {margin: 40px auto; }
   background-color: #777;
 }
 
+<<<<<<< HEAD
+=======
+.main-description {
+  text-shadow: 1px 2px 1px #111;
+}
+
+>>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
 /* Declare heights because of positioning of img element */
 .hero1 .item {
   height: 400px;
@@ -265,6 +281,59 @@ Kontatk
   margin-top: 50px;
 }
 
+<<<<<<< HEAD
 h1 {
   text-align: center;
 }
+=======
+.from-top-100 {
+  margin-top: 100px;
+}
+
+h1 {
+  text-align: center;
+}
+
+
+/***+
+Profile
+-------------------------------------
+*/
+
+.fos_user_user_show {
+  margin: 80px auto;
+  text-align: center;
+
+}
+
+.fos_user_user_show p {
+  font-size: 20px;
+}
+
+/***+
+Amdmin
+-------------------------------------
+*/
+.users-list {
+  margin: 10px;
+  padding: 0;
+}
+
+.users-list li{
+  padding: 5px;
+  margin: 0;
+}
+
+.users-list li:nth-child(odd){
+  background: #EEE;
+}
+
+.users-list li button{
+  float: right;
+
+}
+
+.forma-admin-promjena label {
+  width: 60px;
+}
+>>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd

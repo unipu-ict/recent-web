@@ -2,15 +2,27 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+<<<<<<< HEAD
+=======
+    - { resource: "@RecENTUserBundle/Resources/config/services.php" }
+>>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+<<<<<<< HEAD
     locale: en
 
 framework:
     #esi:             ~
     #translator:      { fallbacks: ["%locale%"] }
+=======
+    locale: hr
+
+framework:
+    #esi:             ~
+    translator:      { fallbacks: ["%locale%"] }
+>>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -18,7 +30,11 @@ framework:
     form:            ~
     csrf_protection: ~
     validation:      { enable_annotations: true }
+<<<<<<< HEAD
     #serializer:      { enable_annotations: true }
+=======
+    serializer:      { enable_annotations: true } ##za fosrest bundle
+>>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
     templating:
         engines: ['twig']
     default_locale:  "%locale%"
@@ -31,7 +47,11 @@ framework:
     fragments:       ~
     http_method_override: true
     assets: ~
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
 # Twig Configuration
 twig:
     debug:            "%kernel.debug%"
@@ -59,6 +79,10 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
@@ -66,3 +90,50 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+<<<<<<< HEAD
+=======
+
+#fos user
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    service:
+        mailer: fos_user.mailer.default
+
+    user_class: AppBundle\Entity\User    
+    registration:
+        form:
+            type: AppBundle\Form\RegistrationType
+    group:
+        group_class: AppBundle\Entity\Group 
+    resetting:
+        email:
+            from_email:
+                address:        resetting@example.com
+                sender_name:    Demo Resetting   
+
+# Nelmio CORS Configuration
+nelmio_cors:
+    defaults:
+        allow_credentials: false
+        allow_origin: ['*']
+        allow_headers: ['*']
+        allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+        max_age: 3600
+        hosts: []
+        origin_regex: false
+ 
+# FOSRest Configuration
+fos_rest:
+    body_listener: true
+    format_listener:
+        rules:
+            - { path: '^/api' , priorities: ['json'], fallback_format: json, prefer_extension: false }
+            - { path: '^/', priorities: ['text/html', '*/*'], fallback_format: html, prefer_extension: true }
+    param_fetcher_listener: true
+
+    view:
+        view_response_listener: 'force'
+        formats:
+            json: true
+>>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd

@@ -21,7 +21,16 @@
         "symfony/polyfill-apcu": "^1.0",
         "sensio/distribution-bundle": "^5.0",
         "sensio/framework-extra-bundle": "^3.0.2",
+<<<<<<< HEAD
         "incenteev/composer-parameter-handler": "^2.0"
+=======
+        "incenteev/composer-parameter-handler": "^2.0",
+        "friendsofsymfony/user-bundle": "~2.0@dev",
+        "friendsofsymfony/rest-bundle": "^2.1",
+        "symfony/serializer": "^3.1",
+        "jms/serializer": "^1.4",
+        "nelmio/cors-bundle": "^1.4"
+>>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

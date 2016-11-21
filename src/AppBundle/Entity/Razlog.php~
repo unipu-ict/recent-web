@@ -1,0 +1,28 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Razlog
+ *
+ * @ORM\Table(name="razlog")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\RazlogRepository")
+ */
+
+class Razlog
+{
+	/**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+	/**
+     * @ORM\Column(type="string", length=100)
+     */   
+    private $razlog;
+
+}

@@ -1,5 +1,24 @@
+<<<<<<< HEAD
+=======
+rec_ent_user:
+    resource: "@RecENTUserBundle/Resources/config/routing.php"
+    prefix:   /
+
+>>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
 
+<<<<<<< HEAD
 
+=======
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+fos_rest:
+    type:     rest
+    prefix:   /api
+    resource: "api-routing.yml"
+
+    
+>>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
