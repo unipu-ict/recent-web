@@ -20,8 +20,8 @@ class DashboardController extends Controller
 
     public function indexAction()
     {
-        $conn = $this->get('database_connection');
-        $users = $conn->fetchAll('SELECT * FROM user');
+        $userManager = $this->get('fos_user.user_manager');
+        $users = $userManager->findUsers();
 
 
         return $this->render('dashboard/dashboard.html.twig', array(
