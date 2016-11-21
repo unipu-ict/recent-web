@@ -1,0 +1,46 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Evidencija_dana
+ *
+ * @ORM\Table(name="evidencija_dana")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\Evidencija_danaRepository")
+ */
+class Evidencija_dana
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="user_id", type="integer")
+     */
+    private $userId;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="datum", type="datetime")
+     */
+    private $datum;
+
+    /**
+     *
+     * @ORM\Column(name="done_business_hours", type="float")
+     */
+    private $done_business_hours;
+
+    
+
+}
