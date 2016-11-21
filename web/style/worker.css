@@ -1,0 +1,59 @@
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+}
+
+
+
+.workerInfo{
+	
+	margin-top:110px;
+
+}
+
+.workerInfo h1 {
+
+	color: #121212;
+	font-size: 22px;
+}
+
+.workerInfo .row {
+	text-align: left;
+
+}
+
+[class*="col-"] {
+   	border: 1px solid black;
+	border-collapse: collapse;
+	padding: 6px 16px;
+	font-size: 16px;
+}
+
+
+@media (min-width: 768px) {
+  /* Navbar positioning foo */
+  .workerInfo{
+  	width: 768px;
+  }
+
+
+}
+
+.no-padding {
+  padding:0 !important;
+}
+
+.no-margin {
+	margin: 0 !important;
+}
+
+.border-bottom {
+	border: 0;
+	border-bottom: 1px solid black !important;
+}
+
+.no-border {
+	border: 0 !important;
+}
