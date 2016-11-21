@@ -1,0 +1,169 @@
+{% extends 'dashboard/dashboard-base.html.twig' %}
+
+
+{% block maincontent %}
+
+
+
+<h1 class="page-header">Kontrolna ploča</h1>
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">Zaposlenici</h3>
+  </div>
+  <div class="panel-body">
+      <p class="lead">Odabereni zaposlenici: <b>Svi</b> </p>
+  </div>
+</div>
+
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">Mjesec</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row row-eq-height vertical-align">
+      <div class="col-xs-3  ">
+        <p class="lead no-margin ">Odabran mjesec: <b>11</b> <small>/2016</small> </p>
+      </div>
+      
+      <div class="col-xs-9 "> 
+
+        <nav aria-label="Page navigation" class="inline">
+          <ul class="pagination">
+            <li>
+              <a href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li><a href="#"><b>10</b> <small>/</small>2016</a></li>
+            <li><a href="#"><b>9</b> <small>/</small>2016</a></li>
+            <li><a href="#"><b>8</b> <small>/</small>2016</a></li>
+            <li><a href="#"><b>7</b> <small>/</small>2016</a></li>
+            <li><a href="#"><b>6</b> <small>/</small>2016</a></li>
+            <li><a href="#"><b>5</b> <small>/</small>2016</a></li>
+
+            <li>
+              <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+      </div>  
+
+    </div>
+  </div>
+</div>
+
+
+
+          <div class="table-responsive">
+            <table class="table table-striped tablica-prva">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Ime i prezime</th>
+                  <th>Odrađeno sati </th>
+                  <th>Sati neprisustva na <br>poslu(bolovanje, itd.)</th>
+                  <th>Prekovremeni</th>
+                  <th>Više</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Ivo Ivić</td>
+                  <td>106 </td>
+                  <td>6</td>
+                  <td>2</td>
+                  <td><a href="/dashboard/radnik"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a></td>
+                </tr>
+               
+                <tr>
+                  <td>2</td>
+                  <td>Ivo Andrić</td>
+                  <td>105 </td>
+                  <td>6</td>
+                  <td>2</td>
+                  <td><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Mihovil Petković</td>
+                  <td>190 </td>
+                  <td>6</td>
+                  <td>2</td>
+                  <td><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>Antun Kovačević</td>
+                  <td>109 </td>
+                  <td>6</td>
+                  <td>2</td>
+                  <td><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>Marino Pereša</td>
+                  <td>116 </td>
+                  <td>6</td>
+                  <td>2</td>
+                  <td><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>Patrik Grof</td>
+                  <td>126 </td>
+                  <td>6</td>
+                  <td>2</td>
+                  <td><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>Peđa Grbin</td>
+                  <td>6 </td>
+                  <td>6</td>
+                  <td>2</td>
+                  <td><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>NeznamIme Plenković</td>
+                  <td>2 </td>
+                  <td>100</td>
+                  <td>2</td>
+                  <td><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></td>
+                </tr>
+                <tr>
+                  <td>9</td>
+                  <td>Stjepan Mesić</td>
+                  <td>216 </td>
+                  <td>2</td>
+                  <td>20</td>
+                  <td><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></td>
+                </tr>
+                <tr>
+                  <td>10</td>
+                  <td>Juraj Dobrila</td>
+                  <td>103 </td>
+                  <td>6</td>
+                  <td>2</td>
+                  <td><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></td>
+                </tr>
+                <tr>
+                  <td>11</td>
+                  <td>Giorgio Sinković</td>
+                  <td>202 </td>
+                  <td>6</td>
+                  <td>2</td>
+                  <td><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></td>
+                </tr>
+                
+              </tbody>
+            </table>
+          </div>
+  
+{% endblock %}       

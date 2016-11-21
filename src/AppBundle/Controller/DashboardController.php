@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 /**
  * Created by PhpStorm.
  * User: Marino Peresa
@@ -12,11 +13,21 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+=======
+
+namespace AppBundle\Controller;
+
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
+
+>>>>>>> masimo
 class DashboardController extends Controller
 {
     /**
      * @Route("/dashboard", name="dashboard")
      */
+<<<<<<< HEAD
 
     public function indexAction()
     {
@@ -49,3 +60,25 @@ class DashboardController extends Controller
     }
 
 }
+=======
+    public function indexAction()
+    {
+        // replace this example code with whatever you need
+
+        return $this->render('dashboard/zaposlenici-mj.html.twig');
+    }
+
+    /**
+     * @Route("/dashboard/radnik", name="dashboard-radnik")
+     */
+    public function workerAction()
+    {
+        // replace this example code with whatever you need
+
+        return $this->render('dashboard/radnik-mj.html.twig');
+    }
+
+    
+}
+
+>>>>>>> masimo

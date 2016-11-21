@@ -5,12 +5,17 @@
         "This file is @generated automatically"
     ],
 <<<<<<< HEAD
+<<<<<<< HEAD
     "hash": "515af068737f3abc54d0cd2c090e3396",
     "content-hash": "4be3c063eb6331a8a3de74d3393dee92",
 =======
     "hash": "4b34aef676374e4383d25205459b2906",
     "content-hash": "6b8aa8ba8de35ad993928a3154da72f1",
 >>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
+=======
+    "hash": "4b34aef676374e4383d25205459b2906",
+    "content-hash": "6b8aa8ba8de35ad993928a3154da72f1",
+>>>>>>> masimo
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -83,14 +88,19 @@
         {
             "name": "doctrine/cache",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "v1.6.0",
+=======
+            "version": "v1.6.1",
+>>>>>>> masimo
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "f8af318d14bdb0eff0336795b428b547bd39ccb6"
+                "reference": "b6f544a20f4807e81f7044d31e679ccbb1866dc3"
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
                 "url": "https://api.github.com/repos/doctrine/cache/zipball/f8af318d14bdb0eff0336795b428b547bd39ccb6",
                 "reference": "f8af318d14bdb0eff0336795b428b547bd39ccb6",
 =======
@@ -105,6 +115,10 @@
                 "url": "https://api.github.com/repos/doctrine/cache/zipball/b6f544a20f4807e81f7044d31e679ccbb1866dc3",
                 "reference": "b6f544a20f4807e81f7044d31e679ccbb1866dc3",
 >>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
+=======
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/b6f544a20f4807e81f7044d31e679ccbb1866dc3",
+                "reference": "b6f544a20f4807e81f7044d31e679ccbb1866dc3",
+>>>>>>> masimo
                 "shasum": ""
             },
             "require": {
@@ -162,10 +176,14 @@
                 "caching"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2015-12-31 16:37:02"
 =======
             "time": "2016-10-29 11:16:17"
 >>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
+=======
+            "time": "2016-10-29 11:16:17"
+>>>>>>> masimo
         },
         {
             "name": "doctrine/collections",
@@ -799,7 +817,10 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> masimo
             "name": "friendsofsymfony/rest-bundle",
             "version": "2.1.0",
             "source": {
@@ -893,12 +914,21 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
+<<<<<<< HEAD
                 "reference": "dc8e624a6776d69850213df4de59f7c4afc72d00"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/dc8e624a6776d69850213df4de59f7c4afc72d00",
                 "reference": "dc8e624a6776d69850213df4de59f7c4afc72d00",
+=======
+                "reference": "f3002436abeac555104069f4562d284d23d06dab"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/f3002436abeac555104069f4562d284d23d06dab",
+                "reference": "f3002436abeac555104069f4562d284d23d06dab",
+>>>>>>> masimo
                 "shasum": ""
             },
             "require": {
@@ -962,10 +992,16 @@
             "keywords": [
                 "User management"
             ],
+<<<<<<< HEAD
             "time": "2016-11-10 13:28:14"
         },
         {
 >>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
+=======
+            "time": "2016-11-03 15:42:43"
+        },
+        {
+>>>>>>> masimo
             "name": "incenteev/composer-parameter-handler",
             "version": "v2.1.2",
             "source": {
@@ -1068,7 +1104,10 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> masimo
             "name": "jms/metadata",
             "version": "1.5.1",
             "source": {
@@ -1231,7 +1270,10 @@
             "time": "2016-11-02 16:15:37"
         },
         {
+<<<<<<< HEAD
 >>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
+=======
+>>>>>>> masimo
             "name": "monolog/monolog",
             "version": "1.21.0",
             "source": {
@@ -1311,6 +1353,66 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+            "name": "nelmio/cors-bundle",
+            "version": "1.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nelmio/NelmioCorsBundle.git",
+                "reference": "fa14a81737c605bf4766054cdcb72a16a433d537"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nelmio/NelmioCorsBundle/zipball/fa14a81737c605bf4766054cdcb72a16a433d537",
+                "reference": "fa14a81737c605bf4766054cdcb72a16a433d537",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/framework-bundle": "^2.2 || ^3.0"
+            },
+            "require-dev": {
+                "matthiasnoback/symfony-dependency-injection-test": "^0.7.6",
+                "mockery/mockery": "0.9.*"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Nelmio\\CorsBundle\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nelmio",
+                    "homepage": "http://nelm.io"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://github.com/nelmio/NelmioCorsBundle/contributors"
+                }
+            ],
+            "description": "Adds CORS (Cross-Origin Resource Sharing) headers support in your Symfony2 application",
+            "keywords": [
+                "api",
+                "cors",
+                "crossdomain"
+            ],
+            "time": "2015-12-09 17:26:34"
+        },
+        {
+>>>>>>> masimo
             "name": "paragonie/random_compat",
             "version": "v2.0.3",
             "source": {
@@ -1531,6 +1633,104 @@
 >>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
         },
         {
+            "name": "phpcollection/phpcollection",
+            "version": "0.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/schmittjoh/php-collection.git",
+                "reference": "f2bcff45c0da7c27991bbc1f90f47c4b7fb434a6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/schmittjoh/php-collection/zipball/f2bcff45c0da7c27991bbc1f90f47c4b7fb434a6",
+                "reference": "f2bcff45c0da7c27991bbc1f90f47c4b7fb434a6",
+                "shasum": ""
+            },
+            "require": {
+                "phpoption/phpoption": "1.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "PhpCollection": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache2"
+            ],
+            "authors": [
+                {
+                    "name": "Johannes M. Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                }
+            ],
+            "description": "General-Purpose Collection Library for PHP",
+            "keywords": [
+                "collection",
+                "list",
+                "map",
+                "sequence",
+                "set"
+            ],
+            "time": "2015-05-17 12:39:23"
+        },
+        {
+            "name": "phpoption/phpoption",
+            "version": "1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/schmittjoh/php-option.git",
+                "reference": "94e644f7d2051a5f0fcf77d81605f152eecff0ed"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/schmittjoh/php-option/zipball/94e644f7d2051a5f0fcf77d81605f152eecff0ed",
+                "reference": "94e644f7d2051a5f0fcf77d81605f152eecff0ed",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.7.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "PhpOption\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache2"
+            ],
+            "authors": [
+                {
+                    "name": "Johannes M. Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                }
+            ],
+            "description": "Option Type for PHP",
+            "keywords": [
+                "language",
+                "option",
+                "php",
+                "type"
+            ],
+            "time": "2015-07-25 16:39:46"
+        },
+        {
             "name": "psr/cache",
             "version": "1.0.1",
             "source": {
@@ -1626,14 +1826,19 @@
         {
             "name": "sensio/distribution-bundle",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "v5.0.13",
+=======
+            "version": "v5.0.14",
+>>>>>>> masimo
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
-                "reference": "7bc47dcfdbde6d567e1a834577d1c04ddb970281"
+                "reference": "e64947de9ebc37732a62f5115164484a9bee7fa6"
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
                 "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/7bc47dcfdbde6d567e1a834577d1c04ddb970281",
                 "reference": "7bc47dcfdbde6d567e1a834577d1c04ddb970281",
 =======
@@ -1648,6 +1853,10 @@
                 "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/e64947de9ebc37732a62f5115164484a9bee7fa6",
                 "reference": "e64947de9ebc37732a62f5115164484a9bee7fa6",
 >>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
+=======
+                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/e64947de9ebc37732a62f5115164484a9bee7fa6",
+                "reference": "e64947de9ebc37732a62f5115164484a9bee7fa6",
+>>>>>>> masimo
                 "shasum": ""
             },
             "require": {
@@ -1687,10 +1896,14 @@
                 "distribution"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2016-10-08 18:50:33"
 =======
             "time": "2016-10-30 23:18:01"
 >>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
+=======
+            "time": "2016-10-30 23:18:01"
+>>>>>>> masimo
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -1854,14 +2067,19 @@
         {
             "name": "symfony/monolog-bundle",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "2.11.1",
+=======
+            "version": "v2.11.2",
+>>>>>>> masimo
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/monolog-bundle.git",
-                "reference": "e7caf4936c7be82bc6d68df87f1d23a0d5bf6e00"
+                "reference": "44f3daf003b51e13a8820b090b3cc2b480ec517f"
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
                 "url": "https://api.github.com/repos/symfony/monolog-bundle/zipball/e7caf4936c7be82bc6d68df87f1d23a0d5bf6e00",
                 "reference": "e7caf4936c7be82bc6d68df87f1d23a0d5bf6e00",
 =======
@@ -1876,15 +2094,19 @@
                 "url": "https://api.github.com/repos/symfony/monolog-bundle/zipball/6acef3bd201c4f35e42e52dedf1fe088f30e07e8",
                 "reference": "6acef3bd201c4f35e42e52dedf1fe088f30e07e8",
 >>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
+=======
+                "url": "https://api.github.com/repos/symfony/monolog-bundle/zipball/44f3daf003b51e13a8820b090b3cc2b480ec517f",
+                "reference": "44f3daf003b51e13a8820b090b3cc2b480ec517f",
+>>>>>>> masimo
                 "shasum": ""
             },
             "require": {
                 "monolog/monolog": "~1.18",
                 "php": ">=5.3.2",
-                "symfony/config": "~2.3|~3.0",
-                "symfony/dependency-injection": "~2.3|~3.0",
-                "symfony/http-kernel": "~2.3|~3.0",
-                "symfony/monolog-bridge": "~2.3|~3.0"
+                "symfony/config": "~2.7|~3.0",
+                "symfony/dependency-injection": "~2.7|~3.0",
+                "symfony/http-kernel": "~2.7|~3.0",
+                "symfony/monolog-bridge": "~2.7|~3.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^4.8",
@@ -1894,7 +2116,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.x-dev"
+                    "dev-master": "3.x-dev"
                 }
             },
             "autoload": {
@@ -1923,10 +2145,14 @@
                 "logging"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2016-04-13 16:21:01"
 =======
             "time": "2016-11-06 18:54:50"
 >>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
+=======
+            "time": "2016-10-19 07:58:52"
+>>>>>>> masimo
         },
         {
             "name": "symfony/polyfill-apcu",
@@ -2268,14 +2494,19 @@
         {
             "name": "symfony/swiftmailer-bundle",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "v2.3.11",
+=======
+            "version": "v2.4.0",
+>>>>>>> masimo
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/swiftmailer-bundle.git",
-                "reference": "5e1a90f28213231ceee19c953bbebc5b5b95c690"
+                "reference": "d7b7bd6bb6e9b32ebc5f9778f94d4b4e4af5d069"
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
                 "url": "https://api.github.com/repos/symfony/swiftmailer-bundle/zipball/5e1a90f28213231ceee19c953bbebc5b5b95c690",
                 "reference": "5e1a90f28213231ceee19c953bbebc5b5b95c690",
 =======
@@ -2290,11 +2521,16 @@
                 "url": "https://api.github.com/repos/symfony/swiftmailer-bundle/zipball/d7b7bd6bb6e9b32ebc5f9778f94d4b4e4af5d069",
                 "reference": "d7b7bd6bb6e9b32ebc5f9778f94d4b4e4af5d069",
 >>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
+=======
+                "url": "https://api.github.com/repos/symfony/swiftmailer-bundle/zipball/d7b7bd6bb6e9b32ebc5f9778f94d4b4e4af5d069",
+                "reference": "d7b7bd6bb6e9b32ebc5f9778f94d4b4e4af5d069",
+>>>>>>> masimo
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2",
                 "swiftmailer/swiftmailer": ">=4.2.0,~5.0",
+<<<<<<< HEAD
 <<<<<<< HEAD
                 "symfony/config": "~2.3|~3.0",
                 "symfony/dependency-injection": "~2.3|~3.0",
@@ -2309,11 +2545,21 @@
                 "symfony/http-kernel": "~2.7|~3.0"
             },
             "require-dev": {
+=======
+                "symfony/config": "~2.7|~3.0",
+                "symfony/dependency-injection": "~2.7|~3.0",
+                "symfony/http-kernel": "~2.7|~3.0"
+            },
+            "require-dev": {
+>>>>>>> masimo
                 "symfony/console": "~2.7|~3.0",
                 "symfony/framework-bundle": "~2.7|~3.0",
                 "symfony/phpunit-bridge": "~2.7|~3.0",
                 "symfony/yaml": "~2.7|~3.0"
+<<<<<<< HEAD
 >>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
+=======
+>>>>>>> masimo
             },
             "suggest": {
                 "psr/log": "Allows logging"
@@ -2322,10 +2568,14 @@
             "extra": {
                 "branch-alias": {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "dev-master": "2.3-dev"
 =======
                     "dev-master": "2.4-dev"
 >>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
+=======
+                    "dev-master": "2.4-dev"
+>>>>>>> masimo
                 }
             },
             "autoload": {
@@ -2350,18 +2600,23 @@
             "description": "Symfony SwiftmailerBundle",
             "homepage": "http://symfony.com",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2016-01-15 16:41:20"
+=======
+            "time": "2016-10-27 17:59:30"
+>>>>>>> masimo
         },
         {
             "name": "symfony/symfony",
-            "version": "v3.1.5",
+            "version": "v3.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "e7e1d01fe103de78bca6fbf7f6f4acf64482d63c"
+                "reference": "8f345c38c2618d1513b9afb8ad5ac8f7b0b31d86"
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
                 "url": "https://api.github.com/repos/symfony/symfony/zipball/e7e1d01fe103de78bca6fbf7f6f4acf64482d63c",
                 "reference": "e7e1d01fe103de78bca6fbf7f6f4acf64482d63c",
 =======
@@ -2380,6 +2635,10 @@
                 "url": "https://api.github.com/repos/symfony/symfony/zipball/8f345c38c2618d1513b9afb8ad5ac8f7b0b31d86",
                 "reference": "8f345c38c2618d1513b9afb8ad5ac8f7b0b31d86",
 >>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
+=======
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/8f345c38c2618d1513b9afb8ad5ac8f7b0b31d86",
+                "reference": "8f345c38c2618d1513b9afb8ad5ac8f7b0b31d86",
+>>>>>>> masimo
                 "shasum": ""
             },
             "require": {
@@ -2393,10 +2652,14 @@
                 "symfony/polyfill-php70": "~1.0",
                 "symfony/polyfill-util": "~1.0",
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "twig/twig": "~1.26|~2.0"
 =======
                 "twig/twig": "~1.27|~2.0"
 >>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
+=======
+                "twig/twig": "~1.27|~2.0"
+>>>>>>> masimo
             },
             "conflict": {
                 "phpdocumentor/reflection-docblock": "<3.0",
@@ -2512,10 +2775,14 @@
                 "framework"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2016-10-03 19:01:14"
 =======
             "time": "2016-10-27 02:38:53"
 >>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
+=======
+            "time": "2016-10-27 02:38:53"
+>>>>>>> masimo
         },
         {
             "name": "twig/twig",
@@ -2578,7 +2845,10 @@
             ],
             "time": "2016-10-25 19:17:17"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> masimo
         },
         {
             "name": "willdurand/jsonp-callback-validator",
@@ -2671,7 +2941,10 @@
                 "negotiation"
             ],
             "time": "2016-10-14 09:17:47"
+<<<<<<< HEAD
 >>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
+=======
+>>>>>>> masimo
         }
     ],
     "packages-dev": [
@@ -2747,6 +3020,7 @@
         },
         {
             "name": "symfony/phpunit-bridge",
+<<<<<<< HEAD
             "version": "v3.1.5",
 =======
             "time": "2016-11-07 19:48:31"
@@ -2755,6 +3029,9 @@
             "name": "symfony/phpunit-bridge",
             "version": "v3.1.6",
 >>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
+=======
+            "version": "v3.1.6",
+>>>>>>> masimo
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/phpunit-bridge.git",
@@ -2811,12 +3088,18 @@
     "aliases": [],
     "minimum-stability": "stable",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "stability-flags": [],
 =======
     "stability-flags": {
         "friendsofsymfony/user-bundle": 20
     },
 >>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
+=======
+    "stability-flags": {
+        "friendsofsymfony/user-bundle": 20
+    },
+>>>>>>> masimo
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

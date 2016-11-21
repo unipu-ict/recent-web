@@ -22,15 +22,21 @@
         "sensio/distribution-bundle": "^5.0",
         "sensio/framework-extra-bundle": "^3.0.2",
 <<<<<<< HEAD
+<<<<<<< HEAD
         "incenteev/composer-parameter-handler": "^2.0"
 =======
+=======
+>>>>>>> masimo
         "incenteev/composer-parameter-handler": "^2.0",
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "friendsofsymfony/rest-bundle": "^2.1",
         "symfony/serializer": "^3.1",
         "jms/serializer": "^1.4",
         "nelmio/cors-bundle": "^1.4"
+<<<<<<< HEAD
 >>>>>>> 42de2340cb8d642fdcc43bea458ef2871aaed8fd
+=======
+>>>>>>> masimo
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
