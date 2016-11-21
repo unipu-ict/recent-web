@@ -57,30 +57,6 @@ class Tag_user
     }
 
     /**
-     * Set userTag
-     *
-     * @param string $userTag
-     *
-     * @return Tag_user
-     */
-    public function setUserTag($userTag)
-    {
-        $this->user_tag = $userTag;
-
-        return $this;
-    }
-
-    /**
-     * Get userTag
-     *
-     * @return string
-     */
-    public function getUserTag()
-    {
-        return $this->user_tag;
-    }
-
-    /**
      * Set userId
      *
      * @param integer $userId
@@ -102,5 +78,29 @@ class Tag_user
     public function getUserId()
     {
         return $this->userId;
+    }
+
+    /**
+     * Set userTag
+     *
+     * @param string $userTag
+     *
+     * @return Tag_user
+     */
+    public function setUserTag($userTag)
+    {
+        $this->user_tag = $userTag;
+
+        return $this;
+    }
+
+    /**
+     * Get userTag
+     *
+     * @return string
+     */
+    public function getUserTag()
+    {
+        return $this->user_tag;
     }
 }
