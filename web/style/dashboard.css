@@ -33,6 +33,36 @@ body {
 .sidebar {
   display: none;
 }
+
+.inline {
+  display: inline;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+}
+
+
+.vertical-align {
+  display: flex;
+  flex-direction: row;
+}
+
+.vertical-align > [class^="col-"],
+.vertical-align > [class*=" col-"] {
+  display: flex;
+  align-items: center;
+}
+
 @media (min-width: 768px) {
   .sidebar {
     position: fixed;

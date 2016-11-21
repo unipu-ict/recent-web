@@ -15,9 +15,18 @@ class DashboardController extends Controller
     {
         // replace this example code with whatever you need
 
-        return $this->render('dashboard/dashboard.html.twig');
+        return $this->render('dashboard/zaposlenici-mj.html.twig');
     }
 
+    /**
+     * @Route("/dashboard/radnik", name="dashboard-radnik")
+     */
+    public function workerAction()
+    {
+        // replace this example code with whatever you need
+
+        return $this->render('dashboard/radnik-mj.html.twig');
+    }
 
     
 }
