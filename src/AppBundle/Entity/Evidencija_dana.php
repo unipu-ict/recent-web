@@ -31,7 +31,7 @@ class Evidencija_dana
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="datum", type="datetime")
+     * @ORM\Column(name="datum", type="date")
      */
     private $datum;
 
