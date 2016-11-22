@@ -1,8 +1,17 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="fos_user_user_show">
-    <p>{{ 'profile.show.username'|trans }}: <strong> {{ user.username }} </strong></p>
-    <p>{{ 'profile.show.email'|trans }}: <strong> {{ user.email }} </strong> </p>
-    <p>Ime : <strong>{{ user.name }}</strong></p>
-    <p>Prezime : <strong>{{ user.surname }}</strong></p>
+<div class="row fos_user_user_show " >
+	<div class="col-xs-12 col-sm-6 col-md-5 ">
+		<p class=""> Dobrodošli <strong>{{ user.name }} {{ user.surname }}</strong></p>
+	</div>	
+	<div class="col-xs-12 col-sm-6 col-md-3 ">
+		<p class="manji">{{ user.username }} <br> <strong> {{ user.email }} </strong> </p>
+	</div>	
+	<div class="col-xs-12 col-sm-6 col-md-2 ">
+		<button type="button" class="btn btn-primary">Promjeni e-mail</button>
+	</div>	
+	<div class="col-xs-12 col-sm-6 col-md-2 ">
+		<button type="button" class="btn btn-warning">Promjeni lozinku</button>
+	</div>	
+
 </div>

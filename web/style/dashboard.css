@@ -17,6 +17,8 @@ body {
   border-bottom: 1px solid #eee;
 }
 
+
+
 /*
  * Top navigation
  * Hide default border to remove 1px line.
@@ -24,7 +26,6 @@ body {
 .navbar-fixed-top {
   border: 0;
 }
-
 /*
  * Sidebar
  */
@@ -34,6 +35,17 @@ body {
   display: none;
 }
 
+.pagination-nav {
+  margin: 0;
+}
+
+.pagination {
+
+display: block;
+padding-left: 0;
+margin: 0;
+border-radius: 4px;
+}
 
 .inline {
   display: inline;
@@ -53,16 +65,15 @@ body {
 }
 
 
-.vertical-align {
-  display: flex;
-  flex-direction: row;
+.table-employee tbody tr:hover {
+  background: #eeeeff;
+  cursor: pointer; 
 }
 
-.vertical-align > [class^="col-"],
-.vertical-align > [class*=" col-"] {
-  display: flex;
-  align-items: center;
+.table-employee tr td:last-child {
+  width: 15%;
 }
+
 
 
 @media (min-width: 768px) {

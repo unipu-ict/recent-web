@@ -1,4 +1,5 @@
 {% extends 'dashboard/dashboard-base.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
 
 
 {% block maincontent %}
@@ -6,58 +7,64 @@
 
 <h1 class="page-header">Kontrolna ploča</h1>
 
-<div class="panel panel-info">
-  <div class="panel-heading">
-    <h3 class="panel-title">Zaposlenici</h3>
-  </div>
-  <div class="panel-body">
-      <p class="lead">Odabereni zaposlenici: <b>Antun Konačević</b> </p>
-  </div>
-</div>
-
-
-<div class="panel panel-info">
-  <div class="panel-heading">
-    <h3 class="panel-title">Mjesec</h3>
-  </div>
-  <div class="panel-body">
-    <div class="row row-eq-height vertical-align">
-      <div class="col-xs-3  ">
-        <p class="lead no-margin ">Odabran mjesec: <b>11</b> <small>/2016</small> </p>
-      </div>
-      
-      <div class="col-xs-9 "> 
-
-        <nav aria-label="Page navigation" class="inline">
-          <ul class="pagination">
-            <li>
-              <a href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            <li><a href="#"><b>10</b> <small>/</small>2016</a></li>
-            <li><a href="#"><b>9</b> <small>/</small>2016</a></li>
-            <li><a href="#"><b>8</b> <small>/</small>2016</a></li>
-            <li><a href="#"><b>7</b> <small>/</small>2016</a></li>
-            <li><a href="#"><b>6</b> <small>/</small>2016</a></li>
-            <li><a href="#"><b>5</b> <small>/</small>2016</a></li>
-
-            <li>
-              <a href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-
-      </div>  
-
+<div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" href="#collapse1">Zaposlenk: <strong>Antun Kovačević</strong></a>
+      </h4>
+    </div>
+    <div id="collapse1" class="panel-collapse collapse">
+      <div class="panel-body">Odjel 1</div>
+      <div class="panel-body">Odjel 2 u budućnosti</div>
     </div>
   </div>
 </div>
 
 
-            <table class="table table-striped tablica-prva">
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a data-toggle="collapse" href="#collapse2">Mjesec: <strong>11 </strong><small>/2016</small></a>
+    </h4>
+  </div>
+  <div id="collapse2" class="panel-collapse collapse">
+    <div class="panel-body">
+      <div class="row ">
+        <div class="col-xs-12 "> 
+
+          <nav aria-label="Page navigation" class="pagination-nav">
+            <ul class="pagination">
+              <li>
+                <a href="#" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              <li><a href="#"><b>10</b> <small>/</small>2016</a></li>
+              <li><a href="#"><b>9</b> <small>/</small>2016</a></li>
+              <li><a href="#"><b>8</b> <small>/</small>2016</a></li>
+              <li><a href="#"><b>7</b> <small>/</small>2016</a></li>
+              <li><a href="#"><b>6</b> <small>/</small>2016</a></li>
+              <li><a href="#"><b>5</b> <small>/</small>2016</a></li>
+
+              <li>
+                <a href="#" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+        </div>  
+
+      </div>
+    </div>
+  </div> 
+</div>
+
+
+            <table class="table table-striped table-employee">
               <thead>
                 <tr>
                   <th>Datum</th>
@@ -81,15 +88,23 @@
                         Odaberite razlog<span class="caret"></span>
                       </button>
                       <ul class="dropdown-menu">
+                        <li><a href="#">Tjedni odmor</a></li>
+                        <li><a href="#">Godišnji odmor</a></li>
+                        <li><a href="#">Blagdan /neradni dan</a></li>
                         <li><a href="#">Bolovanje</a></li>
-                        <li><a href="#">Štrajk</a></li>
-                        <li><a href="#">Dr. dopust</a></li>
-                        <li><a href="#">....</a></li>
+                        <li><a href="#">Dopust - rodiljni /roditeljski</a></li>
+                        <li><a href="#">Dr. roditeljska prava</a></li>
+                        <li><a href="#">Plaćeni dopust</a></li>
+                        <li><a href="#">Neplaćeni dopust</a></li>
+                        <li><a href="#">Po zahtjevu radnika</a></li>
+                        <li><a href="#">Krivnjom radnika</a></li>
+                        <li><a href="#">Zbog štrajka</a></li>
+                        <li><a href="#">Zbog isključenja s rada</a></li>
                       </ul>
                     </div>
                   </td>
                   <td> 
-                    <span class="glyphicon glyphicon-chevron-down"></span>
+                    Više informacija <span class="glyphicon glyphicon-chevron-down"></span>
                   </td>
                 </tr>
 
@@ -105,12 +120,23 @@
                         Odaberite razlog<span class="caret"></span>
                       </button>
                       <ul class="dropdown-menu">
+                        <li><a href="#">Tjedni odmor</a></li>
+                        <li><a href="#">Godišnji odmor</a></li>
+                        <li><a href="#">Blagdan /neradni dan</a></li>
                         <li><a href="#">Bolovanje</a></li>
-                        <li><a href="#">Štrajk</a></li>
-                        <li><a href="#">Dr. dopust</a></li>
-                        <li><a href="#">....</a></li>
+                        <li><a href="#">Dopust - rodiljni /roditeljski</a></li>
+                        <li><a href="#">Dr. roditeljska prava</a></li>
+                        <li><a href="#">Plaćeni dopust</a></li>
+                        <li><a href="#">Neplaćeni dopust</a></li>
+                        <li><a href="#">Po zahtjevu radnika</a></li>
+                        <li><a href="#">Krivnjom radnika</a></li>
+                        <li><a href="#">Zbog štrajka</a></li>
+                        <li><a href="#">Zbog isključenja s rada</a></li>
                       </ul>
                     </div>
+                  </td>
+                  <td> 
+                    Više informacija <span class="glyphicon glyphicon-chevron-down"></span>
                   </td>
                 </tr>
 
@@ -126,12 +152,23 @@
                         Odaberite razlog<span class="caret"></span>
                       </button>
                       <ul class="dropdown-menu">
+                        <li><a href="#">Tjedni odmor</a></li>
+                        <li><a href="#">Godišnji odmor</a></li>
+                        <li><a href="#">Blagdan /neradni dan</a></li>
                         <li><a href="#">Bolovanje</a></li>
-                        <li><a href="#">Štrajk</a></li>
-                        <li><a href="#">Dr. dopust</a></li>
-                        <li><a href="#">....</a></li>
+                        <li><a href="#">Dopust - rodiljni /roditeljski</a></li>
+                        <li><a href="#">Dr. roditeljska prava</a></li>
+                        <li><a href="#">Plaćeni dopust</a></li>
+                        <li><a href="#">Neplaćeni dopust</a></li>
+                        <li><a href="#">Po zahtjevu radnika</a></li>
+                        <li><a href="#">Krivnjom radnika</a></li>
+                        <li><a href="#">Zbog štrajka</a></li>
+                        <li><a href="#">Zbog isključenja s rada</a></li>
                       </ul>
                     </div>
+                  </td>
+                  <td> 
+                    Više informacija <span class="glyphicon glyphicon-chevron-down"></span>
                   </td>
                 </tr>
 
@@ -147,12 +184,23 @@
                         Odaberite razlog<span class="caret"></span>
                       </button>
                       <ul class="dropdown-menu">
+                        <li><a href="#">Tjedni odmor</a></li>
+                        <li><a href="#">Godišnji odmor</a></li>
+                        <li><a href="#">Blagdan /neradni dan</a></li>
                         <li><a href="#">Bolovanje</a></li>
-                        <li><a href="#">Štrajk</a></li>
-                        <li><a href="#">Dr. dopust</a></li>
-                        <li><a href="#">....</a></li>
+                        <li><a href="#">Dopust - rodiljni /roditeljski</a></li>
+                        <li><a href="#">Dr. roditeljska prava</a></li>
+                        <li><a href="#">Plaćeni dopust</a></li>
+                        <li><a href="#">Neplaćeni dopust</a></li>
+                        <li><a href="#">Po zahtjevu radnika</a></li>
+                        <li><a href="#">Krivnjom radnika</a></li>
+                        <li><a href="#">Zbog štrajka</a></li>
+                        <li><a href="#">Zbog isključenja s rada</a></li>
                       </ul>
                     </div>
+                  </td>
+                  <td> 
+                    Više informacija <span class="glyphicon glyphicon-chevron-down"></span>
                   </td>
                 </tr>
 
@@ -168,12 +216,23 @@
                         Odaberite razlog<span class="caret"></span>
                       </button>
                       <ul class="dropdown-menu">
+                        <li><a href="#">Tjedni odmor</a></li>
+                        <li><a href="#">Godišnji odmor</a></li>
+                        <li><a href="#">Blagdan /neradni dan</a></li>
                         <li><a href="#">Bolovanje</a></li>
-                        <li><a href="#">Štrajk</a></li>
-                        <li><a href="#">Dr. dopust</a></li>
-                        <li><a href="#">....</a></li>
+                        <li><a href="#">Dopust - rodiljni /roditeljski</a></li>
+                        <li><a href="#">Dr. roditeljska prava</a></li>
+                        <li><a href="#">Plaćeni dopust</a></li>
+                        <li><a href="#">Neplaćeni dopust</a></li>
+                        <li><a href="#">Po zahtjevu radnika</a></li>
+                        <li><a href="#">Krivnjom radnika</a></li>
+                        <li><a href="#">Zbog štrajka</a></li>
+                        <li><a href="#">Zbog isključenja s rada</a></li>
                       </ul>
                     </div>
+                  </td>
+                  <td> 
+                    Više informacija <span class="glyphicon glyphicon-chevron-down"></span>
                   </td>
                 </tr>
 
@@ -189,12 +248,23 @@
                         Odaberite razlog<span class="caret"></span>
                       </button>
                       <ul class="dropdown-menu">
+                        <li><a href="#">Tjedni odmor</a></li>
+                        <li><a href="#">Godišnji odmor</a></li>
+                        <li><a href="#">Blagdan /neradni dan</a></li>
                         <li><a href="#">Bolovanje</a></li>
-                        <li><a href="#">Štrajk</a></li>
-                        <li><a href="#">Dr. dopust</a></li>
-                        <li><a href="#">....</a></li>
+                        <li><a href="#">Dopust - rodiljni /roditeljski</a></li>
+                        <li><a href="#">Dr. roditeljska prava</a></li>
+                        <li><a href="#">Plaćeni dopust</a></li>
+                        <li><a href="#">Neplaćeni dopust</a></li>
+                        <li><a href="#">Po zahtjevu radnika</a></li>
+                        <li><a href="#">Krivnjom radnika</a></li>
+                        <li><a href="#">Zbog štrajka</a></li>
+                        <li><a href="#">Zbog isključenja s rada</a></li>
                       </ul>
                     </div>
+                  </td>
+                  <td> 
+                    Više informacija <span class="glyphicon glyphicon-chevron-down"></span>
                   </td>
                 </tr>
 
@@ -210,12 +280,23 @@
                         Odaberite razlog<span class="caret"></span>
                       </button>
                       <ul class="dropdown-menu">
+                        <li><a href="#">Tjedni odmor</a></li>
+                        <li><a href="#">Godišnji odmor</a></li>
+                        <li><a href="#">Blagdan /neradni dan</a></li>
                         <li><a href="#">Bolovanje</a></li>
-                        <li><a href="#">Štrajk</a></li>
-                        <li><a href="#">Dr. dopust</a></li>
-                        <li><a href="#">....</a></li>
+                        <li><a href="#">Dopust - rodiljni /roditeljski</a></li>
+                        <li><a href="#">Dr. roditeljska prava</a></li>
+                        <li><a href="#">Plaćeni dopust</a></li>
+                        <li><a href="#">Neplaćeni dopust</a></li>
+                        <li><a href="#">Po zahtjevu radnika</a></li>
+                        <li><a href="#">Krivnjom radnika</a></li>
+                        <li><a href="#">Zbog štrajka</a></li>
+                        <li><a href="#">Zbog isključenja s rada</a></li>
                       </ul>
                     </div>
+                  </td>
+                  <td> 
+                    Više informacija <span class="glyphicon glyphicon-chevron-down"></span>
                   </td>
                 </tr>
               </tbody>

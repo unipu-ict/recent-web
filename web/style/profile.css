@@ -1,0 +1,82 @@
+/***+
+Profile
+-------------------------------------
+*/
+
+.bottom-column
+{
+    
+    vertical-align: text-bottom !important;
+    float: none;
+}
+
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:       flex;
+}
+
+
+.fos_user_user_show p.manji {
+	font-size: 16px;
+}
+
+
+.fos_user_user_show {
+  margin: 90px auto 0 auto;
+  text-align: center;
+
+}
+
+.fos_user_user_show p {
+  font-size: 20px;
+}
+
+.mjesec-suma p {
+	font-size: 22px;
+}
+
+.pagination {
+	margin: 0;
+
+}
+
+.inline-block {
+	display: inline-block;
+}
+.main-table tbody tr:nth-child(4n+1){
+	background: #F7F8FF;
+
+}
+
+.main-table tbody tr:nth-child(4n){
+	background: #ededff;
+
+}
+
+.main-table tbody tr:hover {
+	background: #ededff;
+	cursor: pointer; 
+}
+
+.main-table tr td:last-child {
+	width: 15%;
+}
+
+/*++++++++++++++++++++*/
+.float-left {
+	float: left;
+	margin-top: 10px; 
+
+}
+.float-right {
+	float: right;
+
+}
+
+
+.vertical-middle {
+	vertical-align: middle;
+}
+

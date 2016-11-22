@@ -288,20 +288,6 @@ h1 {
 
 
 
-/***+
-Profile
--------------------------------------
-*/
-
-.fos_user_user_show {
-  margin: 80px auto;
-  text-align: center;
-
-}
-
-.fos_user_user_show p {
-  font-size: 20px;
-}
 
 /***+
 Amdmin
