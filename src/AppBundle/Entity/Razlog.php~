@@ -25,4 +25,38 @@ class Razlog
      */   
     private $razlog;
 
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set razlog
+     *
+     * @param string $razlog
+     *
+     * @return Razlog
+     */
+    public function setRazlog($razlog)
+    {
+        $this->razlog = $razlog;
+
+        return $this;
+    }
+
+    /**
+     * Get razlog
+     *
+     * @return string
+     */
+    public function getRazlog()
+    {
+        return $this->razlog;
+    }
 }
