@@ -57,5 +57,19 @@ class DashboardController extends Controller
         ));
     }
 
+    /**
+     * @Route("/dashboard/radnik/{user_id}", name="dashboard1")
+     *
+     */
+
+    public function workerbyidAction($user_id)
+    {
+        $evidencija = $this->getDoctrine()
+            ->getRepository('AppBundle:Evidencija_dana')->findBy(array('userId' => $user_id));
+        return $this->render('dashboard/radnik-mj.html.twig', array(
+            'evidencija' => $evidencija,
+        ));
+    }
+
 
 }

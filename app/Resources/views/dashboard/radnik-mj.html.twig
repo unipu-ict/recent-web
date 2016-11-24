@@ -80,9 +80,9 @@
                 {% for dan in evidencija %}
                 <tr>
                   <td>{{ dan.datum|date("d/m/Y") }}</td>
-                  <td>{{ dan.vrijeme_dolaska|date('H:i:s') }}</td>
-                  <td>{{ dan.vrijeme_odlaska|date('H:i:s') }}</td>
-                  <td>{{ dan.done_business_hours }}</td>
+                  <td>{{ dan.vrijemeDolaska|date('H:i') }}</td>
+                  <td>{{ dan.vrijemeOdlaska|date('H:i') }}</td>
+                  <td>{{ dan.doneBusinessHours }}</td>
                   <td>
                     <!-- Small button group -->
                     <div class="btn-group">
