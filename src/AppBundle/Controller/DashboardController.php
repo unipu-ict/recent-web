@@ -26,9 +26,8 @@ class DashboardController extends Controller
         $userManager = $this->get('fos_user.user_manager');
         $users = $userManager->findUsers();
 
-        $em = $this->getDoctrine()->getManager();
+        //$em = $this->getDoctrine()->getManager();
 
-        
         //$query=$em->createQuery( 'SELECT u.done_business_hours, u.datum, u.vrijeme_dolaska, u.vrijeme_odlaska FROM AppBundle\Entity\Evidencija_dana u');
         
         //$query=$em->createQuery( 'SELECT Id, name, surname, sum(done_business_hours) FROM fos_user u INNER JOIN AppBundle\Entity\Evidencija_dana e ON u.Id = e.user_id GROUP BY id');
@@ -64,10 +63,15 @@ class DashboardController extends Controller
 
     public function workerbyidAction($user_id)
     {
+        $userManager = $this->get('fos_user.user_manager');
+        $user = $userManager->findUserBy(array('id'=>$user_id));
+
+        //$evidencija = $this->getDoctrine()+            ->getRepository('AppBundle:Evidencija_dana')->findBy(array('userId' => $user->getId()));
+
         $evidencija = $this->getDoctrine()
             ->getRepository('AppBundle:Evidencija_dana')->findBy(array('userId' => $user_id));
         return $this->render('dashboard/radnik-mj.html.twig', array(
-            'evidencija' => $evidencija,
+            'evidencija' => $evidencija, 'user' => $user
         ));
     }
 
