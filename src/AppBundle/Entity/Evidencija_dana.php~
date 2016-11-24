@@ -34,6 +34,18 @@ class Evidencija_dana
      * @ORM\Column(name="datum", type="date")
      */
     private $datum;
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="vrijeme_dolaska", type="time")
+     */
+    private $vrijeme_dolaska;
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="vrijeme_odlaska", type="time")
+     */
+    private $vrijeme_odlaska;
 
     /**
      *

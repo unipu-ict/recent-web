@@ -52,106 +52,29 @@
                 </tr>
               </thead>
               <tbody>
-                <tr data-toggle="collapse" data-target="#demo">
-                  <td>1.11.2016</td>
-                  <td>7:56</td>
-                  <td>16:10</td>
-                  <td>8</td>
-                  <td> 
-                    Više informacija <span class="glyphicon glyphicon-chevron-down"></span>
-                  </td>
-                </tr>
-                <!-- toggle of previous row -->
-                 <tr id="demo" class="collapse">
-                 	<td colspan="5">
-				    dolazak: 8:00, pauza: 11:30, vraćanje sa pauze: 11:56, odlazak: 16:02
-				    </td>
-				 </tr>
-                <!-- end of toggle of previous row -->
 
-                <tr>
-                  <td>2.11.2016</td>
-                  <td>7:56</td>
-                  <td>16:10</td>
-                  <td>8</td>
-                  <td> 
-                    Više informacija <span class="glyphicon glyphicon-chevron-down"></span>
-                  </td>
-                </tr>
-                <!-- toggle of previous row -->
-                 <tr id="demo" class="collapse">
-                 	<td colspan="5">
-				    dolazak: 8:00, pauza: 11:30, vraćanje sa pauze: 11:56, odlazak: 16:02
-				    </td>
-				 </tr>
-                <!-- end of toggle of previous row -->
-                <tr>
-                  <td>3.11.2016</td>
-                  <td>7:56</td>
-                  <td>16:10</td>
-                  <td>8</td>
-                  <td> 
-                    Više informacija <span class="glyphicon glyphicon-chevron-down"></span>
-                  </td>
-                </tr>
-                <!-- toggle of previous row -->
-                 <tr id="demo" class="collapse">
-                 	<td colspan="5">
-				    dolazak: 8:00, pauza: 11:30, vraćanje sa pauze: 11:56, odlazak: 16:02
-				    </td>
-				 </tr>
-                <!-- end of toggle of previous row -->
-                <tr>
-                  <td>4.11.2016</td>
-                  <td>7:56</td>
-                  <td>16:10</td>
-                  <td>8</td>
-                  <td> 
-                    Više informacija <span class="glyphicon glyphicon-chevron-down"></span>
-                  </td>
-                </tr>
-                <!-- toggle of previous row -->
-                 <tr id="demo" class="collapse">
-                 	<td colspan="5">
-				    dolazak: 8:00, pauza: 11:30, vraćanje sa pauze: 11:56, odlazak: 16:02
-				    </td>
-				 </tr>
-                <!-- end of toggle of previous row -->
-                <tr>
-                  <td>5.11.2016</td>
-                  <td>7:56</td>
-                  <td>16:10</td>
-                  <td>8</td>
-                  <td> 
-                    Više informacija <span class="glyphicon glyphicon-chevron-down"></span>
-                  </td>
-                </tr>
-                <!-- toggle of previous row -->
-                 <tr id="demo" class="collapse">
-                 	<td colspan="5">
-				    dolazak: 8:00, pauza: 11:30, vraćanje sa pauze: 11:56, odlazak: 16:02
-				    </td>
-				 </tr>
-                <!-- end of toggle of previous row -->
-                <tr>
-                  <td>6.11.2016</td>
-                  <td>7:56</td>
-                  <td>16:10</td>
-                  <td>8</td>
-                  <td> 
-                    Više informacija <span class="glyphicon glyphicon-chevron-down"></span>
-                  </td>
-                </tr>
-                <!-- toggle of previous row -->
-                 <tr id="demo" class="collapse">
-                 	<td colspan="5">
-				    dolazak: 8:00, pauza: 11:30, vraćanje sa pauze: 11:56, odlazak: 16:02
-				    </td>
-				 </tr>
-                <!-- end of toggle of previous row -->
+              {% for dan in evidencija %}
+                  <tr data-toggle="collapse" data-target="#demo">
+                      <td>{{ dan.datum|date("d/m/Y") }}</td>
+                      <td>{{ dan.vrijeme_dolaska|date('H:i:s') }}</td>
+                      <td>{{ dan.vrijeme_odlaska|date('H:i:s') }}</td>
+                      <td>{{ dan.done_business_hours }}</td>
+                      <td>
+                        Više informacija <span class="glyphicon glyphicon-chevron-down"></span>
+                      </td>
+                    </tr>
+
+                     <tr id="demo" class="collapse">
+                        <td colspan="5">
+                        dolazak: 8:00, pauza: 11:30, vraćanje sa pauze: 11:56, odlazak: 16:02
+                        </td>
+                     </tr>
+
+              {% endfor %}
+
 
               </tbody>
-            </table>  
+ </table>
            
 
 {% endblock fos_user_content %}
