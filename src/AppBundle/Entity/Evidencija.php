@@ -1,11 +1,15 @@
 <?php
 namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Evidencija
  *
  * @ORM\Table(name="evidencija")
  * @ORM\Entity
+ *
+ * 
+ *
  */
 class Evidencija
 {
@@ -21,18 +25,22 @@ class Evidencija
      * @var int
      *
      * @ORM\Column(name="user_id", type="integer")
+     *
      */
     private $userId;
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_time", type="datetime")
+     *
+     *
      */
     private $dateTime;
     /**
      * @var int
      *
-     * @ORM\Column(name="razlog_id", type="integer")
+     * @ORM\Column(name="razlog_id", type="integer"))
+     *
      */
     private $razlogId;
     /**

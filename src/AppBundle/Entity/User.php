@@ -16,8 +16,11 @@ class User extends BaseUser
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
      */
     protected $id;
+
+
 
     /**
      * @ORM\Column(type="string", length=255)

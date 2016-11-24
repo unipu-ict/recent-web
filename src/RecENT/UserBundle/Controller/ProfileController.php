@@ -47,15 +47,18 @@ class ProfileController extends Controller
 
 
         $evidencija = $this->getDoctrine()
-            ->getRepository('AppBundle:Evidencija_dana')->findBy(array('userId' => $user->getId()));
+            ->getRepository('AppBundle:Evidencija_dana')
+            ->findBy(array('userId' => $user->getId()));
 
-
-
+        $dolazak = $this->getDoctrine()
+            ->getRepository('AppBundle:Evidencija')
+            ->findBy(array('userId' => $user->getId()));
 
 
         return $this->render('FOSUserBundle:Profile:show.html.twig', array(
             'user' => $user,
             'evidencija' => $evidencija,
+            'dolasci' => $dolazak,
         ));
     }
 

@@ -71,9 +71,14 @@
                     </tr>
 
                      <tr id="{{ br }}" class="collapse">
-                        <td colspan="5">
-                        dolazak: 8:00, pauza: 11:30, vraćanje sa pauze: 11:56, odlazak: 16:02
-                        </td>
+
+                            {% for time in dolasci %}
+                                {% if dan.datum|date("d/m/Y")==time.dateTime|date("d/m/Y") %}
+                                    <td colspan="1">{{ time.dateTime|date("H:i") }}</td>
+
+                                {% endif %}
+                            {% endfor %}
+
                      </tr>
               {% endfor %}
 
