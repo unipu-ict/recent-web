@@ -13,6 +13,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+
 class DashboardController extends Controller
 {
     /**
@@ -24,6 +25,15 @@ class DashboardController extends Controller
     {
         $userManager = $this->get('fos_user.user_manager');
         $users = $userManager->findUsers();
+
+        $em = $this->getDoctrine()->getManager();
+
+        
+        //$query=$em->createQuery( 'SELECT u.done_business_hours, u.datum, u.vrijeme_dolaska, u.vrijeme_odlaska FROM AppBundle\Entity\Evidencija_dana u');
+        
+        //$query=$em->createQuery( 'SELECT Id, name, surname, sum(done_business_hours) FROM fos_user u INNER JOIN AppBundle\Entity\Evidencija_dana e ON u.Id = e.user_id GROUP BY id');
+
+        //$products = $query->getResult();
 
 
         return $this->render('dashboard/zaposlenici-mj.html.twig', array(
@@ -39,9 +49,12 @@ class DashboardController extends Controller
 
     public function workerAction()
     {
-        // replace this example code with whatever you need
-
-        return $this->render('dashboard/radnik-mj.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $query=$em->createQuery( 'SELECT u.done_business_hours, u.datum, u.vrijeme_dolaska, u.vrijeme_odlaska FROM AppBundle\Entity\Evidencija_dana u');
+        $data = $query->getResult();
+        return $this->render('dashboard/radnik-mj.html.twig', array(
+            'evidencija' => $data,
+        ));
     }
 
 

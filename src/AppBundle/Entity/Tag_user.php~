@@ -31,4 +31,76 @@ class Tag_user
      */   
     private $user_tag;
 
+
+    /**
+     * Set id
+     *
+     * @param integer $id
+     *
+     * @return Tag_user
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set userId
+     *
+     * @param integer $userId
+     *
+     * @return Tag_user
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Get userId
+     *
+     * @return integer
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    /**
+     * Set userTag
+     *
+     * @param string $userTag
+     *
+     * @return Tag_user
+     */
+    public function setUserTag($userTag)
+    {
+        $this->user_tag = $userTag;
+
+        return $this;
+    }
+
+    /**
+     * Get userTag
+     *
+     * @return string
+     */
+    public function getUserTag()
+    {
+        return $this->user_tag;
+    }
 }

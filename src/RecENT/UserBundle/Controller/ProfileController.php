@@ -52,6 +52,7 @@ class ProfileController extends Controller
 
 
 
+
         return $this->render('FOSUserBundle:Profile:show.html.twig', array(
             'user' => $user,
             'evidencija' => $evidencija,
@@ -65,7 +66,6 @@ class ProfileController extends Controller
      *
      * @return Response
      */
-
     public function editAction(Request $request)
     {
         $user = $this->getUser();
