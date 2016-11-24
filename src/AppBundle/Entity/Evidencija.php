@@ -5,7 +5,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Evidencija
  *
  * @ORM\Table(name="evidencija")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\EvidencijaRepository")
+ * @ORM\Entity
  */
 class Evidencija
 {

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Razlog
  *
  * @ORM\Table(name="razlog")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\RazlogRepository")
+ * @ORM\Entity
  */
 
 class Razlog

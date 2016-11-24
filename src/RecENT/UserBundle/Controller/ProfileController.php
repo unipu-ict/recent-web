@@ -44,23 +44,17 @@ class ProfileController extends Controller
 
 
 
-        $em = $this->getDoctrine()->getManager();
-        $query=$em->createQuery( 'SELECT u.done_business_hours, u.datum, u.vrijeme_dolaska, u.vrijeme_odlaska FROM AppBundle\Entity\Evidencija_dana u');
-        $data = $query->getResult();
 
 
-
-
-
-
-
+        $evidencija = $this->getDoctrine()
+            ->getRepository('AppBundle:Evidencija_dana')->findBy(array('userId' => $user->getId()));
 
 
 
 
         return $this->render('FOSUserBundle:Profile:show.html.twig', array(
             'user' => $user,
-            'evidencija' => $data,
+            'evidencija' => $evidencija,
         ));
     }
 

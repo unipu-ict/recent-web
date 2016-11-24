@@ -4,12 +4,17 @@
 {% include "FOSUserBundle:Profile:show_content.html.twig" %}
 <hr></hr>
 
+    {% set x=0 %}
+    {% for y in evidencija %}
+        {% set x=x+ y.doneBusinessHours %}
+    {% endfor %}
+
 <div class="row row-eq-height mjesec-suma" >
 	<div class="col-xs-12 col-sm-4 col-md-2 bottom-column">
 		<p class="bottom-column"> <small>Mjesec:</small> <strong>11/2016</strong></strong></p>
 	</div>	
 	<div class="col-xs-12 col-sm-8 col-md-2 bottom-column">
-		<p class="manji"><small>Odrađeno sati:</small> <strong> 80 </strong> </p>
+		<p class="manji"><small>Odrađeno sati:</small> <strong> {{ x }} </strong> </p>
 	</div>	
 	<div class="col-xs-12 col-sm-8 col-md-8 bottom-column vertical-middle">
 		<nav aria-label="Page navigation" class="pagination float-right">
@@ -53,23 +58,23 @@
               </thead>
               <tbody>
 
-              {% for dan in evidencija %}
-                  <tr data-toggle="collapse" data-target="#demo">
+              {% set br = range(1,31) %}
+              {% for br, dan in evidencija %}
+                  <tr data-toggle="collapse" data-target="#{{ br }}">
                       <td>{{ dan.datum|date("d/m/Y") }}</td>
-                      <td>{{ dan.vrijeme_dolaska|date('H:i:s') }}</td>
-                      <td>{{ dan.vrijeme_odlaska|date('H:i:s') }}</td>
-                      <td>{{ dan.done_business_hours }}</td>
+                      <td>{{ dan.vrijemeDolaska|date('H:i') }}</td>
+                      <td>{{ dan.vrijemeOdlaska|date('H:i') }}</td>
+                      <td>{{ dan.doneBusinessHours }}</td>
                       <td>
                         Više informacija <span class="glyphicon glyphicon-chevron-down"></span>
                       </td>
                     </tr>
 
-                     <tr id="demo" class="collapse">
+                     <tr id="{{ br }}" class="collapse">
                         <td colspan="5">
                         dolazak: 8:00, pauza: 11:30, vraćanje sa pauze: 11:56, odlazak: 16:02
                         </td>
                      </tr>
-
               {% endfor %}
 
 

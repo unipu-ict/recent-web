@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Evidencija_dana
  *
  * @ORM\Table(name="evidencija_dana")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\Evidencija_danaRepository")
+ * @ORM\Entity
  */
 class Evidencija_dana
 {
@@ -54,6 +54,8 @@ class Evidencija_dana
     private $done_business_hours;
 
     
+
+
 
 
     /**
@@ -115,30 +117,6 @@ class Evidencija_dana
     }
 
     /**
-     * Set doneBusinessHours
-     *
-     * @param float $doneBusinessHours
-     *
-     * @return Evidencija_dana
-     */
-    public function setDoneBusinessHours($doneBusinessHours)
-    {
-        $this->done_business_hours = $doneBusinessHours;
-
-        return $this;
-    }
-
-    /**
-     * Get doneBusinessHours
-     *
-     * @return float
-     */
-    public function getDoneBusinessHours()
-    {
-        return $this->done_business_hours;
-    }
-
-    /**
      * Set vrijemeDolaska
      *
      * @param \DateTime $vrijemeDolaska
@@ -184,5 +162,29 @@ class Evidencija_dana
     public function getVrijemeOdlaska()
     {
         return $this->vrijeme_odlaska;
+    }
+
+    /**
+     * Set doneBusinessHours
+     *
+     * @param float $doneBusinessHours
+     *
+     * @return Evidencija_dana
+     */
+    public function setDoneBusinessHours($doneBusinessHours)
+    {
+        $this->done_business_hours = $doneBusinessHours;
+
+        return $this;
+    }
+
+    /**
+     * Get doneBusinessHours
+     *
+     * @return float
+     */
+    public function getDoneBusinessHours()
+    {
+        return $this->done_business_hours;
     }
 }
