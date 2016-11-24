@@ -19,4 +19,8 @@ $collection->add('resetting', new Route('/resetting', array(
     '_controller' => 'FOSUserBundle:Resetting:reset',
 )));
 
+$collection->add('profile', new Route('/profile', array(
+    '_controller' => 'FOSUserBundle:Profile:profile',
+)));
+
 return $collection;

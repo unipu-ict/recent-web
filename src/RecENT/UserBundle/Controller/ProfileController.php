@@ -42,8 +42,17 @@ class ProfileController extends Controller
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
+
+
+        $em = $this->getDoctrine()->getManager();
+        $query=$em->createQuery( 'SELECT u.done_business_hours, u.datum, u.vrijeme_dolaska, u.vrijeme_odlaska FROM AppBundle\Entity\Evidencija_dana u');
+        $data = $query->getResult();
+
+
+
         return $this->render('FOSUserBundle:Profile:show.html.twig', array(
             'user' => $user,
+            'evidencija' => $data,
         ));
     }
 

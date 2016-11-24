@@ -34,6 +34,18 @@ class Evidencija_dana
      * @ORM\Column(name="datum", type="date")
      */
     private $datum;
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="vrijeme_dolaska", type="time")
+     */
+    private $vrijeme_dolaska;
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="vrijeme_odlaska", type="time")
+     */
+    private $vrijeme_odlaska;
 
     /**
      *
@@ -124,5 +136,53 @@ class Evidencija_dana
     public function getDoneBusinessHours()
     {
         return $this->done_business_hours;
+    }
+
+    /**
+     * Set vrijemeDolaska
+     *
+     * @param \DateTime $vrijemeDolaska
+     *
+     * @return Evidencija_dana
+     */
+    public function setVrijemeDolaska($vrijemeDolaska)
+    {
+        $this->vrijeme_dolaska = $vrijemeDolaska;
+
+        return $this;
+    }
+
+    /**
+     * Get vrijemeDolaska
+     *
+     * @return \DateTime
+     */
+    public function getVrijemeDolaska()
+    {
+        return $this->vrijeme_dolaska;
+    }
+
+    /**
+     * Set vrijemeOdlaska
+     *
+     * @param \DateTime $vrijemeOdlaska
+     *
+     * @return Evidencija_dana
+     */
+    public function setVrijemeOdlaska($vrijemeOdlaska)
+    {
+        $this->vrijeme_odlaska = $vrijemeOdlaska;
+
+        return $this;
+    }
+
+    /**
+     * Get vrijemeOdlaska
+     *
+     * @return \DateTime
+     */
+    public function getVrijemeOdlaska()
+    {
+        return $this->vrijeme_odlaska;
     }
 }
