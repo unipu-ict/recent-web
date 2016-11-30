@@ -90,7 +90,7 @@ fos_user:
             template:   email/password_resetting.email.twig 
             from_email:
                 address:        resetting@example.com
-                sender_name:    Demo Resetting   
+                sender_name:    Izmjena Loznike   
 
 # Nelmio CORS Configuration
 nelmio_cors:
