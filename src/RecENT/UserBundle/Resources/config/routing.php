@@ -23,4 +23,8 @@ $collection->add('profile', new Route('/profile', array(
     '_controller' => 'FOSUserBundle:Profile:profile',
 )));
 
+$collection->add('edit', new Route('/edit', array(
+    '_controller' => 'FOSUserBundle:Profile:edit',
+)));
+
 return $collection;

@@ -43,9 +43,6 @@ class ProfileController extends Controller
         }
 
 
-
-
-
         $evidencija = $this->getDoctrine()
             ->getRepository('AppBundle:Evidencija_dana')
             ->findBy(array('userId' => $user->getId()));

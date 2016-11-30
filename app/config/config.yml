@@ -67,7 +67,9 @@ swiftmailer:
     host:      "%mailer_host%"
     username:  "%mailer_user%"
     password:  "%mailer_password%"
-    spool:     { type: memory }
+    port:      "%mailer_port%"
+    auth_mode: "%mailer_auth_mode%"
+    #spool:     { type: memory }
 
 #fos user
 fos_user:
@@ -82,8 +84,10 @@ fos_user:
             type: AppBundle\Form\RegistrationType
     group:
         group_class: AppBundle\Entity\Group 
+   
     resetting:
         email:
+            template:   email/password_resetting.email.twig 
             from_email:
                 address:        resetting@example.com
                 sender_name:    Demo Resetting   
