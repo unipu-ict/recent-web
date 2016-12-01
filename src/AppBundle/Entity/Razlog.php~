@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Razlog
  *
  * @ORM\Table(name="razlog")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\RazlogRepository")
+ * @ORM\Entity
  */
 
 class Razlog
@@ -17,6 +17,7 @@ class Razlog
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Evidencija", mappedBy="razlogId")
      */
     protected $id;
 

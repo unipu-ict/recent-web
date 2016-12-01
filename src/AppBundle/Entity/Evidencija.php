@@ -90,27 +90,6 @@ class Evidencija
     {
         return $this->userId;
     }
-    /**
-     * Set dateTime
-     *
-     * @param \DateTime $dateTime
-     *
-     * @return Evidencija
-     */
-    public function setDateTime($dateTime)
-    {
-        $this->dateTime = $dateTime;
-        return $this;
-    }
-    /**
-     * Get dateTime
-     *
-     * @return \DateTime
-     */
-    public function getDateTime()
-    {
-        return $this->dateTime;
-    }
 
     /**
      * Set razlogId
@@ -160,4 +139,52 @@ class Evidencija
         return $this->uredajId;
     }
 
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return Evidencija
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set time
+     *
+     * @param \DateTime $time
+     *
+     * @return Evidencija
+     */
+    public function setTime($time)
+    {
+        $this->time = $time;
+
+        return $this;
+    }
+
+    /**
+     * Get time
+     *
+     * @return \DateTime
+     */
+    public function getTime()
+    {
+        return $this->time;
+    }
 }

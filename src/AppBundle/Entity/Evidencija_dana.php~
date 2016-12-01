@@ -57,19 +57,63 @@ class Evidencija_dana
 
 
 
-<<<<<<< HEAD
-=======
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set userId
+     *
+     * @param integer $userId
+     *
+     * @return Evidencija_dana
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
+
         return $this;
     }
 
     /**
-     * Get doneBusinessHours
+     * Get userId
      *
-     * @return float
+     * @return integer
      */
-    public function getDoneBusinessHours()
+    public function getUserId()
     {
-        return $this->done_business_hours;
+        return $this->userId;
+    }
+
+    /**
+     * Set datum
+     *
+     * @param \DateTime $datum
+     *
+     * @return Evidencija_dana
+     */
+    public function setDatum($datum)
+    {
+        $this->datum = $datum;
+
+        return $this;
+    }
+
+    /**
+     * Get datum
+     *
+     * @return \DateTime
+     */
+    public function getDatum()
+    {
+        return $this->datum;
     }
 
     /**
@@ -119,5 +163,28 @@ class Evidencija_dana
     {
         return $this->vrijeme_odlaska;
     }
->>>>>>> 31121e69c7a721552f311b4ff74f88026b350cf2
+
+    /**
+     * Set doneBusinessHours
+     *
+     * @param float $doneBusinessHours
+     *
+     * @return Evidencija_dana
+     */
+    public function setDoneBusinessHours($doneBusinessHours)
+    {
+        $this->done_business_hours = $doneBusinessHours;
+
+        return $this;
+    }
+
+    /**
+     * Get doneBusinessHours
+     *
+     * @return float
+     */
+    public function getDoneBusinessHours()
+    {
+        return $this->done_business_hours;
+    }
 }

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Tag_user
  *
  * @ORM\Table(name="tag_user")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\Tag_userRepository")
+ * @ORM\Entity
  */
 
 class Tag_user
@@ -23,6 +23,9 @@ class Tag_user
      * @var int
      *
      * @ORM\Column(name="user_id", type="integer")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="id")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *
      */
     private $userId;
 

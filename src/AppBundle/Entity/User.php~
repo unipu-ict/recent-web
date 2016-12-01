@@ -16,8 +16,12 @@ class User extends BaseUser
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Evidencija", mappedBy="userId")
+     *
      */
     protected $id;
+
+
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -98,5 +102,3 @@ class User extends BaseUser
         return $this->surname;
     }
 }
-
-?>
