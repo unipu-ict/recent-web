@@ -8,8 +8,6 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Table(name="evidencija")
  * @ORM\Entity
  *
- * 
- *
  */
 class Evidencija
 {
@@ -25,21 +23,30 @@ class Evidencija
      * @var int
      *
      * @ORM\Column(name="user_id", type="integer")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="id")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      *
      */
     private $userId;
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_time", type="datetime")
-     *
-     *
+     * @ORM\Column(name="datum", type="date")
      */
-    private $dateTime;
+    private $date;
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="vrijeme", type="time")
+     */
+    private $time;
     /**
      * @var int
      *
      * @ORM\Column(name="razlog_id", type="integer"))
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Razlog", inversedBy="id")
+     * @ORM\JoinColumn(name="razlog_id", referencedColumnName="id")
+     *
      *
      */
     private $razlogId;
@@ -47,6 +54,8 @@ class Evidencija
      * @var int
      *
      * @ORM\Column(name="uredaj_id", type="integer")
+     *
+     *
      */
     private $uredajId;
 
@@ -150,4 +159,5 @@ class Evidencija
     {
         return $this->uredajId;
     }
+
 }

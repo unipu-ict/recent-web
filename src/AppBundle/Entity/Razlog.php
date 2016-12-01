@@ -17,6 +17,7 @@ class Razlog
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Evidencija", mappedBy="razlogId")
      */
     protected $id;
 

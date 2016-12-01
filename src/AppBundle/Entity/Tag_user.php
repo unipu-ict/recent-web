@@ -23,6 +23,9 @@ class Tag_user
      * @var int
      *
      * @ORM\Column(name="user_id", type="integer")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="id")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *
      */
     private $userId;
 
