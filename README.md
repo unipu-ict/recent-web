@@ -22,6 +22,7 @@ Then update database shema with:
 php bin/console doctrine:schema:update --force
 ```
 
+============================
 #RecENT basic info
 RecENT is application which is developed for companies and organizations that want to upgrade their way of managing employees work hours. 
 RecENT contains from:
