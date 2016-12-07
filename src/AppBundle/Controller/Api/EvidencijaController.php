@@ -31,7 +31,10 @@ class EvidencijaController extends FOSRestController //potrebno ekstendati FOSRe
         $user = $this->getUser(); //dobiva usera
         $evidencija = new Evidencija(); // nova Evidencija
         $evidencija->setUserId($user->getId()); // postavi usera
-        $evidencija->setDatetime(new \DateTime("now")); //postavi vrijeme
+        $evidencija->setDate(new \DateTime("now")); //postavi vrijeme
+        $evidencija->setTime(new \DateTime("now"));
+        $evidencija->setRazlogId(1);
+        $evidencija->setUredajId(1);
 
         $em = $this->getDoctrine()->getManager(); //dohvati managera
         $em->persist($evidencija); //pripremi za spremanje
