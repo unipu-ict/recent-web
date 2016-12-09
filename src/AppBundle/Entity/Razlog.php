@@ -3,7 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Razlog
  *
@@ -17,7 +17,7 @@ class Razlog
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Evidencija", mappedBy="razlogId")
+     *
      */
     protected $id;
 
@@ -26,6 +26,16 @@ class Razlog
      */   
     private $razlog;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Evidencija", mappedBy="razlogId")
+     */
+    protected $razlozi;
+
+    public function __construct()
+    {
+        $this->razlozi = new ArrayCollection();
+
+    }
 
     /**
      * Get id
@@ -59,5 +69,39 @@ class Razlog
     public function getRazlog()
     {
         return $this->razlog;
+    }
+
+    /**
+     * Add razlozi
+     *
+     * @param \AppBundle\Entity\Evidencija $razlozi
+     *
+     * @return Razlog
+     */
+    public function addRazlozi(\AppBundle\Entity\Evidencija $razlozi)
+    {
+        $this->razlozi[] = $razlozi;
+
+        return $this;
+    }
+
+    /**
+     * Remove razlozi
+     *
+     * @param \AppBundle\Entity\Evidencija $razlozi
+     */
+    public function removeRazlozi(\AppBundle\Entity\Evidencija $razlozi)
+    {
+        $this->razlozi->removeElement($razlozi);
+    }
+
+    /**
+     * Get razlozi
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRazlozi()
+    {
+        return $this->razlozi;
     }
 }

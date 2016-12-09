@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -16,12 +17,10 @@ class User extends BaseUser
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Evidencija", mappedBy="userId")
+     *
      *
      */
     protected $id;
-
-
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -59,9 +58,14 @@ class User extends BaseUser
      * )
      */
     protected $groups;
+    /**
+     * @ORM\OneToMany(targetEntity="Evidencija", mappedBy="userId")
+     */
+    protected $korisnici;
 
     public function __construct()
     {
+        $this->korisnici = new ArrayCollection();
         parent::__construct();
         // your own logic
     }
@@ -100,5 +104,39 @@ class User extends BaseUser
     public function getSurname()
     {
         return $this->surname;
+    }
+
+    /**
+     * Add korisnici
+     *
+     * @param \AppBundle\Entity\Evidencija $korisnici
+     *
+     * @return User
+     */
+    public function addKorisnici(\AppBundle\Entity\Evidencija $korisnici)
+    {
+        $this->korisnici[] = $korisnici;
+
+        return $this;
+    }
+
+    /**
+     * Remove korisnici
+     *
+     * @param \AppBundle\Entity\Evidencija $korisnici
+     */
+    public function removeKorisnici(\AppBundle\Entity\Evidencija $korisnici)
+    {
+        $this->korisnici->removeElement($korisnici);
+    }
+
+    /**
+     * Get korisnici
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getKorisnici()
+    {
+        return $this->korisnici;
     }
 }

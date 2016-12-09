@@ -20,10 +20,7 @@ class Evidencija
      */
     private $id;
     /**
-     * @var int
-     *
-     * @ORM\Column(name="user_id", type="integer")
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="id")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="korisnici")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      *
      */
@@ -41,10 +38,8 @@ class Evidencija
      */
     private $time;
     /**
-     * @var int
      *
-     * @ORM\Column(name="razlog_id", type="integer"))
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Razlog", inversedBy="id")
+     * @ORM\ManyToOne(targetEntity="Razlog", inversedBy="razlozi")
      * @ORM\JoinColumn(name="razlog_id", referencedColumnName="id")
      *
      *
