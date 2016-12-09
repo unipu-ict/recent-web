@@ -1,0 +1,15 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: 127.0.0.1
+    database_port: 3306
+    database_name: cekomat_recent
+    database_user: root
+    database_password: 123abc
+    mailer_transport: smtp
+    mailer_host: mail.trendovi.com.hr
+    mailer_port: 26
+    mailer_encryption:
+    mailer_user: recent@trendovi.com.hr
+    mailer_password: 123456789abcd
+    mailer_auth_mode:  login
+    secret: ThisTokenIsNotSoSecretChangeIt
