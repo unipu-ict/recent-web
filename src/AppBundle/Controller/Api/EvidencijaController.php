@@ -27,22 +27,34 @@ class EvidencijaController extends FOSRestController //potrebno ekstendati FOSRe
      */
     public function unesipodatkeAction(Request $request)
     {
-        // $content = $this->getContentAsArray($request); 
-        $user = $this->getUser(); //dobiva usera
+
+        $content = $this->getContentAsArray($request); // poznvana pomocna klasa definirana ispod
+        $uid = array($content->{'uid'});
+        $em = $this->getDoctrine()->getManager();
+        $product = $em->getRepository('AppBundle:Tag_user')->findBy(array('user_tag' => $uid));
+
         $evidencija = new Evidencija(); // nova Evidencija
-        $evidencija->setUserId($user->getId()); // postavi usera
+        $evidencija->setUserId($product[0]->getuserId()); // postavi usera
         $evidencija->setDate(new \DateTime("now")); //postavi vrijeme
         $evidencija->setTime(new \DateTime("now"));
         $evidencija->setRazlogId(1);
         $evidencija->setUredajId(1);
-
-        $em = $this->getDoctrine()->getManager(); //dohvati managera
+        //$em = $this->getDoctrine()->getManager(); //dohvati managera
         $em->persist($evidencija); //pripremi za spremanje
         $em->flush(); //spremi
 
-        $content = array("uspjeh" => "da"); /// neki dummy podaci
+        $content = array("uspjeh" => "da");///$product[0]->getuserId();  // neki dummy podaci
         return $view = $this->view($content, Response::HTTP_OK); //vrati dummy odg..
 
+    }
+    protected function getContentAsArray(Request $request){ //pomocna funkcjia za vratit json iz respnsa
+        $content = $request->getContent();
+
+        if(empty($content)){
+            throw new BadRequestHttpException("Content is empty");
+        }
+
+        return json_decode($content);
     }
 
 
