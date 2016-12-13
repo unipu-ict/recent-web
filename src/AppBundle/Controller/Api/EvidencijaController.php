@@ -4,6 +4,9 @@ namespace AppBundle\Controller\Api;
 
 
 use AppBundle\Entity\Evidencija;
+
+use AppBundle\Entity\Razlog;
+use AppBundle\Entity\Tag_user;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use FOS\RestBundle\Controller\Annotations as Rest;
@@ -27,26 +30,33 @@ class EvidencijaController extends FOSRestController //potrebno ekstendati FOSRe
      */
     public function unesipodatkeAction(Request $request)
     {
-
         $content = $this->getContentAsArray($request); // poznvana pomocna klasa definirana ispod
-        $uid = array($content->{'uid'});
-        $em = $this->getDoctrine()->getManager();
-        $product = $em->getRepository('AppBundle:Tag_user')->findBy(array('user_tag' => $uid));
+        $uID = $content->{'uid'};
+        $em = $this->getDoctrine()->getManager(); //dohvati managera
+        
+        $uid = $this->getDoctrine() ->getRepository('AppBundle:Tag_user')->findOneBy( array('user_tag' => $uID));
 
+        $user = $this->getDoctrine() ->getRepository('AppBundle:User')->find( $uid->getUserId());
+     
         $evidencija = new Evidencija(); // nova Evidencija
-        $evidencija->setUserId($product[0]->getuserId()); // postavi usera
+        $evidencija->setUserId($user); // postavi usera
         $evidencija->setDate(new \DateTime("now")); //postavi vrijeme
         $evidencija->setTime(new \DateTime("now"));
-        $evidencija->setRazlogId(1);
+        //$evidencija->setRazlogId($razlog);
         $evidencija->setUredajId(1);
-        //$em = $this->getDoctrine()->getManager(); //dohvati managera
+
+
         $em->persist($evidencija); //pripremi za spremanje
         $em->flush(); //spremi
 
-        $content = array("uspjeh" => "da");///$product[0]->getuserId();  // neki dummy podaci
+        $content = array("uspjeh" => "da"); /// neki dummy podaci
         return $view = $this->view($content, Response::HTTP_OK); //vrati dummy odg..
 
     }
+
+
+
+
     protected function getContentAsArray(Request $request){ //pomocna funkcjia za vratit json iz respnsa
         $content = $request->getContent();
 
@@ -56,20 +66,5 @@ class EvidencijaController extends FOSRestController //potrebno ekstendati FOSRe
 
         return json_decode($content);
     }
-
-
-
-/*
-    protected function getContentAsArray(Request $request){ //pomocna funkcjia za vratit json iz respnsa
-        $content = $request->getContent();
-
-        if(empty($content)){
-            throw new BadRequestHttpException("Content is empty");
-        }
-
-        return json_decode($content);
-    }
-*/
 
 }
-
