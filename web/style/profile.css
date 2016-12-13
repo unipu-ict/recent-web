@@ -29,9 +29,8 @@ Profile
 
 }
 
-.fos_user_user_show p {
-  font-size: 20px;
-}
+
+
 
 .mjesec-suma p {
 	font-size: 22px;
@@ -39,12 +38,16 @@ Profile
 
 .pagination {
 	margin: 0;
+}
 
+.settings {
+	font-size: 18px;
 }
 
 .inline-block {
 	display: inline-block;
 }
+
 .main-table tbody tr:nth-child(4n+1){
 	background: #F7F8FF;
 
@@ -68,8 +71,9 @@ Profile
 .float-left {
 	float: left;
 	margin-top: 10px; 
-
 }
+
+
 .float-right {
 	float: right;
 
@@ -80,3 +84,7 @@ Profile
 	vertical-align: middle;
 }
 
+.padding-5-margin-5 {
+	padding: 5px;
+	margin: 5px;
+}

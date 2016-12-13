@@ -4,6 +4,9 @@ namespace AppBundle\Controller\Api;
 
 
 use AppBundle\Entity\Evidencija;
+
+use AppBundle\Entity\Razlog;
+use AppBundle\Entity\Tag_user;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use FOS\RestBundle\Controller\Annotations as Rest;
@@ -27,16 +30,27 @@ class EvidencijaController extends FOSRestController //potrebno ekstendati FOSRe
      */
     public function unesipodatkeAction(Request $request)
     {
-        // $content = $this->getContentAsArray($request); 
-        $user = $this->getUser(); //dobiva usera
+        $content = $this->getContentAsArray($request); // poznvana pomocna klasa definirana ispod
+        $uID = $content->{'uid'};
+        $em = $this->getDoctrine()->getManager(); //dohvati managera
+        
+        $uid = $this->getDoctrine() ->getRepository('AppBundle:Tag_user')->findOneBy( array('user_tag' => $uID));
+
+        $user = $this->getDoctrine() ->getRepository('AppBundle:User')->find( $uid->getUserId());
+
+        
+        $razlog = new Razlog();
+        $razlog->setRazlog(2);
+        $em->persist($razlog);
+     
         $evidencija = new Evidencija(); // nova Evidencija
-        $evidencija->setUserId($user->getId()); // postavi usera
+        $evidencija->setUserId($user); // postavi usera
         $evidencija->setDate(new \DateTime("now")); //postavi vrijeme
         $evidencija->setTime(new \DateTime("now"));
-        $evidencija->setRazlogId(1);
+        $evidencija->setRazlogId($razlog);
         $evidencija->setUredajId(1);
 
-        $em = $this->getDoctrine()->getManager(); //dohvati managera
+
         $em->persist($evidencija); //pripremi za spremanje
         $em->flush(); //spremi
 
@@ -47,7 +61,7 @@ class EvidencijaController extends FOSRestController //potrebno ekstendati FOSRe
 
 
 
-/*
+
     protected function getContentAsArray(Request $request){ //pomocna funkcjia za vratit json iz respnsa
         $content = $request->getContent();
 
@@ -57,7 +71,6 @@ class EvidencijaController extends FOSRestController //potrebno ekstendati FOSRe
 
         return json_decode($content);
     }
-*/
 
 }
 
