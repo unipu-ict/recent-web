@@ -48,8 +48,8 @@ class Evidencija_dana
     private $vrijeme_odlaska;
 
     /**
-     *
-     * @ORM\Column(name="done_business_hours", type="float")
+     * @var \DateTime
+     * @ORM\Column(name="done_business_hours", type="time")
      */
     private $done_business_hours;
 

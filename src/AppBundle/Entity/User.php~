@@ -105,4 +105,38 @@ class User extends BaseUser
     {
         return $this->surname;
     }
+
+    /**
+     * Add korisnici
+     *
+     * @param \AppBundle\Entity\Evidencija $korisnici
+     *
+     * @return User
+     */
+    public function addKorisnici(\AppBundle\Entity\Evidencija $korisnici)
+    {
+        $this->korisnici[] = $korisnici;
+
+        return $this;
+    }
+
+    /**
+     * Remove korisnici
+     *
+     * @param \AppBundle\Entity\Evidencija $korisnici
+     */
+    public function removeKorisnici(\AppBundle\Entity\Evidencija $korisnici)
+    {
+        $this->korisnici->removeElement($korisnici);
+    }
+
+    /**
+     * Get korisnici
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getKorisnici()
+    {
+        return $this->korisnici;
+    }
 }
