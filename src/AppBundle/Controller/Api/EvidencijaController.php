@@ -43,8 +43,6 @@ class EvidencijaController extends FOSRestController //potrebno ekstendati FOSRe
         $evidencija->setDate(new \DateTime("now")); //postavi vrijeme
         $evidencija->setTime(new \DateTime("now"));
         //$evidencija->setRazlogId($razlog);
-        $evidencija->setUredajId(1);
-
 
         $em->persist($evidencija); //pripremi za spremanje
         $em->flush(); //spremi
