@@ -26,13 +26,6 @@ class DashboardController extends Controller
         $userManager = $this->get('fos_user.user_manager');
         $users = $userManager->findUsers();
 
-        //$em = $this->getDoctrine()->getManager();
-
-        //$query=$em->createQuery( 'SELECT u.done_business_hours, u.datum, u.vrijeme_dolaska, u.vrijeme_odlaska FROM AppBundle\Entity\Evidencija_dana u');
-        
-        //$query=$em->createQuery( 'SELECT Id, name, surname, sum(done_business_hours) FROM fos_user u INNER JOIN AppBundle\Entity\Evidencija_dana e ON u.Id = e.user_id GROUP BY id');
-
-        //$products = $query->getResult();
 
 
         return $this->render('dashboard/zaposlenici-mj.html.twig', array(
@@ -66,12 +59,23 @@ class DashboardController extends Controller
         $userManager = $this->get('fos_user.user_manager');
         $user = $userManager->findUserBy(array('id'=>$user_id));
 
-        //$evidencija = $this->getDoctrine()+            ->getRepository('AppBundle:Evidencija_dana')->findBy(array('userId' => $user->getId()));
 
+        //$evidencija = $this->getDoctrine()+            ->getRepository('AppBundle:Evidencija_dana')->findBy(array('userId' => $user->getId()));
         $evidencija = $this->getDoctrine()
             ->getRepository('AppBundle:Evidencija_dana')->findBy(array('userId' => $user_id));
+
+
+        $time=0;
+
+        foreach($evidencija as $odradeno){
+            $time = $time + $odradeno->getDoneBusinessHours();
+        }
+
+
         return $this->render('dashboard/radnik-mj.html.twig', array(
-            'evidencija' => $evidencija, 'user' => $user
+            'evidencija' => $evidencija,
+            'user' => $user,
+            'sati' => $time
         ));
     }
 

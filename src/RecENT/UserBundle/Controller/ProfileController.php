@@ -51,19 +51,23 @@ class ProfileController extends Controller
             ->getRepository('AppBundle:Evidencija')
             ->findBy(array('userId' => $user->getId()));
 
-//        $em = $this->getDoctrine()->getManager();
-//        $products = $em->getRepository('AppBundle:Evidencija')
-//            ->getUserInfo($user->getId());
 
 
-//        exit(dump($this->container,$dolazak));
 
+        $time=0;
+
+        foreach($evidencija as $odradeno){
+            $time = $time + $odradeno->getDoneBusinessHours();//zbroj odradenih sati
+        }
+
+//        exit(dump($this->container,gettype($time));
 
 
         return $this->render('FOSUserBundle:Profile:show.html.twig', array(
             'user' => $user,
             'evidencija' => $evidencija,
             'dolasci' => $dolazak,
+            'odradeno' => $time //odrađeno radno vrijeme
 
         ));
     }
