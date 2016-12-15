@@ -53,10 +53,6 @@ class Evidencija_dana
      */
     private $done_business_hours;
 
-    
-
-
-
 
     /**
      * Get id

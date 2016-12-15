@@ -29,4 +29,9 @@ evidencija_pod:
     requirements:
         _method: POST
 
-       
+evidencija_get:
+    path:  /evidencija_dana
+    defaults: { _controller: AppBundle:Api/Evidencijadana:evidencija_dana , _format: json }
+    requirements:
+        _method: GET
+
