@@ -66,5 +66,4 @@ class EvidencijadanaController extends FOSRestController
 //
 //    }
 
-
 }
