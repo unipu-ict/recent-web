@@ -37,18 +37,13 @@ class EvidencijaController extends FOSRestController //potrebno ekstendati FOSRe
         $uid = $this->getDoctrine() ->getRepository('AppBundle:Tag_user')->findOneBy( array('user_tag' => $uID));
 
         $user = $this->getDoctrine() ->getRepository('AppBundle:User')->find( $uid->getUserId());
-
-        
-        $razlog = new Razlog();
-        $razlog->setRazlog(2);
-        $em->persist($razlog);
      
         $evidencija = new Evidencija(); // nova Evidencija
         $evidencija->setUserId($user); // postavi usera
         $evidencija->setDate(new \DateTime("now")); //postavi vrijeme
         $evidencija->setTime(new \DateTime("now"));
-        $evidencija->setRazlogId($razlog);
-        $evidencija->setUredajId(1);
+        //$evidencija->setRazlogId($razlog);
+        //$evidencija->setUredajId(1);
 
 
         $em->persist($evidencija); //pripremi za spremanje
