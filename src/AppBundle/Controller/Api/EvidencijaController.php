@@ -36,19 +36,17 @@ class EvidencijaController extends FOSRestController //potrebno ekstendati FOSRe
         
         $uid = $this->getDoctrine() ->getRepository('AppBundle:Tag_user')->findOneBy( array('user_tag' => $uID));
 
-        $user = $this->getDoctrine() ->getRepository('AppBundle:User')->find( $uid->getUserId());
+        $user = $this->getDoctrine() ->getRepository('AppBundle:User')->find( $uid->getUserId() );
 
         
-        $razlog = new Razlog();
-        $razlog->setRazlog(2);
-        $em->persist($razlog);
+        $razlog = $this->getDoctrine() ->getRepository('AppBundle:Razlog')->find( 1 );
      
         $evidencija = new Evidencija(); // nova Evidencija
         $evidencija->setUserId($user); // postavi usera
         $evidencija->setDate(new \DateTime("now")); //postavi vrijeme
         $evidencija->setTime(new \DateTime("now"));
         $evidencija->setRazlogId($razlog);
-        $evidencija->setUredajId(1);
+   
 
 
         $em->persist($evidencija); //pripremi za spremanje
@@ -64,11 +62,9 @@ class EvidencijaController extends FOSRestController //potrebno ekstendati FOSRe
 
     protected function getContentAsArray(Request $request){ //pomocna funkcjia za vratit json iz respnsa
         $content = $request->getContent();
-
         if(empty($content)){
             throw new BadRequestHttpException("Content is empty");
         }
-
         return json_decode($content);
     }
 

@@ -6,12 +6,19 @@
     <div class="panel-heading">
       <h4 class="panel-title">
       	<div class="row">
-      		<div class="col-sm-10">
+      		<div class="col-sm-8">
       			
 			        <h4 class="panel-heading text-left padding-5-margin-5">
 			        	Dobrodošli <strong>{{ user.name }} {{ user.surname }}</strong>
 			        </h4>
 			    
+		    </div>
+		    <div class="col-sm-2">
+		    {% if is_granted('ROLE_ADMIN') %}
+		    	<a class="btn btn-danger btn-default float-right settings" href="/dashboard">
+		    		Kontrolna ploča 
+		    	</a>
+		    {% endif %}	
 		    </div>
 		    <div class="col-sm-2">
 		    	<button type="button" class="btn btn-primary btn-default float-right settings" data-toggle="collapse" href="#collapse1">
