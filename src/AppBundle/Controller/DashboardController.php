@@ -23,14 +23,32 @@ class DashboardController extends Controller
 
     public function indexAction()
     {
+
         $userManager = $this->get('fos_user.user_manager');
         $users = $userManager->findUsers();
+
+
+        $evidencija = $this->getDoctrine()
+        ->getRepository('AppBundle:Evidencija_dana')->findAll();
+
+
+
+        $time=0;
+
+        foreach($evidencija as $odradeno){
+            $time = $time + $odradeno->getDoneBusinessHours();
+        }
+
+
+
 
 
 
         return $this->render('dashboard/zaposlenici-mj.html.twig', array(
             'webpage_title' => 'Evidencija zaposlenika ',
-            'users' => $users
+            'users' => $users,
+            'time' => $time
+
         ));
     }
 
