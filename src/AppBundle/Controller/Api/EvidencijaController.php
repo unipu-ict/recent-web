@@ -18,12 +18,11 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Bundle\FrameworkBundle\Validator;
+use Symfony\Component\Debug\Exception\FatalThrowableError;
 
 
 
-
-
-class EvidencijaController extends FOSRestController //potrebno ekstendati FOSRestController zbgo $this->getUser()
+class EvidencijaController extends FOSRestController//potrebno ekstendati FOSRestController zbgo $this->getUser()
 {
     /**
      * @Rest\View
@@ -33,32 +32,37 @@ class EvidencijaController extends FOSRestController //potrebno ekstendati FOSRe
         $content = $this->getContentAsArray($request); // poznvana pomocna klasa definirana ispod
         $uID = $content->{'uid'};
         $em = $this->getDoctrine()->getManager(); //dohvati managera
-        
+
         $uid = $this->getDoctrine() ->getRepository('AppBundle:Tag_user')->findOneBy( array('user_tag' => $uID));
 
-
-        $user = $this->getDoctrine() ->getRepository('AppBundle:User')->find( $uid->getUserId() );
-
-        
-        $razlog = $this->getDoctrine() ->getRepository('AppBundle:Razlog')->find( 1 );
-
-
-     
-        $evidencija = new Evidencija(); // nova Evidencija
-        $evidencija->setUserId($user); // postavi usera
-        $evidencija->setDate(new \DateTime("now")); //postavi vrijeme
-        $evidencija->setTime(new \DateTime("now"));
-
-        $evidencija->setRazlogId($razlog);
+        if (!$uid){
+            $content = array("uspjeh" => "ne");
+        }else{
+            $user = $this->getDoctrine() ->getRepository('AppBundle:User') -> find( $uid->getUserId() );
 
 
 
+            $razlog = $this->getDoctrine() ->getRepository('AppBundle:Razlog')->find( 1 );
+
+            $evidencija = new Evidencija(); // nova Evidencija
+            $evidencija->setUserId($user); // postavi usera
+            $evidencija->setDate(new \DateTime("now")); //postavi vrijeme
+            $evidencija->setTime(new \DateTime("now"));
+            $evidencija->setRazlogId($razlog);
+
+            $em->persist($evidencija); //pripremi za spremanje
+            $em->flush(); //spremi
+            $content = array("uspjeh" => "da");
+        }
 
 
-        $em->persist($evidencija); //pripremi za spremanje
-        $em->flush(); //spremi
 
-        $content = array("uspjeh" => "da"); /// neki dummy podaci
+
+
+        //$content = array("uspjeh" => "da");
+
+
+
         return $view = $this->view($content, Response::HTTP_OK); //vrati dummy odg..
 
     }
