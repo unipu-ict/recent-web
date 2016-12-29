@@ -13,12 +13,17 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use AppBundle\Serializer\Normalizer\EvidencijaRazlogNormalizer;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Bundle\FrameworkBundle\Validator;
 use Symfony\Component\Debug\Exception\FatalThrowableError;
+
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 
 
@@ -29,6 +34,7 @@ class EvidencijaController extends FOSRestController//potrebno ekstendati FOSRes
      */
     public function unesipodatkeAction(Request $request)
     {
+        $datum = (new \DateTime("now"));
         $content = $this->getContentAsArray($request); // poznvana pomocna klasa definirana ispod
         $uID = $content->{'uid'};
         $em = $this->getDoctrine()->getManager(); //dohvati managera
@@ -40,9 +46,27 @@ class EvidencijaController extends FOSRestController//potrebno ekstendati FOSRes
         }else{
             $user = $this->getDoctrine() ->getRepository('AppBundle:User') -> find( $uid->getUserId() );
 
+            $evidencija_razlog = $this->getDoctrine()->getRepository('AppBundle:Evidencija')->findBy(
+                array('userId' => $user, 'date' => $datum), array('time' => 'DESC')
+            ); // pronadij user id
 
 
-            $razlog = $this->getDoctrine() ->getRepository('AppBundle:Razlog')->find( 1 );
+            $result = array(); // result
+
+            foreach ($evidencija_razlog as $u) { // spremanje u result
+                $normal =  new EvidencijaRazlogNormalizer();
+                $u= $normal->normalize($u);
+                array_push($result, $u);
+            }
+            if(!$result){
+                $razlog = $this->getDoctrine() ->getRepository('AppBundle:Razlog')->find( 1 );
+            }elseif($result[0] == 1){
+                $razlog = $this->getDoctrine() ->getRepository('AppBundle:Razlog')->find( 2 );
+            }elseif ($result[0] == 2){
+                $razlog = $this->getDoctrine() ->getRepository('AppBundle:Razlog')->find( 1 );
+            }else{
+                $razlog = $this->getDoctrine() ->getRepository('AppBundle:Razlog')->find( 6 );
+            }
 
             $evidencija = new Evidencija(); // nova Evidencija
             $evidencija->setUserId($user); // postavi usera
@@ -54,9 +78,6 @@ class EvidencijaController extends FOSRestController//potrebno ekstendati FOSRes
             $em->flush(); //spremi
             $content = array("uspjeh" => "da");
         }
-
-
-
 
 
         //$content = array("uspjeh" => "da");
