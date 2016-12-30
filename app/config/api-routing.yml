@@ -35,3 +35,9 @@ evidencija_get:
     requirements:
         _method: GET
 
+evidencija_get_id:
+    path:  /evidencija_dana/{id}
+    defaults: { _controller: AppBundle:Api/Evidencijadana:get , _format: json }
+    requirements:
+        _method: GET
+        id: '\d+'

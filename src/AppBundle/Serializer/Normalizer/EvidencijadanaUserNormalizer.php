@@ -11,7 +11,7 @@ use JMS\Serializer\Context;
 /**
  * User normalizer
  */
-class UserNormalizer implements NormalizerInterface
+class EvidencijadanaUserNormalizer implements NormalizerInterface
 {
     /**
      * {@inheritdoc}
@@ -19,13 +19,7 @@ class UserNormalizer implements NormalizerInterface
     public function normalize($object, $format = null, array $context = array())
     {
 
-        return [
-            'id'     => $object->getId(),
-            'userId' =>  $object->getUserId()->getId(),
-            'date'   => $object->getDate(),
-            'time'   => $object->getTime(),
-            'razlogId'   => $object->getRazlogId()->getId(),
-        ];
+        return $object->getId();
     }
 
     /**
