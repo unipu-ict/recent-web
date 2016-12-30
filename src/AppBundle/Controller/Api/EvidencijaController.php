@@ -14,6 +14,7 @@ use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Serializer\Normalizer\EvidencijaRazlogNormalizer;
+use AppBundle\Serializer\Normalizer\EvidencijaVrijemeNormalizer;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -39,16 +40,39 @@ class EvidencijaController extends FOSRestController//potrebno ekstendati FOSRes
         $uID = $content->{'uid'};
         $em = $this->getDoctrine()->getManager(); //dohvati managera
 
-        $uid = $this->getDoctrine() ->getRepository('AppBundle:Tag_user')->findOneBy( array('user_tag' => $uID));
+        $uid = $this->getDoctrine() ->getRepository('AppBundle:Tag_user')->findOneBy( array('user_tag' => $uID)); // dohvaca red iz Tag_user s uidom
 
-        if (!$uid){
+        if (!$uid){ // ako nema rezultata, ako nepostoji korisnik s tim uid-om
             $content = array("uspjeh" => "ne");
         }else{
-            $user = $this->getDoctrine() ->getRepository('AppBundle:User') -> find( $uid->getUserId() );
+            $user = $this->getDoctrine() ->getRepository('AppBundle:User') -> find( $uid->getUserId() ); //ako ima rzultata, identificiraj korisnika
+
+            // 5 minuta blokada
+
+            $evidencija_vrijeme = $this->getDoctrine()->getRepository('AppBundle:Evidencija')->findBy(
+                array('userId' => $user, 'date' => $datum), array('time' => 'DESC')
+            );
+
+            $vrijeme = array(); // result
+
+            foreach ($evidencija_vrijeme as $v) { // spremanje u result
+                $normalv =  new EvidencijaVrijemeNormalizer();
+                $v= $normalv->normalize($v);
+                array_push($vrijeme, $v);
+            }
+
+            $zadnje_vrijeme = strtotime($vrijeme[0]->format('H:i:s'));
+            $trenutno_vrijeme = strtotime($datum->format('H:i:s'));
+            $razlika_vrijeme = ($trenutno_vrijeme - $zadnje_vrijeme) / 60;
+
+
+            // 5 minuta blokada - kraj
+
+
 
             $evidencija_razlog = $this->getDoctrine()->getRepository('AppBundle:Evidencija')->findBy(
                 array('userId' => $user, 'date' => $datum), array('time' => 'DESC')
-            ); // pronadij user id
+            ); // pronadji zadni unos usera za danasnji datum, zadnji unos je na prvom mjestu jer je sortirano po zadnjem vremenu
 
 
             $result = array(); // result
@@ -58,9 +82,9 @@ class EvidencijaController extends FOSRestController//potrebno ekstendati FOSRes
                 $u= $normal->normalize($u);
                 array_push($result, $u);
             }
-            if(!$result){
+            if(!$result){ //ako nema unosa za danasnji dan, unesi razlog 1
                 $razlog = $this->getDoctrine() ->getRepository('AppBundle:Razlog')->find( 1 );
-            }elseif($result[0] == 1){
+            }elseif($result[0] == 1){ //ako je zadni jedan unesi 2
                 $razlog = $this->getDoctrine() ->getRepository('AppBundle:Razlog')->find( 2 );
             }elseif ($result[0] == 2){
                 $razlog = $this->getDoctrine() ->getRepository('AppBundle:Razlog')->find( 1 );
@@ -68,15 +92,20 @@ class EvidencijaController extends FOSRestController//potrebno ekstendati FOSRes
                 $razlog = $this->getDoctrine() ->getRepository('AppBundle:Razlog')->find( 6 );
             }
 
-            $evidencija = new Evidencija(); // nova Evidencija
-            $evidencija->setUserId($user); // postavi usera
-            $evidencija->setDate(new \DateTime("now")); //postavi vrijeme
-            $evidencija->setTime(new \DateTime("now"));
-            $evidencija->setRazlogId($razlog);
+            if($razlika_vrijeme >= 5){
+                $evidencija = new Evidencija(); // nova Evidencija
+                $evidencija->setUserId($user); // postavi usera
+                $evidencija->setDate(new \DateTime("now")); //postavi vrijeme
+                $evidencija->setTime(new \DateTime("now"));
+                $evidencija->setRazlogId($razlog);
 
-            $em->persist($evidencija); //pripremi za spremanje
-            $em->flush(); //spremi
-            $content = array("uspjeh" => "da");
+                $em->persist($evidencija); //pripremi za spremanje
+                $em->flush(); //spremi
+                $content = array("uspjeh" => "da");
+            }else{
+                $content = array("uspjeh" => "ne");
+            }
+
         }
 
 
