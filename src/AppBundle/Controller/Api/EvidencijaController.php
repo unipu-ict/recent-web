@@ -52,19 +52,20 @@ class EvidencijaController extends FOSRestController//potrebno ekstendati FOSRes
             $evidencija_vrijeme = $this->getDoctrine()->getRepository('AppBundle:Evidencija')->findBy(
                 array('userId' => $user, 'date' => $datum), array('time' => 'DESC')
             );
+            $razlika_vrijeme = 6;
+            if ($evidencija_vrijeme){
+                $vrijeme = array(); // result
 
-            $vrijeme = array(); // result
+                foreach ($evidencija_vrijeme as $v) { // spremanje u result
+                    $normalv =  new EvidencijaVrijemeNormalizer();
+                    $v= $normalv->normalize($v);
+                    array_push($vrijeme, $v);
+                }
 
-            foreach ($evidencija_vrijeme as $v) { // spremanje u result
-                $normalv =  new EvidencijaVrijemeNormalizer();
-                $v= $normalv->normalize($v);
-                array_push($vrijeme, $v);
+                $zadnje_vrijeme = strtotime($vrijeme[0]->format('H:i:s'));
+                $trenutno_vrijeme = strtotime($datum->format('H:i:s'));
+                $razlika_vrijeme = ($trenutno_vrijeme - $zadnje_vrijeme) / 60;
             }
-
-            $zadnje_vrijeme = strtotime($vrijeme[0]->format('H:i:s'));
-            $trenutno_vrijeme = strtotime($datum->format('H:i:s'));
-            $razlika_vrijeme = ($trenutno_vrijeme - $zadnje_vrijeme) / 60;
-
 
             // 5 minuta blokada - kraj
 

@@ -14,6 +14,7 @@ use AppBundle\Entity\Razlog;
 use AppBundle\Entity\Tag_user;
 use AppBundle\Serializer\Normalizer\UserNormalizer;
 use AppBundle\Serializer\Normalizer\EvidencijadanaUserNormalizer;
+use AppBundle\Serializer\Normalizer\EvidencijaVrijemeNormalizer;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -78,22 +79,50 @@ class EvidencijadanaController extends FOSRestController
      */
     public function getAction(Request $request, $id)
     {
-        $user = $this->getDoctrine()->getRepository('AppBundle:Evidencija')->findBy(
-            array('userId' => $id)
+        $datum = (new \DateTime("now"));
+        $em = $this->getDoctrine()->getManager();
+        $ev_dan_user = $em->getRepository('AppBundle:Evidencija_dana')->findBy(
+            array('userId' => $id, 'datum' => $datum)
         ); // pronadij user id
+        $normal1 =  new EvidencijadanaUserNormalizer();
+        $uv= $normal1->normalize($ev_dan_user[0]);
+        $ev_dan_user = $em->getRepository('AppBundle:Evidencija_dana')->find($uv); // pronadij user id
 
 
-        $result = array(); // result
+        if(!$ev_dan_user){
+            $poruka = array('Podaci' => 'Nisu pronadjeni!');
+        }else{
 
-        foreach ($user as $u) { // spremanje u result
-            $normal =  new UserNormalizer();
-            $u= $normal->normalize($u);
-            array_push($result, $u);
+            //eksperiment
+            $evidencija_vrijeme = $this->getDoctrine()->getRepository('AppBundle:Evidencija')->findBy(
+                array('userId' => $id, 'date' => $datum), array('time' => 'ASC')
+            );
+
+            $vrijeme = array(); // result
+
+            foreach ($evidencija_vrijeme as $v) { // spremanje u result
+                $normalv =  new EvidencijaVrijemeNormalizer();
+                $v= $normalv->normalize($v);
+                array_push($vrijeme, $v);
+            }
+// treba sredit, nije lijepo na ovkav naci radit, trba osmislit algoritam, ovo radi ako su u evidenciji 4 zapisa
+            $vrijeme1 = strtotime($vrijeme[0]->format('H:i:s'));
+            $vrijeme2 = strtotime($vrijeme[1]->format('H:i:s'));
+            $vrijeme3 = strtotime($vrijeme[2]->format('H:i:s'));
+            $vrijeme4 = strtotime($vrijeme[3]->format('H:i:s'));
+
+            $broj_sati = ($vrijeme2 - $vrijeme1 + $vrijeme4 - $vrijeme3) / 60 / 60;
+
+            //eksperiment kraj
+            $ev_dan_user->setDoneBusinessHours($broj_sati);
+            $em->flush();
+
+
+
+            $poruka = array('Podaci' => 'Izmjenjeni!');
         }
 
-
-        return $view = $this->view($result, Response::HTTP_OK);
-
+        return $view = $this->view($poruka, Response::HTTP_OK);
     }
 
 
@@ -108,5 +137,23 @@ class EvidencijadanaController extends FOSRestController
 //    public function izracunajEvAction($evidencija){
 //
 //    }
+
+//
+//$em = $this->getDoctrine()->getManager();
+//$user = $em->getRepository('AppBundle:Evidencija')->findBy(
+//array('userId' => $id)
+//); // pronadij user id
+//
+//
+//$result = array(); // result
+//
+//foreach ($user as $u) { // spremanje u result
+//$normal =  new UserNormalizer();
+//$u= $normal->normalize($u);
+//array_push($result, $u);
+//}
+//
+//
+//return $view = $this->view($result, Response::HTTP_OK);
 
 }
