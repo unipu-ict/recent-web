@@ -105,13 +105,34 @@ class EvidencijadanaController extends FOSRestController
                 $v= $normalv->normalize($v);
                 array_push($vrijeme, $v);
             }
+            $vrijeme_count = count($vrijeme);
 // treba sredit, nije lijepo na ovkav naci radit, trba osmislit algoritam, ovo radi ako su u evidenciji 4 zapisa
-            $vrijeme1 = strtotime($vrijeme[0]->format('H:i:s'));
-            $vrijeme2 = strtotime($vrijeme[1]->format('H:i:s'));
-            $vrijeme3 = strtotime($vrijeme[2]->format('H:i:s'));
-            $vrijeme4 = strtotime($vrijeme[3]->format('H:i:s'));
 
-            $broj_sati = ($vrijeme2 - $vrijeme1 + $vrijeme4 - $vrijeme3) / 60 / 60;
+            if(!$vrijeme_count){
+                $broj_sati = 0.0;
+            }elseif($vrijeme_count == 1){
+                $broj_sati = 0.0;
+            }elseif($vrijeme_count == 2){
+                $vrijeme1 = strtotime($vrijeme[0]->format('H:i:s'));
+                $vrijeme2 = strtotime($vrijeme[1]->format('H:i:s'));
+
+                $broj_sati = (($vrijeme2 - $vrijeme1) / 60 / 60) + 0.5;
+            }elseif($vrijeme_count == 3){
+                $vrijeme1 = strtotime($vrijeme[0]->format('H:i:s'));
+                $vrijeme2 = strtotime($vrijeme[1]->format('H:i:s'));
+
+                $broj_sati = (($vrijeme2 - $vrijeme1) / 60 / 60) + 0.5;
+            }elseif($vrijeme_count == 4){
+                $vrijeme1 = strtotime($vrijeme[0]->format('H:i:s'));
+                $vrijeme2 = strtotime($vrijeme[1]->format('H:i:s'));
+                $vrijeme3 = strtotime($vrijeme[2]->format('H:i:s'));
+                $vrijeme4 = strtotime($vrijeme[3]->format('H:i:s'));
+
+                $broj_sati = (($vrijeme2 - $vrijeme1 + $vrijeme4 - $vrijeme3) / 60 / 60) + 0.5;
+            }else{
+                $broj_sati = 0.0;
+            }
+
 
             //eksperiment kraj
             $ev_dan_user->setDoneBusinessHours($broj_sati);

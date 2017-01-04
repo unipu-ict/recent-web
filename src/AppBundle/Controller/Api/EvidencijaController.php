@@ -4,6 +4,7 @@ namespace AppBundle\Controller\Api;
 
 
 use AppBundle\Entity\Evidencija;
+use AppBundle\Entity\Evidencija_dana;
 
 use AppBundle\Entity\Razlog;
 use AppBundle\Entity\Tag_user;
@@ -15,6 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Serializer\Normalizer\EvidencijaRazlogNormalizer;
 use AppBundle\Serializer\Normalizer\EvidencijaVrijemeNormalizer;
+use AppBundle\Serializer\Normalizer\EvidencijadanaUserNormalizer;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -25,6 +27,7 @@ use Symfony\Component\Debug\Exception\FatalThrowableError;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
+
 
 
 
@@ -102,7 +105,9 @@ class EvidencijaController extends FOSRestController//potrebno ekstendati FOSRes
 
                 $em->persist($evidencija); //pripremi za spremanje
                 $em->flush(); //spremi
-                $content = array("uspjeh" => "da");
+                $kreiraj_evidenciju_dana = $this->kreirajEvidencijadana($request);
+                $update_evidenciju_dana = $this->updateEvidencijadana($request, $user);
+                $content = array("uspjeh" => "da", "kreirana evidencija" => $kreiraj_evidenciju_dana, "update" => $update_evidenciju_dana);
             }else{
                 $content = array("uspjeh" => "ne");
             }
@@ -127,6 +132,109 @@ class EvidencijaController extends FOSRestController//potrebno ekstendati FOSRes
             throw new BadRequestHttpException("Content is empty");
         }
         return json_decode($content);
+    }
+
+    protected function kreirajEvidencijadana(Request $request){
+        $em = $this->getDoctrine()->getManager(); //dohvati managera
+        $datum = (new \DateTime("now")); //postavi vrijeme
+
+        //$evidencija_dana = $this->getDoctrine()->getRepository('AppBundle:Evidencija_dana')->findAll(); // pronadij user id
+        $user = $this->getDoctrine() ->getRepository('AppBundle:User') -> findAll();
+        $ev_dana_datum = $this->getDoctrine() ->getRepository('AppBundle:Evidencija_dana') -> findBy(
+            array('datum' => $datum), array('datum' => 'ASC'));
+
+        if($ev_dana_datum){
+            $poruka = 0; //postoji evidencija dana za danasnji datum
+        }else{
+            $result1 = array(); // result
+
+            foreach ($user as $uv) { // spremanje u result
+                $normal1 =  new EvidencijadanaUserNormalizer();
+                $uv= $normal1->normalize($uv);
+                array_push($result1, $uv);
+                $evidencija_dana = new Evidencija_dana(); // nova Evidencija_dana
+                $evidencija_dana->setUserId($uv); // postavi usera
+                $evidencija_dana->setDatum(new \DateTime("now")); //postavi vrijeme
+                $evidencija_dana->setVrijemeDolaska(new \DateTime("now"));
+                $evidencija_dana->setVrijemeOdlaska(new \DateTime("now"));
+                $evidencija_dana->setDoneBusinessHours(0);
+
+                $em->persist($evidencija_dana); //pripremi za spremanje
+                $em->flush(); //spremi
+                $poruka = 1; //kreiranana evidencija dana za danasnji datum
+
+            }
+        }
+
+        return $poruka;
+    }
+
+    protected function updateEvidencijadana(Request $request, $id){
+        $datum = (new \DateTime("now"));
+        $em = $this->getDoctrine()->getManager();
+        $ev_dan_user = $em->getRepository('AppBundle:Evidencija_dana')->findBy(
+            array('userId' => $id, 'datum' => $datum)
+        ); // pronadij user id
+        $normal1 =  new EvidencijadanaUserNormalizer();
+        $uv= $normal1->normalize($ev_dan_user[0]);
+        $ev_dan_user = $em->getRepository('AppBundle:Evidencija_dana')->find($uv); // pronadij user id
+
+
+        if(!$ev_dan_user){
+            $poruka = array('Podaci' => 'Nisu pronadjeni!');
+        }else{
+
+            //eksperiment
+            $evidencija_vrijeme = $this->getDoctrine()->getRepository('AppBundle:Evidencija')->findBy(
+                array('userId' => $id, 'date' => $datum), array('time' => 'ASC')
+            );
+
+            $vrijeme = array(); // result
+
+            foreach ($evidencija_vrijeme as $v) { // spremanje u result
+                $normalv =  new EvidencijaVrijemeNormalizer();
+                $v= $normalv->normalize($v);
+                array_push($vrijeme, $v);
+            }
+            $vrijeme_count = count($vrijeme);
+// treba sredit, nije lijepo na ovkav naci radit, trba osmislit algoritam, ovo radi ako su u evidenciji 4 zapisa
+
+            if(!$vrijeme_count){
+                $broj_sati = 0.0;
+            }elseif($vrijeme_count == 1){
+                $broj_sati = 0.0;
+            }elseif($vrijeme_count == 2){
+                $vrijeme1 = strtotime($vrijeme[0]->format('H:i:s'));
+                $vrijeme2 = strtotime($vrijeme[1]->format('H:i:s'));
+
+                $broj_sati = (($vrijeme2 - $vrijeme1) / 60 / 60) + 0.5;
+            }elseif($vrijeme_count == 3){
+                $vrijeme1 = strtotime($vrijeme[0]->format('H:i:s'));
+                $vrijeme2 = strtotime($vrijeme[1]->format('H:i:s'));
+
+                $broj_sati = (($vrijeme2 - $vrijeme1) / 60 / 60) + 0.5;
+            }elseif($vrijeme_count == 4){
+                $vrijeme1 = strtotime($vrijeme[0]->format('H:i:s'));
+                $vrijeme2 = strtotime($vrijeme[1]->format('H:i:s'));
+                $vrijeme3 = strtotime($vrijeme[2]->format('H:i:s'));
+                $vrijeme4 = strtotime($vrijeme[3]->format('H:i:s'));
+
+                $broj_sati = (($vrijeme2 - $vrijeme1 + $vrijeme4 - $vrijeme3) / 60 / 60) + 0.5;
+            }else{
+                $broj_sati = 0.0;
+            }
+
+
+            //eksperiment kraj
+            $ev_dan_user->setDoneBusinessHours($broj_sati);
+            $em->flush();
+
+
+
+            $poruka = 1; //podaci izmjenjeni
+        }
+
+        return $poruka;
     }
 
 }
