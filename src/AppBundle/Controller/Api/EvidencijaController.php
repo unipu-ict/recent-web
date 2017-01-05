@@ -32,15 +32,26 @@ class EvidencijaController extends FOSRestController //potrebno ekstendati FOSRe
     {
         $content = $this->getContentAsArray($request); // poznvana pomocna klasa definirana ispod
         $uID = $content->{'uid'};
+
+
+        
         $em = $this->getDoctrine()->getManager(); //dohvati managera
+
+        $razlog_id = 1;
         
         $uid = $this->getDoctrine() ->getRepository('AppBundle:Tag_user')->findOneBy( array('user_tag' => $uID));
+        $razlog = $this->getDoctrine() ->getRepository('AppBundle:Razlog')->find( $razlog_id );
 
+        if (!$uid || !$razlog) {
+        throw $this->createNotFoundException(
+            'Korisnik nije pronadjen za uid: '.$uID . ' i razlog_id: ' . $razlog_id
+        );
+        }
 
         $user = $this->getDoctrine() ->getRepository('AppBundle:User')->find( $uid->getUserId() );
 
         
-        $razlog = $this->getDoctrine() ->getRepository('AppBundle:Razlog')->find( 1 );
+    
 
 
      
@@ -51,12 +62,10 @@ class EvidencijaController extends FOSRestController //potrebno ekstendati FOSRe
 
         $evidencija->setRazlogId($razlog);
 
-
-
-
-
         $em->persist($evidencija); //pripremi za spremanje
         $em->flush(); //spremi
+
+        
 
         $content = array("uspjeh" => "da"); /// neki dummy podaci
         return $view = $this->view($content, Response::HTTP_OK); //vrati dummy odg..
