@@ -203,21 +203,29 @@ class EvidencijaController extends FOSRestController//potrebno ekstendati FOSRes
                 $broj_sati = 0.0;
             }elseif($vrijeme_count == 1){
                 $broj_sati = 0.0;
+                $ev_dan_user->setVrijemeDolaska(strtotime($vrijeme[0]->format('H:i:s')));
             }elseif($vrijeme_count == 2){
                 $vrijeme1 = strtotime($vrijeme[0]->format('H:i:s'));
                 $vrijeme2 = strtotime($vrijeme[1]->format('H:i:s'));
+                $ev_dan_user->setVrijemeDolaska($vrijeme[0]);
+                $ev_dan_user->setVrijemeOdlaska($vrijeme[1]);
 
-                $broj_sati = (($vrijeme2 - $vrijeme1) / 60 / 60) + 0.5;
+                $broj_sati = (($vrijeme2 - $vrijeme1) / 60 / 60);
             }elseif($vrijeme_count == 3){
                 $vrijeme1 = strtotime($vrijeme[0]->format('H:i:s'));
                 $vrijeme2 = strtotime($vrijeme[1]->format('H:i:s'));
+                $ev_dan_user->setVrijemeDolaska($vrijeme[0]);
+                $ev_dan_user->setVrijemeOdlaska($vrijeme[1]);
 
-                $broj_sati = (($vrijeme2 - $vrijeme1) / 60 / 60) + 0.5;
+                $broj_sati = (($vrijeme2 - $vrijeme1) / 60 / 60);
             }elseif($vrijeme_count == 4){
                 $vrijeme1 = strtotime($vrijeme[0]->format('H:i:s'));
                 $vrijeme2 = strtotime($vrijeme[1]->format('H:i:s'));
                 $vrijeme3 = strtotime($vrijeme[2]->format('H:i:s'));
                 $vrijeme4 = strtotime($vrijeme[3]->format('H:i:s'));
+
+                $ev_dan_user->setVrijemeDolaska($vrijeme[0]);
+                $ev_dan_user->setVrijemeOdlaska($vrijeme[3]);
 
                 $broj_sati = (($vrijeme2 - $vrijeme1 + $vrijeme4 - $vrijeme3) / 60 / 60) + 0.5;
             }else{
