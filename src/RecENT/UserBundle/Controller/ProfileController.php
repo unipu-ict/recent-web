@@ -54,7 +54,7 @@ class ProfileController extends Controller
 
 
 
-        $time=0;
+        $time=0.0;
 
         foreach($evidencija as $odradeno){
             $time = $time + $odradeno->getDoneBusinessHours();//zbroj odradenih sati
@@ -67,7 +67,7 @@ class ProfileController extends Controller
             'user' => $user,
             'evidencija' => $evidencija,
             'dolasci' => $dolazak,
-            'odradeno' => $time //odrađeno radno vrijeme
+            'odradeno' => round($time, 2) //odrađeno radno vrijeme
 
         ));
     }
