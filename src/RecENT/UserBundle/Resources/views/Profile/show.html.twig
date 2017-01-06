@@ -8,7 +8,7 @@
 
 <div class="row row-eq-height mjesec-suma" >
 	<div class="col-xs-12 col-sm-4 col-md-2 bottom-column">
-		<p class="bottom-column"> <small>Mjesec:</small> <strong>11/2016</strong></strong></p>
+		<p class="bottom-column"> <small>Mjesec:</small> <strong>11/2016</strong></p>
 	</div>	
 	<div class="col-xs-12 col-sm-8 col-md-2 bottom-column">
 		<p class="manji"><small>Odrađeno sati:</small> <strong> {{ odradeno }} </strong> </p>
@@ -61,7 +61,7 @@
                       <td>{{ dan.datum|date("d/m/Y") }}</td>
                       <td>{{ dan.vrijemeDolaska|date('H:i') }}</td>
                       <td>{{ dan.vrijemeOdlaska|date('H:i') }}</td>
-                      <td>{{ dan.doneBusinessHours|date('H:i') }}</td>
+                      <td>{{ dan.doneBusinessHours() }}</td>
                       <td>
                         Više informacija <span class="glyphicon glyphicon-chevron-down"></span>
                       </td>
