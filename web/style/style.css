@@ -10,7 +10,7 @@ body {
 footer {margin: 40px auto; }
 
 
-/* CUSTOMIZE THE NAVBAR
+/* CUSTOMIZE THE BAR
 -------------------------------------------------- */
 
 /* Special class on .container surrounding .navbar, used for positioning it into place. */
@@ -20,6 +20,12 @@ footer {margin: 40px auto; }
   right: 0;
   left: 0;
   z-index: 20;
+}
+
+.navbar-brand {
+  font-size: 32px;
+  line-height: 32px;
+ 
 }
 
 /* Flip around the padding for proper display in narrow viewports */
@@ -47,12 +53,12 @@ footer {margin: 40px auto; }
 
 /* Carousel base class */
 .hero1 {
-  height: 400px;
+  height: 350px;
 }
 /* Since positioning the image, we need to help out the caption */
 .hero1-caption {
   z-index: 10;
-  height: 400px;
+  height: 350px;
   background-color: #777;
 }
 
@@ -61,10 +67,21 @@ footer {margin: 40px auto; }
   text-shadow: 1px 2px 1px #111;
 }
 
+h1.main-description {
+
+  font-size: 18px;
+
+}
+
+p.main-description {
+
+  font-size: 14px;
+  
+}
 
 /* Declare heights because of positioning of img element */
 .hero1 .item {
-  height: 400px;
+  height: 350px;
   background-color: #777;
 }
 .hero1 img {
@@ -72,7 +89,7 @@ footer {margin: 40px auto; }
   top: 0;
   left: 0;
   min-width: 130%;
-  height: 400px;
+  height: 400px !important;
   z-index: 1;
 
 }
@@ -158,6 +175,18 @@ text-align: center;
     padding-left: 0;
   }
 
+  h1.main-description {
+
+  font-size: 38px;
+
+  }
+
+  p.main-description {
+
+    font-size: 26px !important;
+    
+  }
+
   /* The navbar becomes detached from the top, so we round the corners */
   .navbar-wrapper .navbar {
     border-radius: 4px;
@@ -194,7 +223,7 @@ text-align: center;
   top: 0;
   left: 0;
   min-width: 120%;
-  height: 600px;
+  height: 750px !important;
   z-index: 1;
 
 }
@@ -320,3 +349,7 @@ Amdmin
 
 /* Ostalo */
 
+
+.logo-font {
+  font-family:Jaapokki;
+}

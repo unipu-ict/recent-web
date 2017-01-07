@@ -6,7 +6,6 @@ use Symfony\Component\Routing\Route;
 $collection = new RouteCollection();
 
 
-
 $collection->add('orecent', new Route('/orecent', array(
     '_controller' => 'AppBundle:oRecent:orecent',
 )));
@@ -16,7 +15,7 @@ $collection->add('kontakt', new Route('/kontakt', array(
 )));
 
 $collection->add('resetting', new Route('/resetting', array(
-    '_controller' => 'FOSUserBundle:Resetting:reset',
+    '_controller' => 'FOSUserBundle:Resetting:request',
 )));
 
 $collection->add('profile', new Route('/profile', array(
