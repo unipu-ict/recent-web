@@ -8,7 +8,7 @@
 
 <div class="row row-eq-height mjesec-suma" >
 	<div class="col-xs-12 col-sm-4 col-md-2 bottom-column">
-		<p class="bottom-column"> <small>Mjesec:</small> <strong>11/2016</strong></p>
+		<p class="bottom-column"> <small>Mjesec:</small> <strong>{{ "now"|date("m/Y") }}</strong></p>
 	</div>	
 	<div class="col-xs-12 col-sm-8 col-md-2 bottom-column">
 		<p class="manji"><small>Odrađeno sati:</small> <strong> {{ odradeno }} </strong> </p>
@@ -21,13 +21,9 @@
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
-            <li><a href="#"><b>10</b> <small>/</small>2016</a></li>
-            <li><a href="#"><b>9</b> <small>/</small>2016</a></li>
-            <li><a href="#"><b>8</b> <small>/</small>2016</a></li>
-            <li><a href="#"><b>7</b> <small>/</small>2016</a></li>
-            <li><a href="#"><b>6</b> <small>/</small>2016</a></li>
-            <li><a href="#"><b>5</b> <small>/</small>2016</a></li>
-            <li><a href="#"><b>2</b> <small>/</small>2016</a></li>
+              {% for mjesec in mjeseci %}
+                  <li><a href="/profile/{{ mjesec.godina }}/{{ mjesec.mjesec }}"><b>{{ mjesec.mjesec }}</b> <small>/</small>{{ mjesec.godina }}</a></li>
+              {% endfor %}
 
             <li>
               <a href="#" aria-label="Next">
