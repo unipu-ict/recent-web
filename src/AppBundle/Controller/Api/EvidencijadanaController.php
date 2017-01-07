@@ -38,38 +38,65 @@ class EvidencijadanaController extends FOSRestController
     {
         //ovaj dio koda kreira nove redke u evidenciji dana za trenutni datum za svakog korisnika
         //ako već postoji taj datum(danasni, nece ponovo kreirati)
-        $em = $this->getDoctrine()->getManager(); //dohvati managera
+//        $em = $this->getDoctrine()->getManager(); //dohvati managera
         $datum = (new \DateTime("now")); //postavi vrijeme
-
-        //$evidencija_dana = $this->getDoctrine()->getRepository('AppBundle:Evidencija_dana')->findAll(); // pronadij user id
+//
+//        //$evidencija_dana = $this->getDoctrine()->getRepository('AppBundle:Evidencija_dana')->findAll(); // pronadij user id
         $user = $this->getDoctrine() ->getRepository('AppBundle:User') -> findAll();
-        $ev_dana_datum = $this->getDoctrine() ->getRepository('AppBundle:Evidencija_dana') -> findBy(
-            array('datum' => $datum), array('datum' => 'ASC'));
+//        $ev_dana_datum = $this->getDoctrine() ->getRepository('AppBundle:Evidencija_dana') -> findBy(
+//            array('datum' => $datum), array('datum' => 'ASC'));
+//
+//        if($ev_dana_datum){
+//            $poruka = array("stanje" => "postoji");
+//        }else{
+//            $result1 = array(); // result
+//
+//            foreach ($user as $uv) { // spremanje u result
+//                $normal1 =  new EvidencijadanaUserNormalizer();
+//                $uv= $normal1->normalize($uv);
+//                array_push($result1, $uv);
+//                $evidencija_dana = new Evidencija_dana(); // nova Evidencija_dana
+//                $evidencija_dana->setUserId($uv); // postavi usera
+//                $evidencija_dana->setDatum(new \DateTime("now")); //postavi vrijeme
+//                $evidencija_dana->setVrijemeDolaska(new \DateTime("now"));
+//                $evidencija_dana->setVrijemeOdlaska(new \DateTime("now"));
+//                $evidencija_dana->setDoneBusinessHours(0);
+//
+//                $em->persist($evidencija_dana); //pripremi za spremanje
+//                $em->flush(); //spremi
+//                $poruka = array("stanje" => "kreirano");
+//
+//            }
+//        }
 
-        if($ev_dana_datum){
-            $poruka = array("stanje" => "postoji");
-        }else{
-            $result1 = array(); // result
+        $broje = 3;
+        $date = date("d/m/Y");
+        $date = strtotime(date("d/m/Y", strtotime($date)) . "-$broje months");
+        $date = date("m/Y",$date);
 
-            foreach ($user as $uv) { // spremanje u result
-                $normal1 =  new EvidencijadanaUserNormalizer();
-                $uv= $normal1->normalize($uv);
-                array_push($result1, $uv);
-                $evidencija_dana = new Evidencija_dana(); // nova Evidencija_dana
-                $evidencija_dana->setUserId($uv); // postavi usera
-                $evidencija_dana->setDatum(new \DateTime("now")); //postavi vrijeme
-                $evidencija_dana->setVrijemeDolaska(new \DateTime("now"));
-                $evidencija_dana->setVrijemeOdlaska(new \DateTime("now"));
-                $evidencija_dana->setDoneBusinessHours(0);
+        $mjeseci = array(); // result
 
-                $em->persist($evidencija_dana); //pripremi za spremanje
-                $em->flush(); //spremi
-                $poruka = array("stanje" => "kreirano");
-
-            }
+        for ($i = 1; $i <= 12; $i++) {
+            $date = date("Y-m-d");
+            $date = strtotime(date("Y-m-d", strtotime($date)) . "-$i months");
+            $mjesec = date("m",$date);
+            $godina = date("Y", $date);
+            $mjesec_godina = array('mjesec' => $mjesec, 'godina' => $godina);
+            array_push($mjeseci, $mjesec_godina);
         }
+//
+//            foreach ($evidencija_vrijeme as $v) { // spremanje u result
+//                $normalv =  new EvidencijaVrijemeNormalizer();
+//                $v= $normalv->normalize($v);
+//                array_push($vrijeme, $v);
+//            }
 
-        return $view = $this->view($poruka, Response::HTTP_OK);
+        $em = $this->getDoctrine()->getManager();
+        $query=$em->createQuery( 'SELECT u FROM AppBundle:Evidencija_dana u WHERE YEAR(u.datum) = :godina and MONTH(u.datum) = :mjesec')
+            ->setParameter('godina', $datum->format('Y'))->setParameter('mjesec', $datum->format('m'));
+        $data = $query->getResult();
+
+        return $view = $this->view($mjeseci, Response::HTTP_OK);
 
     }
 
@@ -80,70 +107,70 @@ class EvidencijadanaController extends FOSRestController
     public function getAction(Request $request, $id)
     {
         $datum = (new \DateTime("now"));
-        $em = $this->getDoctrine()->getManager();
-        $ev_dan_user = $em->getRepository('AppBundle:Evidencija_dana')->findBy(
-            array('userId' => $id, 'datum' => $datum)
-        ); // pronadij user id
-        $normal1 =  new EvidencijadanaUserNormalizer();
-        $uv= $normal1->normalize($ev_dan_user[0]);
-        $ev_dan_user = $em->getRepository('AppBundle:Evidencija_dana')->find($uv); // pronadij user id
+//        $em = $this->getDoctrine()->getManager();
+//        $ev_dan_user = $em->getRepository('AppBundle:Evidencija_dana')->findBy(
+//            array('userId' => $id, 'datum' => $datum)
+//        ); // pronadij user id
+//        $normal1 =  new EvidencijadanaUserNormalizer();
+//        $uv= $normal1->normalize($ev_dan_user[0]);
+//        $ev_dan_user = $em->getRepository('AppBundle:Evidencija_dana')->find($uv); // pronadij user id
+//
+//
+//        if(!$ev_dan_user){
+//            $poruka = array('Podaci' => 'Nisu pronadjeni!');
+//        }else{
+//
+//            //eksperiment
+//            $evidencija_vrijeme = $this->getDoctrine()->getRepository('AppBundle:Evidencija')->findBy(
+//                array('userId' => $id, 'date' => $datum), array('time' => 'ASC')
+//            );
+//
+//            $vrijeme = array(); // result
+//
+//            foreach ($evidencija_vrijeme as $v) { // spremanje u result
+//                $normalv =  new EvidencijaVrijemeNormalizer();
+//                $v= $normalv->normalize($v);
+//                array_push($vrijeme, $v);
+//            }
+//            $vrijeme_count = count($vrijeme);
+//// treba sredit, nije lijepo na ovkav naci radit, trba osmislit algoritam, ovo radi ako su u evidenciji 4 zapisa
+//
+//            if(!$vrijeme_count){
+//                $broj_sati = 0.0;
+//            }elseif($vrijeme_count == 1){
+//                $broj_sati = 0.0;
+//            }elseif($vrijeme_count == 2){
+//                $vrijeme1 = strtotime($vrijeme[0]->format('H:i:s'));
+//                $vrijeme2 = strtotime($vrijeme[1]->format('H:i:s'));
+//
+//                $broj_sati = (($vrijeme2 - $vrijeme1) / 60 / 60) + 0.5;
+//            }elseif($vrijeme_count == 3){
+//                $vrijeme1 = strtotime($vrijeme[0]->format('H:i:s'));
+//                $vrijeme2 = strtotime($vrijeme[1]->format('H:i:s'));
+//
+//                $broj_sati = (($vrijeme2 - $vrijeme1) / 60 / 60) + 0.5;
+//            }elseif($vrijeme_count == 4){
+//                $vrijeme1 = strtotime($vrijeme[0]->format('H:i:s'));
+//                $vrijeme2 = strtotime($vrijeme[1]->format('H:i:s'));
+//                $vrijeme3 = strtotime($vrijeme[2]->format('H:i:s'));
+//                $vrijeme4 = strtotime($vrijeme[3]->format('H:i:s'));
+//
+//                $broj_sati = (($vrijeme2 - $vrijeme1 + $vrijeme4 - $vrijeme3) / 60 / 60) + 0.5;
+//            }else{
+//                $broj_sati = 0.0;
+//            }
+//
+//
+//            //eksperiment kraj
+//            $ev_dan_user->setDoneBusinessHours($broj_sati);
+//            $em->flush();
+//
+//
+//
+//            $poruka = array('Podaci' => 'Izmjenjeni!');
+//        }
 
-
-        if(!$ev_dan_user){
-            $poruka = array('Podaci' => 'Nisu pronadjeni!');
-        }else{
-
-            //eksperiment
-            $evidencija_vrijeme = $this->getDoctrine()->getRepository('AppBundle:Evidencija')->findBy(
-                array('userId' => $id, 'date' => $datum), array('time' => 'ASC')
-            );
-
-            $vrijeme = array(); // result
-
-            foreach ($evidencija_vrijeme as $v) { // spremanje u result
-                $normalv =  new EvidencijaVrijemeNormalizer();
-                $v= $normalv->normalize($v);
-                array_push($vrijeme, $v);
-            }
-            $vrijeme_count = count($vrijeme);
-// treba sredit, nije lijepo na ovkav naci radit, trba osmislit algoritam, ovo radi ako su u evidenciji 4 zapisa
-
-            if(!$vrijeme_count){
-                $broj_sati = 0.0;
-            }elseif($vrijeme_count == 1){
-                $broj_sati = 0.0;
-            }elseif($vrijeme_count == 2){
-                $vrijeme1 = strtotime($vrijeme[0]->format('H:i:s'));
-                $vrijeme2 = strtotime($vrijeme[1]->format('H:i:s'));
-
-                $broj_sati = (($vrijeme2 - $vrijeme1) / 60 / 60) + 0.5;
-            }elseif($vrijeme_count == 3){
-                $vrijeme1 = strtotime($vrijeme[0]->format('H:i:s'));
-                $vrijeme2 = strtotime($vrijeme[1]->format('H:i:s'));
-
-                $broj_sati = (($vrijeme2 - $vrijeme1) / 60 / 60) + 0.5;
-            }elseif($vrijeme_count == 4){
-                $vrijeme1 = strtotime($vrijeme[0]->format('H:i:s'));
-                $vrijeme2 = strtotime($vrijeme[1]->format('H:i:s'));
-                $vrijeme3 = strtotime($vrijeme[2]->format('H:i:s'));
-                $vrijeme4 = strtotime($vrijeme[3]->format('H:i:s'));
-
-                $broj_sati = (($vrijeme2 - $vrijeme1 + $vrijeme4 - $vrijeme3) / 60 / 60) + 0.5;
-            }else{
-                $broj_sati = 0.0;
-            }
-
-
-            //eksperiment kraj
-            $ev_dan_user->setDoneBusinessHours($broj_sati);
-            $em->flush();
-
-
-
-            $poruka = array('Podaci' => 'Izmjenjeni!');
-        }
-
-        return $view = $this->view($poruka, Response::HTTP_OK);
+        return $view = $this->view($datum->format('Y-m'), Response::HTTP_OK);
     }
 
 

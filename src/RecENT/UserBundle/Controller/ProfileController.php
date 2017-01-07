@@ -37,15 +37,21 @@ class ProfileController extends Controller
      */
     public function showAction()
     {
+        $datum = (new \DateTime('now'));
         $user = $this->getUser();
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
 
-        $evidencija = $this->getDoctrine()
-            ->getRepository('AppBundle:Evidencija_dana')
-            ->findBy(array('userId' => $user->getId()));
+//        $evidencija = $this->getDoctrine()
+//            ->getRepository('AppBundle:Evidencija_dana')
+//            ->findBy(array('userId' => $user->getId()));
+
+        $em = $this->getDoctrine()->getManager();
+        $query=$em->createQuery( 'SELECT u FROM AppBundle:Evidencija_dana u WHERE u.userId = :userid and YEAR(u.datum) = :godina and MONTH(u.datum) = :mjesec')
+            ->setParameter('userid', $user->getId())->setParameter('godina', $datum->format('Y'))->setParameter('mjesec', $datum->format('m'));
+        $data = $query->getResult();
 
         $dolazak = $this->getDoctrine()
             ->getRepository('AppBundle:Evidencija')
@@ -56,8 +62,19 @@ class ProfileController extends Controller
 
         $time=0.0;
 
-        foreach($evidencija as $odradeno){
+        foreach($data as $odradeno){
             $time = $time + $odradeno->getDoneBusinessHours();//zbroj odradenih sati
+        }
+
+        $mjeseci = array(); // result
+
+        for ($i = 1; $i <= 12; $i++) {
+            $date = date("Y-m-d");
+            $date = strtotime(date("Y-m-d", strtotime($date)) . "-$i months");
+            $mjesec = date("m",$date);
+            $godina = date("Y", $date);
+            $mjesec_godina = array('mjesec' => $mjesec, 'godina' => $godina);
+            array_push($mjeseci, $mjesec_godina);
         }
 
 //        exit(dump($this->container,gettype($time));
@@ -65,9 +82,69 @@ class ProfileController extends Controller
 
         return $this->render('FOSUserBundle:Profile:show.html.twig', array(
             'user' => $user,
-            'evidencija' => $evidencija,
+            'evidencija' => $data,
             'dolasci' => $dolazak,
-            'odradeno' => round($time, 2) //odrađeno radno vrijeme
+            'odradeno' => round($time, 2), //odrađeno radno vrijeme
+            'mjeseci' => $mjeseci
+
+        ));
+    }
+
+
+    /**
+     * Show the user.
+     */
+    public function paginationAction($godina, $mjesec)
+    {
+        $datum = (new \DateTime('now'));
+        $user = $this->getUser();
+        if (!is_object($user) || !$user instanceof UserInterface) {
+            throw new AccessDeniedException('This user does not have access to this section.');
+        }
+
+
+//        $evidencija = $this->getDoctrine()
+//            ->getRepository('AppBundle:Evidencija_dana')
+//            ->findBy(array('userId' => $user->getId()));
+
+        $em = $this->getDoctrine()->getManager();
+        $query=$em->createQuery( 'SELECT u FROM AppBundle:Evidencija_dana u WHERE u.userId = :userid and YEAR(u.datum) = :godina and MONTH(u.datum) = :mjesec')
+            ->setParameter('userid', $user->getId())->setParameter('godina', $godina)->setParameter('mjesec', $mjesec);
+        $data = $query->getResult();
+
+        $dolazak = $this->getDoctrine()
+            ->getRepository('AppBundle:Evidencija')
+            ->findBy(array('userId' => $user->getId()));
+
+
+
+
+        $time=0.0;
+
+        foreach($data as $odradeno){
+            $time = $time + $odradeno->getDoneBusinessHours();//zbroj odradenih sati
+        }
+
+        $mjeseci = array(); // result
+
+        for ($i = 1; $i <= 12; $i++) {
+            $date = date("Y-m-d");
+            $date = strtotime(date("Y-m-d", strtotime($date)) . "-$i months");
+            $mjesec = date("m",$date);
+            $godina = date("Y", $date);
+            $mjesec_godina = array('mjesec' => $mjesec, 'godina' => $godina);
+            array_push($mjeseci, $mjesec_godina);
+        }
+
+//        exit(dump($this->container,gettype($time));
+
+
+        return $this->render('FOSUserBundle:Profile:show.html.twig', array(
+            'user' => $user,
+            'evidencija' => $data,
+            'dolasci' => $dolazak,
+            'odradeno' => round($time, 2), //odrađeno radno vrijeme
+            'mjeseci' => $mjeseci
 
         ));
     }
