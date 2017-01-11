@@ -189,7 +189,7 @@ class EvidencijaController extends FOSRestController//potrebno ekstendati FOSRes
                 $vrijeme5 = strtotime($vrijeme[4]->format('H:i:s'));
                 $vrijeme6 = strtotime($vrijeme[5]->format('H:i:s'));
                 $ev_dan_user_ob->setVrijemeDolaska($vrijeme[0]);
-                $ev_dan_user_ob->setVrijemeOdlaska($vrijeme[3]);
+                $ev_dan_user_ob->setVrijemeOdlaska($vrijeme[5]);
                 $broj_sati = (($vrijeme2 - $vrijeme1 + $vrijeme4 - $vrijeme3 + $vrijeme6 - $vrijeme5) / 60 / 60) + 0.5;
             }else{
                 $broj_sati = 0.0;
