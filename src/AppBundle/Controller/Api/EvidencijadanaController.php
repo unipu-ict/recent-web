@@ -107,6 +107,11 @@ class EvidencijadanaController extends FOSRestController
     public function getAction(Request $request, $id)
     {
         $datum = (new \DateTime("now"));
+        $em = $this->getDoctrine()->getManager();
+        $ev_dan_user = $em->getRepository('AppBundle:Evidencija_dana')->findBy(
+            array('userId' => $id, 'datum' => $datum)
+        ); // pronadij user id
+
 //        $em = $this->getDoctrine()->getManager();
 //        $ev_dan_user = $em->getRepository('AppBundle:Evidencija_dana')->findBy(
 //            array('userId' => $id, 'datum' => $datum)
@@ -170,7 +175,7 @@ class EvidencijadanaController extends FOSRestController
 //            $poruka = array('Podaci' => 'Izmjenjeni!');
 //        }
 
-        return $view = $this->view($datum->format('Y-m'), Response::HTTP_OK);
+        return $view = $this->view($ev_dan_user[0], Response::HTTP_OK);
     }
 
 
