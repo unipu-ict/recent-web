@@ -85,7 +85,11 @@ class ProfileController extends Controller
             'evidencija' => $data,
             'dolasci' => $dolazak,
             'odradeno' => round($time, 2), //odrađeno radno vrijeme
-            'mjeseci' => $mjeseci
+            'mjeseci' => $mjeseci,
+
+            'mjesec' => $datum->format("m"),
+            'godina' => $datum->format("Y")
+
 
         ));
     }
@@ -101,7 +105,8 @@ class ProfileController extends Controller
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
-
+        $god_show = $godina;
+        $mj_show = $mjesec;
 
 //        $evidencija = $this->getDoctrine()
 //            ->getRepository('AppBundle:Evidencija_dana')
@@ -144,8 +149,9 @@ class ProfileController extends Controller
             'evidencija' => $data,
             'dolasci' => $dolazak,
             'odradeno' => round($time, 2), //odrađeno radno vrijeme
-            'mjeseci' => $mjeseci
-
+            'mjeseci' => $mjeseci,
+            'mjesec' => $mj_show,
+            'godina' => $god_show
         ));
     }
 
