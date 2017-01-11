@@ -68,7 +68,7 @@ class ProfileController extends Controller
 
         $mjeseci = array(); // result
 
-        for ($i = 1; $i <= 12; $i++) {
+        for ($i = 0; $i <= 12; $i++) {
             $date = date("Y-m-d");
             $date = strtotime(date("Y-m-d", strtotime($date)) . "-$i months");
             $mjesec = date("m",$date);
@@ -132,7 +132,7 @@ class ProfileController extends Controller
 
         $mjeseci = array(); // result
 
-        for ($i = 1; $i <= 12; $i++) {
+        for ($i = 0; $i <= 12; $i++) {
             $date = date("Y-m-d");
             $date = strtotime(date("Y-m-d", strtotime($date)) . "-$i months");
             $mjesec = date("m",$date);
