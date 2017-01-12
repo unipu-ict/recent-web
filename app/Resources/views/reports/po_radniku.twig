@@ -1,0 +1,70 @@
+{% extends 'dashboard/dashboard-base.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+{% block maincontent %}
+
+
+<h1 class="page-header">Izvješće po radniku</h1>
+
+<div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title"></h4>
+
+      <form action="po_radniku" method="get">
+        godina: <input type="text" name="g"><br>
+        mjesec: <input type="text" name="m"><br>
+        korisnik: <input type="text" name="k"><br>
+        <input type="submit" value="Submit">
+      </form>
+  </div>
+</div>
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a data-toggle="collapse" href="#collapse2">Mjesec: <strong>11 </strong><small>/2016</small></a>
+    </h4>
+  </div>
+  <div id="collapse2" class="panel-collapse collapse">
+    <div class="panel-body">
+      <div class="row ">
+        <div class="col-xs-12 "> 
+
+          <nav aria-label="Page navigation" class="pagination-nav">
+            <ul class="pagination">
+              <li>
+                <a href="#" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              <li><a href="#"><b>10</b> <small>/</small>2016</a></li>
+              <li><a href="#"><b>9</b> <small>/</small>2016</a></li>
+              <li><a href="#"><b>8</b> <small>/</small>2016</a></li>
+              <li><a href="#"><b>7</b> <small>/</small>2016</a></li>
+              <li><a href="#"><b>6</b> <small>/</small>2016</a></li>
+              <li><a href="#"><b>5</b> <small>/</small>2016</a></li>
+
+              <li>
+                <a href="#" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+        </div>  
+
+      </div>
+    </div>
+  </div> 
+</div>
+
+
+
+
+
+{% endblock %}

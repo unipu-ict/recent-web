@@ -1,0 +1,138 @@
+{% extends 'dashboard/dashboard-base.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+{% block maincontent %}
+
+
+<h1 class="page-header">Izvješće po radniku</h1>
+
+<div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" href="#collapse1">1) Ime i prezime radnika: <strong>{{ user.name }} {{ user.surname }}</strong></a>
+      <h4 class="panel-title"><small>Odrađeno sati:</small> <strong> {{ sati }} </strong> </h4>
+    </div>
+    <div id="collapse1" class="panel-collapse collapse">
+      <div class="panel-body">Odjel 1</div>
+      <div class="panel-body">Odjel 2 u budućnosti</div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a data-toggle="collapse" href="#collapse2">Razfoblje (mjesec): <strong>{{ mjesec }} </strong><small>/{{ godina }}</small></a>
+    </h4>
+  </div>
+  <div id="collapse2" class="panel-collapse collapse">
+    <div class="panel-body">
+      <div class="row ">
+        <div class="col-xs-12 "> 
+
+          <nav aria-label="Page navigation" class="pagination-nav">
+            <ul class="pagination">
+              <li>
+                <a href="#" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              <li><a href="#"><b>10</b> <small>/</small>2016</a></li>
+              <li><a href="#"><b>9</b> <small>/</small>2016</a></li>
+              <li><a href="#"><b>8</b> <small>/</small>2016</a></li>
+              <li><a href="#"><b>7</b> <small>/</small>2016</a></li>
+              <li><a href="#"><b>6</b> <small>/</small>2016</a></li>
+              <li><a href="#"><b>5</b> <small>/</small>2016</a></li>
+
+              <li>
+                <a href="#" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+        </div>  
+
+      </div>
+    </div>
+  </div> 
+</div>
+
+
+            <table class="table table-striped table-employee">
+              <thead>
+                <tr>
+                  <th>2) Datum</th>
+                  <th>3) Početak rada</th>
+                  <th>4) Završetak rada</th>
+                  <th>5) Vrijeme sati zastoja krivnjom</th>
+                  <th>6) ukupno dnevno radno vrijeme</th>
+                  <th>7) vrijeme terenskog rada</th>
+                  <th>8) vrijeme pripravnosti</th>
+                  <th>dnevni odmor</th>
+                  <th>tjedni odmor</th>
+                  <th>godišnji odmor</th>
+                  <th>blagdan/ neradni dan</th>
+                  <th>bolovanje</th>
+                  <th>dopust - rodiljni/ roditeljski</th>
+                  <th>dr. roditeljska prava</th>
+                  <th>plaćeni dopust</th>
+                  <th>neplaćeni dopust</th>
+                  <th>po zahtjevu radnika</th>
+                  <th>krivnjom radnika</th>
+                  <th>zbog štrajka</th>
+                  <th>zbog isključenja s rada</th>
+                  <th>rad noću</th>
+                  <th>smjenski rad</th>
+                  <th>dvokratni rad</th>
+                  <th>prekovremeni rad</th>
+
+
+                </tr>
+              </thead>
+              <tbody>
+
+
+              {% for dan in evidencija %}
+                <tr>
+                  <td>{{ dan.datum|date("d/m/Y") }}</td>
+                  <td>{{ dan.vrijemeDolaska|date('H:i') }}</td>
+                  <td>{{ dan.vrijemeOdlaska|date('H:i') }}</td>
+                  <td></td>
+                  <td>{{ dan.doneBusinessHours() }}</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+
+                </tr>
+
+              {% endfor %}
+
+
+                
+              </tbody>
+            </table>  
+
+
+{% endblock %}

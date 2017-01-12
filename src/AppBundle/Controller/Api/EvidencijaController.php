@@ -51,7 +51,7 @@ class EvidencijaController extends FOSRestController//potrebno ekstendati FOSRes
                 }
                 $zadnje_vrijeme = strtotime($vrijeme[0]->format('H:i:s'));
                 $trenutno_vrijeme = strtotime($datum->format('H:i:s'));
-                $razlika_vrijeme = ($trenutno_vrijeme - $zadnje_vrijeme) / 60;
+                $razlika_vrijeme = ($trenutno_vrijeme - $zadnje_vrijeme);
             }
             // 5 minuta blokada - kraj
             $evidencija_razlog = $this->getDoctrine()->getRepository('AppBundle:Evidencija')->findBy(
@@ -85,7 +85,7 @@ class EvidencijaController extends FOSRestController//potrebno ekstendati FOSRes
                 $content = array("uspjeh" => "da", "kreirana_evidencija_dana" => $kreiraj_evidenciju_dana, "update_evidencija_dana" => $update_evidenciju_dana);
 //                $content = array("uspjeh" => "da");
             }else{
-                $content = array("uspjeh" => "ne", "razlog" => "blokada 5 min");
+                $content = array("uspjeh" => "ne", "razlog" => "blokada 5 sec");
             }
         }
         //$content = array("uspjeh" => "da");

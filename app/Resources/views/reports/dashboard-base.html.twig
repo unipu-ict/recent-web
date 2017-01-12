@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>RecENT - Kontrolna ploča - Izvjesca</title>
+    <style type="text/css">
+            @font-face {
+                font-family: 'Jaapokki' ;
+                src: url("{{ asset('fonts/jaapokki.ttf') }}");
+                }
+        </style>
+
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="{{  asset('style/style.css') }}" crossorigin="anonymous">
+<link rel="stylesheet" href="{{  asset('style/simple-sidebar.css') }}" crossorigin="anonymous">
+
+
+
+    <!-- Custom styles for this template -->
+    <link href="{{ asset('style/dashboard.css') }}" rel="stylesheet">
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+          <div class="sidebar-nav">
+             <h1 class="sidebar-brand logo-font" href="#">RecENT</h1>
+               <div class="login-info">
+            <p class="">  <strong> {{ 'layout.logged_in_as'|trans({'%username%':  app.user.username}, 'FOSUserBundle') }} </strong> </p>
+                    <a class="btn btn-default" href="{{ path('fos_user_security_logout') }}">
+
+                        {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                    </a> 
+                    <a class="btn btn-primary" href="{{ path('fos_user_profile_show') }}">
+                       Profil
+                    </a>
+            
+        </div>       
+          
+            <h4>Osnovno</h4>
+            <ul class="sidebar-navigation">
+              <li class="active"><a href="/dashboard">Pregled <span class="sr-only">(current)</span></a></li>
+              <li><a href="/reports">Izvješća</a></li>
+              <li><a href="/analytic">Analitika</a></li>
+              <li><a href="/export">Izvoz u dokument</a></li>
+            </ul>
+            <h4>Radnici</h4>
+            <ul class="sidebar-navigation">
+              <li><a href="/regster">Dodaj radnika</a></li>
+              <li><a href="/edit-user">Uredi podatke o radniku</a></li>
+              <li><a href="/all-employees">Pregled svih radnika</a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+        <div>
+         <a href="#menu-toggle" class="btn btn-default " id="menu-toggle">Izbornik</a>
+         <a class="float-right">Dobrodošli {{ app.user.username }}.</a>
+        </div> 
+            {% block maincontent%}
+        {% endblock %}
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="../../assets/js/vendor/holder.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>
+
