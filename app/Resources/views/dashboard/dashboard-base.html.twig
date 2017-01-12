@@ -10,12 +10,19 @@
     <link rel="icon" href="../../favicon.ico">
 
     <title>RecENT - Kontrolna ploča</title>
+    <style type="text/css">
+            @font-face {
+                font-family: 'Jaapokki' ;
+                src: url("{{ asset('fonts/jaapokki.ttf') }}");
+                }
+        </style>
 
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" href="{{  asset('style/style.css') }}" crossorigin="anonymous">
+<link rel="stylesheet" href="{{  asset('style/simple-sidebar.css') }}" crossorigin="anonymous">
 
 
 
@@ -32,53 +39,62 @@
 
   <body>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">RecENT</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            {{ render(controller('RecENTUserBundle:Security:login')) }}
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <div id="wrapper">
 
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-          <h4>Osnovno</h4>
-          <ul class="nav nav-sidebar">
-            <li class="active"><a href="/dashboard">Pregled <span class="sr-only">(current)</span></a></li>
-            <li><a href="/reports">Izvješća</a></li>
-            <li><a href="/analytic">Analitika</a></li>
-            <li><a href="/export">Izvoz u dokument</a></li>
-          </ul>
-          <h4>Radnici</h4>
-          <ul class="nav nav-sidebar">
-            <li><a href="/regster">Dodaj radnika</a></li>
-            <li><a href="/edit-user">Uredi podatke o radniku</a></li>
-            <li><a href="/all-employees">Pregled svih radnika</a></li>
-          </ul>
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+          <div class="sidebar-nav">
+             <h1 class="sidebar-brand logo-font" href="#">RecENT</h1>
+               <div class="login-info">
+            <p class="">  <strong> {{ 'layout.logged_in_as'|trans({'%username%':  app.user.username}, 'FOSUserBundle') }} </strong> </p>
+                    <a class="btn btn-default" href="{{ path('fos_user_security_logout') }}">
+
+                        {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                    </a> 
+                    <a class="btn btn-primary" href="{{ path('fos_user_profile_show') }}">
+                       Profil
+                    </a>
+            
+        </div>       
           
+            <h4>Osnovno</h4>
+            <ul class="sidebar-navigation">
+              <li class="active"><a href="/dashboard">Pregled <span class="sr-only">(current)</span></a></li>
+              <li><a href="/reports">Izvješća</a></li>
+              <li><a href="/analytic">Analitika</a></li>
+              <li><a href="/export">Izvoz u dokument</a></li>
+            </ul>
+            <h4>Radnici</h4>
+            <ul class="sidebar-navigation">
+              <li><a href="/regster">Dodaj radnika</a></li>
+              <li><a href="/edit-user">Uredi podatke o radniku</a></li>
+              <li><a href="/all-employees">Pregled svih radnika</a></li>
+            </ul>
+          </div>
         </div>
+        <!-- /#sidebar-wrapper -->
 
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        {% block maincontent%}
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+        <div>
+         <a href="#menu-toggle" class="btn btn-default " id="menu-toggle">Izbornik</a>
+         <a class="float-right">Dobrodošli {{ app.user.username }}.</a>
+        </div> 
+            {% block maincontent%}
         {% endblock %}
         </div>
-      </div>
+        <!-- /#page-content-wrapper -->
+
     </div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>

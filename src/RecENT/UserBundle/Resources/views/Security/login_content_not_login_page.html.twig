@@ -2,16 +2,22 @@
 
 
  {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-             <p class="text-right text-success tekst-statusa-prijave">   {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+
+        <p class="text-right text-success tekst-statusa-prijave"> 
+        {{ app.request.attributes.get('_route') }}
+          {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
                 <a href="{{ path('fos_user_security_logout') }}">
                     {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
                 </a> |
                 <a href="{{ path('fos_user_profile_show') }}">
                    Profil
                 </a>
-                </p>
-            {% else %}
-                
+                </p> 
+        
+
+
+{% else %}
+           
             
 
  <form action="{{ path("fos_user_security_check") }}" method="post" class="navbar-form navbar-right">
@@ -22,9 +28,10 @@
                                         <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" class="form-control" placeholder="{{ 'form.username'|trans }}"/>
                                     </div>
                                     <div class="form-group">
-                                       <input type="password" id="password" name="_password" required="required" class="form-control" placeholder="{{ 'form.password'|trans }}" />
+                                       <input type="password" id="password" name="_password" required="required" class="form-control"  placeholder="{{ 'form.password'|trans }}" />
                                     </div>
-                                    <button type="submit"  id="_submit" name="_submit" class="btn btn-success">{{ 'layout.login'|trans }}</button>
+                                    <button type="submit"  id="_submit" name="_submit" class="btn btn-success">
+                                    {{ 'layout.login'|trans }} </button>
                                 </form>
 
 {% endif %}

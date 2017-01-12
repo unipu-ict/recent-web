@@ -13,5 +13,8 @@ fos_rest:
     type:     rest
     prefix:   /api
     resource: "api-routing.yml"
-
+   
+dashboard:
+    path: /dashboard
+    defaults: { _controller: AppBundle:Dashboard:index }
     

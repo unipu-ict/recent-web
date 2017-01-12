@@ -55,9 +55,11 @@ class SecurityController extends BaseController
             : null;
 
 
-        $routeName = $request->get('_route');   
         
-        if($routeName!="fos_user_security_login"){ //dodano renderiranje za login straicu i za !login stranicu
+        $routeName = $request->get('_route');
+      
+       
+        if($routeName!="fos_user_security_login"){ //dodano renderiranje logina za dashboard
             return $this->renderLoginNotLoginPage(array(
                 'last_username' => $lastUsername,
                 'error' => $error,
@@ -92,6 +94,7 @@ class SecurityController extends BaseController
         return $this->render('RecENTUserBundle:Security:login_content_not_login_page.html.twig', $data);
     }
 
+    
 
     public function checkAction()
     {
