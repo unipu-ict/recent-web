@@ -53,6 +53,13 @@ class Evidencija_dana
      */
     private $done_business_hours;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Neprisustvo", inversedBy="not_here")
+     * @ORM\JoinColumn(name="not_workingId", referencedColumnName="id")
+     *
+     */
+    private $not_workingId;
+
 
     /**
      * Get id
@@ -182,5 +189,29 @@ class Evidencija_dana
     public function getDoneBusinessHours()
     {
         return $this->done_business_hours;
+    }
+
+    /**
+     * Set notWorkingId
+     *
+     * @param \AppBundle\Entity\Neprisutnost $notWorkingId
+     *
+     * @return Evidencija_dana
+     */
+    public function setNotWorkingId(\AppBundle\Entity\Neprisutnost $notWorkingId = null)
+    {
+        $this->not_workingId = $notWorkingId;
+
+        return $this;
+    }
+
+    /**
+     * Get notWorkingId
+     *
+     * @return \AppBundle\Entity\Neprisutnost
+     */
+    public function getNotWorkingId()
+    {
+        return $this->not_workingId;
     }
 }
