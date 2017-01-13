@@ -194,11 +194,11 @@ class Evidencija_dana
     /**
      * Set notWorkingId
      *
-     * @param \AppBundle\Entity\Neprisutnost $notWorkingId
+     * @param \AppBundle\Entity\Neprisustvo $notWorkingId
      *
      * @return Evidencija_dana
      */
-    public function setNotWorkingId(\AppBundle\Entity\Neprisutnost $notWorkingId = null)
+    public function setNotWorkingId(\AppBundle\Entity\Neprisustvo $notWorkingId = null)
     {
         $this->not_workingId = $notWorkingId;
 
@@ -208,7 +208,7 @@ class Evidencija_dana
     /**
      * Get notWorkingId
      *
-     * @return \AppBundle\Entity\Neprisutnost
+     * @return \AppBundle\Entity\Neprisustvo
      */
     public function getNotWorkingId()
     {
