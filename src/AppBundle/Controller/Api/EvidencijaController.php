@@ -34,7 +34,7 @@ class EvidencijaController extends FOSRestController//potrebno ekstendati FOSRes
         $em = $this->getDoctrine()->getManager(); //dohvati managera
         $uid = $this->getDoctrine() ->getRepository('AppBundle:Tag_user')->findOneBy( array('user_tag' => $uID)); // dohvaca red iz Tag_user s uidom
         if (!$uid){ // ako nema rezultata, ako nepostoji korisnik s tim uid-om
-            $content = array("uspjeh" => "ne", "razlog" => "nepostojeci korisnik");
+            $content = array("uspjeh" => "ne"); //, "razlog" => "nepostojeci korisnik")
         }else{
             $user = $this->getDoctrine() ->getRepository('AppBundle:User') -> find( $uid->getUserId() ); //ako ima rzultata, identificiraj korisnika
             // 5 minuta blokada
@@ -82,10 +82,10 @@ class EvidencijaController extends FOSRestController//potrebno ekstendati FOSRes
                 $em->flush(); //spremi
                 $kreiraj_evidenciju_dana = $this->kreirajEvidencijadana();
                 $update_evidenciju_dana = $this->updateEvidencijadana($user);
-                $content = array("uspjeh" => "da", "kreirana_evidencija_dana" => $kreiraj_evidenciju_dana, "update_evidencija_dana" => $update_evidenciju_dana);
+                $content = array("uspjeh" => "da"); //, "kreirana_evidencija_dana" => $kreiraj_evidenciju_dana, "update_evidencija_dana" => $update_evidenciju_dana
 //                $content = array("uspjeh" => "da");
             }else{
-                $content = array("uspjeh" => "ne", "razlog" => "blokada 5 sec");
+                $content = array("uspjeh" => "ne"); //, "razlog" => "blokada 5 sec"
             }
         }
         //$content = array("uspjeh" => "da");
