@@ -12,6 +12,7 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 
 class ReportsController extends Controller
@@ -41,49 +42,33 @@ class ReportsController extends Controller
 
     public function poradnikuAction()
     {
-//        if(!$request){
-//            $god = $request->request->get('g');
-//            $mj = $request->request->get('m');
-//            $u = $request->request->get('k');
-//
-//            poradnikudetaljnoAction($god, $mj, $u);
-//        }else{
-            $em = $this->getDoctrine()->getManager();
-            $query=$em->createQuery( 'SELECT u.done_business_hours, u.datum, u.vrijeme_dolaska, u.vrijeme_odlaska FROM AppBundle\Entity\Evidencija_dana u');
-            $data = $query->getResult();
+        $mjeseci = array(); // result
+
+        for ($i = 0; $i < 12; $i++) {
+            $date = date("Y-m-d");
+            $date = strtotime(date("Y-m-d", strtotime($date)) . "-$i months");
+            $mjesec = date("m",$date);
+            array_push($mjeseci, $mjesec);
+        }
+
+        $godine = array(); // result
+
+        for ($i = 0; $i < 3; $i++) {
+            $date = date("Y-m-d");
+            $date = strtotime(date("Y-m-d", strtotime($date)) . "-$i years");
+            $godina = date("Y", $date);
+            array_push($godine, $godina);
+        }
+
+        $users = $this->getDoctrine() ->getRepository('AppBundle:User') -> findAll();
+
             return $this->render('reports/po_radniku.twig', array(
-                'evidencija' => $data
+                'mjeseci' => $mjeseci,
+                'godine' => $godine,
+                'users' => $users
             ));
-//        }
 
     }
-
-//    public function poradnikudetaljnoAction($user_id, $godina, $mjesec){
-//
-//        $user = $this->getDoctrine()
-//            ->getRepository('AppBundle:User')->find($user_id);
-//
-//        $em = $this->getDoctrine()->getManager();
-//        $query=$em->createQuery( 'SELECT u FROM AppBundle:Evidencija_dana u WHERE u.userId = :userid and YEAR(u.datum) = :godina and MONTH(u.datum) = :mjesec')
-//            ->setParameter('userid', $user)->setParameter('godina', $godina)->setParameter('mjesec', $mjesec);
-//        $evidencija = $query->getResult();
-//
-//
-//        $time=0;
-//
-//        foreach($evidencija as $odradeno){
-//            $time = $time + $odradeno->getDoneBusinessHours();
-//        }
-//
-//
-//        return $this->render('reports/po_radniku-detaljno.twig', array(
-//            'evidencija' => $evidencija,
-//            'user' => $user,
-//            'sati' => $time,
-//            'godina' => $godina,
-//            'mjesec' => $mjesec
-//        ));
-//    }
 
     /**
      * @Route("/reports/po_danu", name="reports2")
@@ -92,48 +77,100 @@ class ReportsController extends Controller
 
     public function podanuAction()
     {
+        return $this->render('reports/po_danu.twig');
+    }
+
+    /**
+     * @Route("/reports/po_radniku/detaljno", name="reports1-2")
+     *
+     */
+
+    public function workerbyidAction(Request $request)
+    {
+
+        $mjeseci = array(); // result
+
+        for ($i = 0; $i < 12; $i++) {
+            $date = date("Y-m-d");
+            $date = strtotime(date("Y-m-d", strtotime($date)) . "-$i months");
+            $mjesec = date("m",$date);
+            array_push($mjeseci, $mjesec);
+        }
+
+        $godine = array(); // result
+
+        for ($i = 0; $i < 3; $i++) {
+            $date = date("Y-m-d");
+            $date = strtotime(date("Y-m-d", strtotime($date)) . "-$i years");
+            $godina = date("Y", $date);
+            array_push($godine, $godina);
+        }
+
+        $users = $this->getDoctrine() ->getRepository('AppBundle:User') -> findAll();
+
+        $user_id = $_POST['k'];
+        $godina = $_POST['g'];
+        $mjesec = $_POST['m'];
+
+        $user = $this->getDoctrine()
+            ->getRepository('AppBundle:User')->find($user_id);
+
         $em = $this->getDoctrine()->getManager();
-        $query=$em->createQuery( 'SELECT u.done_business_hours, u.datum, u.vrijeme_dolaska, u.vrijeme_odlaska FROM AppBundle\Entity\Evidencija_dana u');
-        $data = $query->getResult();
-        return $this->render('reports/po_danu.twig', array(
-            'evidencija' => $data,
+        $query=$em->createQuery( 'SELECT u FROM AppBundle:Evidencija_dana u WHERE u.userId = :userid and YEAR(u.datum) = :godina and MONTH(u.datum) = :mjesec')
+            ->setParameter('userid', $user)->setParameter('godina', $godina)->setParameter('mjesec', $mjesec);
+        $evidencija = $query->getResult();
+
+
+        $time=0;
+
+        foreach($evidencija as $odradeno){
+            $time = $time + $odradeno->getDoneBusinessHours();
+        }
+
+
+        return $this->render('reports/po_radniku-detaljno.twig', array(
+            'evidencija' => $evidencija,
+            'user' => $user,
+            'sati' => $time,
+            'godina' => $godina,
+            'mjesec' => $mjesec,
+            'mjeseci' => $mjeseci,
+            'godine' => $godine,
+            'users' => $users
         ));
     }
 
-//    /**
-//     * @Route("/reports/po_radniku/?godina={godina}&mjesec={mjesec}&user={user_id}", name="reports1-2")
-//     *
-//     */
-//
-//    public function workerbyidAction($godina, $mjesec, $user_id)
-//    {
-////        $userManager = $this->get('fos_user.user_manager');
-////        $user = $userManager->findUserBy(array('id'=>$user_id));
-//
-//        $user = $this->getDoctrine()
-//            ->getRepository('AppBundle:User')->find($user_id);
-//
-//        $em = $this->getDoctrine()->getManager();
-//        $query=$em->createQuery( 'SELECT u FROM AppBundle:Evidencija_dana u WHERE u.userId = :userid and YEAR(u.datum) = :godina and MONTH(u.datum) = :mjesec')
-//            ->setParameter('userid', $user)->setParameter('godina', $godina)->setParameter('mjesec', $mjesec);
-//        $evidencija = $query->getResult();
-//
-//
+    /**
+     * @Route("/reports/po_danu/detaljno", name="reports2-2")
+     *
+     */
+
+    public function daybyidAction(Request $request)
+    {
+
+        $users = $this->getDoctrine() ->getRepository('AppBundle:User') -> findAll();
+        $datum = $_POST['datum'];
+        $d = (new \DateTime("$datum"));
+
+        $em = $this->getDoctrine()->getManager();
+        $query=$em->createQuery( 'SELECT u FROM AppBundle:Evidencija_dana e JOIN AppBundle:User u AND u.id = 2');
+        $evidencija_dana = $query->getResult();
+
+//        SELECT u, a FROM User u JOIN u.address a WHERE a.city = 'Berlin'
 //        $time=0;
 //
 //        foreach($evidencija as $odradeno){
 //            $time = $time + $odradeno->getDoneBusinessHours();
 //        }
-//
-//
-//        return $this->render('reports/po_radniku-detaljno.twig', array(
-//            'evidencija' => $evidencija,
-//            'user' => $user,
+
+
+        return $this->render('reports/po_danu-detaljno.twig', array(
+            'evidencija' => $evidencija_dana,
+            'datum' => $datum,
 //            'sati' => $time,
-//            'godina' => $godina,
-//            'mjesec' => $mjesec
-//        ));
-//    }
+            'users' => $users
+        ));
+    }
 
 
 

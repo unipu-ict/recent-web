@@ -12,34 +12,16 @@
     <div class="panel-heading">
       <h4 class="panel-title"></h4>
 
-      <form action="detaljno" method="POST">
-        <select name="g">
-            {% for godina in godine %}
-              <option value="{{ godina }}">{{ godina }}</option>
-            {% endfor %}
-        </select>
-        <select name="m">
-            {% for mjesec in mjeseci %}
-              <option value="{{ mjesec }}">{{ mjesec }}</option>
-            {% endfor %}
 
-        </select>
-        <select name="k">
-            {% for user in users %}
-              <option value="{{ user.id }}">{{ user.name }}</option>
-            {% endfor %}
-        </select>
-        <input type="submit" value="Submit">
-      </form>
     </div>
   </div>
 
 <div class="panel-group">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" href="#collapse1">1) Ime i prezime radnika: <strong>{{ user.name }} {{ user.surname }}</strong></a>
-      <h4 class="panel-title"><small>Odrađeno sati:</small> <strong> {{ sati }} </strong> </h4>
+      <h4 class="panel-title"></h4>
+        <a data-toggle="collapse" href="#collapse1">2) Datum: <strong> </strong></a>
+      <h4 class="panel-title"><small>Odrađeno sati:</small> <strong>  </strong> </h4>
     </div>
     <div id="collapse1" class="panel-collapse collapse">
       <div class="panel-body">Odjel 1</div>
@@ -53,7 +35,7 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <h4 class="panel-title">
-      <a data-toggle="collapse" href="#collapse2">Razfoblje (mjesec): <strong>{{ mjesec }} </strong><small>/{{ godina }}</small></a>
+      <a data-toggle="collapse" href="#collapse2">Razfoblje (mjesec): <strong></strong><small>/</small></a>
     </h4>
   </div>
   <div id="collapse2" class="panel-collapse collapse">
@@ -94,7 +76,7 @@
             <table class="table table-striped table-employee">
               <thead>
                 <tr>
-                  <th>2) Datum</th>
+                  <th>1) Ime i prezime radnika</th>
                   <th>3) Početak rada</th>
                   <th>4) Završetak rada</th>
                   <th>5) Vrijeme sati zastoja krivnjom</th>
@@ -127,11 +109,13 @@
 
               {% for dan in evidencija %}
                 <tr>
-                  <td>{{ dan.datum|date("d/m/Y") }}</td>
-                  <td>{{ dan.vrijemeDolaska|date('H:i') }}</td>
-                  <td>{{ dan.vrijemeOdlaska|date('H:i') }}</td>
+
                   <td></td>
-                  <td>{{ dan.doneBusinessHours() }}</td>
+
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -153,7 +137,6 @@
                   <td></td>
 
                 </tr>
-
               {% endfor %}
 
 
