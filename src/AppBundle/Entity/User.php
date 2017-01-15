@@ -59,9 +59,13 @@ class User extends BaseUser
      */
     protected $groups;
     /**
-     * @ORM\OneToMany(targetEntity="Evidencija", mappedBy="userId")
+     * @ORM\ManyToMany(targetEntity="Evidencija", mappedBy="userId")
      */
     protected $korisnici;
+    /**
+     * @ORM\ManyToMany(targetEntity="Evidencija_dana", mappedBy="userId")
+     */
+    protected $korisnici_dan;
 
     public function __construct()
     {
@@ -138,5 +142,39 @@ class User extends BaseUser
     public function getKorisnici()
     {
         return $this->korisnici;
+    }
+
+    /**
+     * Add korisniciDan
+     *
+     * @param \AppBundle\Entity\Evidencija_dana $korisniciDan
+     *
+     * @return User
+     */
+    public function addKorisniciDan(\AppBundle\Entity\Evidencija_dana $korisniciDan)
+    {
+        $this->korisnici_dan[] = $korisniciDan;
+
+        return $this;
+    }
+
+    /**
+     * Remove korisniciDan
+     *
+     * @param \AppBundle\Entity\Evidencija_dana $korisniciDan
+     */
+    public function removeKorisniciDan(\AppBundle\Entity\Evidencija_dana $korisniciDan)
+    {
+        $this->korisnici_dan->removeElement($korisniciDan);
+    }
+
+    /**
+     * Get korisniciDan
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getKorisniciDan()
+    {
+        return $this->korisnici_dan;
     }
 }

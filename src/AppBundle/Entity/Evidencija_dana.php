@@ -22,9 +22,9 @@ class Evidencija_dana
     private $id;
 
     /**
-     * @var int
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="korisnici_dan")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      *
-     * @ORM\Column(name="user_id", type="integer")
      */
     private $userId;
 

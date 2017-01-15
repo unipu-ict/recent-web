@@ -59,9 +59,13 @@ class User extends BaseUser
      */
     protected $groups;
     /**
-     * @ORM\OneToMany(targetEntity="Evidencija", mappedBy="userId")
+     * @ORM\ManyToMany(targetEntity="Evidencija", mappedBy="userId")
      */
     protected $korisnici;
+    /**
+     * @ORM\ManyToMany(targetEntity="Evidencija_dana", mappedBy="userId")
+     */
+    protected $korisnici_dan;
 
     public function __construct()
     {

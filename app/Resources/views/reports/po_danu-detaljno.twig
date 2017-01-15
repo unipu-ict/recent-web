@@ -5,13 +5,16 @@
 {% block maincontent %}
 
 
-<h1 class="page-header">Izvješće po radniku</h1>
+<h1 class="page-header">Izvješće po danu</h1>
 
   <div class="panel-group">
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title"></h4>
-
+      <form action="detaljno" method="POST">
+        <input type="date" name="datum">
+        <input type="submit" value="Submit">
+      </form>
 
     </div>
   </div>
@@ -19,9 +22,9 @@
 <div class="panel-group">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h4 class="panel-title"></h4>
-        <a data-toggle="collapse" href="#collapse1">2) Datum: <strong> </strong></a>
-      <h4 class="panel-title"><small>Odrađeno sati:</small> <strong>  </strong> </h4>
+      <h4 class="panel-title">
+        <a data-toggle="collapse" href="#collapse1">2) Datum: <strong> {{ datum|date('d/m/Y') }} </strong></a></h4>
+      <h4 class="panel-title"><small>Odrađeno sati:</small> <strong> {{ sati }} </strong> </h4>
     </div>
     <div id="collapse1" class="panel-collapse collapse">
       <div class="panel-body">Odjel 1</div>
@@ -35,7 +38,7 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <h4 class="panel-title">
-      <a data-toggle="collapse" href="#collapse2">Razfoblje (mjesec): <strong></strong><small>/</small></a>
+      <a data-toggle="collapse" href="#collapse2">Razfoblje (mjesec): <strong>{{ datum|date('m') }}</strong><small>/{{ datum|date('Y') }}</small></a>
     </h4>
   </div>
   <div id="collapse2" class="panel-collapse collapse">
@@ -110,12 +113,12 @@
               {% for dan in evidencija %}
                 <tr>
 
-                  <td></td>
+                  <td>{{ dan.userId.name }} {{ dan.userId.surname }}</td>
 
+                  <td>{{ dan.vrijemeDolaska|date('H:i') }}</td>
+                  <td>{{ dan.vrijemeOdlaska|date('H:i') }}</td>
                   <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>{{ dan.doneBusinessHours() }}</td>
                   <td></td>
                   <td></td>
                   <td></td>

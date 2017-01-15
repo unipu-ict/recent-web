@@ -153,21 +153,20 @@ class ReportsController extends Controller
         $d = (new \DateTime("$datum"));
 
         $em = $this->getDoctrine()->getManager();
-        $query=$em->createQuery( 'SELECT u FROM AppBundle:Evidencija_dana e JOIN AppBundle:User u AND u.id = 2');
+        $query=$em->createQuery( 'SELECT u, n FROM AppBundle:Evidencija_dana u JOIN u.userId n WHERE u.datum = :datum')
+            ->setParameter('datum', $d);
         $evidencija_dana = $query->getResult();
 
-//        SELECT u, a FROM User u JOIN u.address a WHERE a.city = 'Berlin'
-//        $time=0;
-//
-//        foreach($evidencija as $odradeno){
-//            $time = $time + $odradeno->getDoneBusinessHours();
-//        }
+        $time=0;
 
+        foreach($evidencija_dana as $odradeno){
+            $time = $time + $odradeno->getDoneBusinessHours();
+        }
 
         return $this->render('reports/po_danu-detaljno.twig', array(
             'evidencija' => $evidencija_dana,
-            'datum' => $datum,
-//            'sati' => $time,
+            'datum' => $d,
+            'sati' => $time,
             'users' => $users
         ));
     }
