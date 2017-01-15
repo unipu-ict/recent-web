@@ -34,6 +34,10 @@ class Tag_user
      */   
     private $user_tag;
 
+    /**
+     * @ORM\Column(type="integer", length=3)
+     */   
+    private $type;
 
     /**
      * Set id

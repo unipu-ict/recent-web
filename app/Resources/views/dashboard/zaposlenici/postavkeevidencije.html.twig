@@ -1,0 +1,71 @@
+{% extends 'dashboard/dashboard-base.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+{% block maincontent %}
+
+
+<h1 class="page-header">Postavke evidencije zaposlenika</h1>
+<br>
+
+
+{% if selecteduser.id!="none" %}
+<div class="col-md-10">
+<a class="btn btn-primary btn-sm" href="/dashboard/postavkeevidencije"> Natrag</a> 
+<p style="background: #ff0">{{message}}</p>
+<h4>Odabrani zaposlenik: <strong> {{ selecteduser.name }} {{ selecteduser.surname }}</strong> </h4>
+<p>Vrijednost taga:<b> {{ tag.userTag }}  </b>(za sad vidljivo, maknut ćemo, sada samo za debugging)</p>
+<p>Tip taga:<b> {{ tag.type }}  </b></p>
+
+
+<small>
+Definicija tipova taga. <small>( Po defaultu 0 (kod registracije se postavlja na 0), zatim se tu postavlja tip tj način evidentiranja)</small>
+<ul>
+	<li>0 => nema postavljen tag</li>
+	<li>1 => Android Apliikacija</li>
+	<li>2 => Tag / Kartica / NeAndroidAplikacija</li>
+</ul>
+</small>
+
+
+<h4>Promjena podataka</h4>
+	<form method="post" action="">
+		<input type="hidden" name="id_tag_user" value="{{ tag.id }}">
+		<label>Tip</label><br>
+			<input type="radio" name="tip" value="0" data-toggle="collapse" data-target=".collapseOne.in"> Nema <small>(0)</small><br>
+			<input type="radio" name="tip" value="1" data-toggle="collapse" data-target=".collapseOne.in"> Android  <small>(1)</small><br>
+			<input type="radio" name="tip" value="2" data-toggle="collapse" data-target=".collapseOne:not(.in)"> Tag / Kartica / NeAndroidAplikacija <small>(2)</small><br>
+			
+		<div class="collapseOne panel-collapse collapse">
+            <div class="panel-body">
+              Vrijednost: <input type="text" name="vrijednost"> <small>(ručno unijeti za sad) </small>
+            </div>
+          </div>
+		<button type="submit">Promjeni</button>
+		</form>	
+	</div>
+
+</div>
+
+
+{% else%}
+<h4>Odaberite zaposlenika za kojeg želite promjeniti postavke evidencije</h4>
+<div class="col-md-5 " >
+		<ul class="users-list" type="none">
+		{% for user in users %}
+		<li > {{ user.name|e }} {{ user.surname|e }} 
+			<a class="btn btn-primary btn-xs float-right-max" href="/dashboard/postavkeevidencije/{{ user.id}}">Detalji/Promjeni</a>
+		</li>
+		{% endfor %}
+		</ul>
+
+		<br>
+	</div>
+</div>	
+{%endif%}
+
+
+
+
+
+{% endblock %}

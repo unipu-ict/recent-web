@@ -14,8 +14,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Tag_user
 {
 	/**
-     * @ORM\Column(type="integer")
      * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     *
      */
     protected $id;
 
@@ -34,6 +37,10 @@ class Tag_user
      */   
     private $user_tag;
 
+    /**
+     * @ORM\Column(type="integer", length=3)
+     */   
+    private $type;
 
     /**
      * Set id
@@ -105,5 +112,29 @@ class Tag_user
     public function getUserTag()
     {
         return $this->user_tag;
+    }
+
+    /**
+     * Set type
+     *
+     * @param integer $type
+     *
+     * @return Tag_user
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return integer
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }
