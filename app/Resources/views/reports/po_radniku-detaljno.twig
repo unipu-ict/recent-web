@@ -109,18 +109,18 @@
                   <td>{{ dan.vrijemeDolaska|date('H:i') }}</td>
                   <td>{{ dan.vrijemeOdlaska|date('H:i') }}</td>
                   <td></td>
-                  <td>{{ dan.doneBusinessHours() }}</td>
+                  <td>{% if dan.notWorkingId.id == 1 %} {{ dan.doneBusinessHours() }} {% endif%}</td>
                   <td></td>
                   <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>{% if dan.notWorkingId.id == 2 %}8{% endif%}</td>
+                  <td>{% if dan.notWorkingId.id == 3 %}8{% endif%}</td>
+                  <td>{% if dan.notWorkingId.id == 4 %}8{% endif%}</td>
+                  <td>{% if dan.notWorkingId.id == 5 %}8{% endif%}</td>
+                  <td>{% if dan.notWorkingId.id == 6 %}8{% endif%}</td>
+                  <td>{% if dan.notWorkingId.id == 7 %}8{% endif%}</td>
+                  <td>{% if dan.notWorkingId.id == 8 %}8{% endif%}</td>
+                  <td>{% if dan.notWorkingId.id == 9 %}8{% endif%}</td>
+                  <td>{% if dan.notWorkingId.id == 10 %}8{% endif%}</td>
                   <td></td>
                   <td></td>
                   <td></td>
