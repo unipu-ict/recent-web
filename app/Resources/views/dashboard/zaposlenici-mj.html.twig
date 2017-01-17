@@ -25,7 +25,7 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">Mjesec: <strong>11 </strong><small>/2016</small></h3>
+    <h3 class="panel-title">Mjesec: <strong>{{ mjesec }} </strong><small>/{{ godina }}</small></h3>
   </div>
   <div class="panel-body">
     <div class="row ">
@@ -38,13 +38,12 @@
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
-            <li><a href="#"><b>10</b> <small>/</small>2016</a></li>
-            <li><a href="#"><b>9</b> <small>/</small>2016</a></li>
-            <li><a href="#"><b>8</b> <small>/</small>2016</a></li>
-            <li><a href="#"><b>7</b> <small>/</small>2016</a></li>
-            <li><a href="#"><b>6</b> <small>/</small>2016</a></li>
-            <li><a href="#"><b>5</b> <small>/</small>2016</a></li>
+            </li>
+              {% for mjesec in mjeseci %}
+                <li><a href="/dashboard/{{ mjesec.godina }}/{{ mjesec.mjesec }}"><b>{{ mjesec.mjesec }}</b> <small>/</small>{{ mjesec.godina }}</a></li>
+              {% endfor %}
 
+            <li>
             <li>
               <a href="#" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
@@ -74,15 +73,15 @@
                 </tr>
               </thead>
               <tbody>
-                {% for korisnik in users %}
+                {% for korisnik in odradeno %}
                 <tr>
                     
-                    <td>{{ korisnik.Id }}</td>
-                    <td>{{ korisnik.name }} {{ korisnik.surname }}</td>
-                    <td>{{ time }}</td>
+                    <td>{{ korisnik.user.id }}</td>
+                    <td>{{ korisnik.user.name }} {{ korisnik.user.surname }}</td>
+                    <td>{{ korisnik.odradeno }}</td>
                     <td>6</td>
-                    <td>2</td>
-                    <td><a href="/dashboard/radnik/{{ korisnik.Id }}"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a></td>
+                    <td>{{ korisnik.prekovremeni }}</td>
+                    <td><a href="/dashboard/radnik/{{ korisnik.user.id }}/{{ korisnik.godina }}/{{ korisnik.mjesec }}"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a></td>
                 </tr>
                 {% endfor %}
                 
