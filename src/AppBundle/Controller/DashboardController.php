@@ -33,9 +33,6 @@ class DashboardController extends Controller
         $userManager = $this->get('fos_user.user_manager');
         $users = $userManager->findUsers();
 
-        $evidencija = $this->getDoctrine()
-        ->getRepository('AppBundle:Evidencija_dana')->findAll();
-
         $datum = (new \DateTime('now'));
 
         $odradeno_sati = array();
@@ -55,7 +52,7 @@ class DashboardController extends Controller
                 if($odradeno->getDoneBusinessHours()>7)
                     $prekovremeni = $prekovremeni + $odradeno->getDoneBusinessHours() - 7;
             }
-            $podaci = array('user' => $korisnik, 'odradeno' => $time, 'prekovremeni' => $prekovremeni,
+            $podaci = array('user' => $korisnik, 'odradeno' => round($time, 2), 'prekovremeni' => round($prekovremeni, 2),
                 'mjesec' => $datum->format("m"),
                 'godina' => $datum->format("Y"));
             array_push($odradeno_sati, $podaci);
@@ -93,30 +90,50 @@ class DashboardController extends Controller
         $userManager = $this->get('fos_user.user_manager');
         $user = $userManager->findUserBy(array('id'=>$user_id));
 
-
-        //$evidencija = $this->getDoctrine()+            ->getRepository('AppBundle:Evidencija_dana')->findBy(array('userId' => $user->getId()));
-//        $evidencija = $this->getDoctrine()
-//            ->getRepository('AppBundle:Evidencija_dana')->findBy(array('userId' => $user_id, 'datum' => $godina$mjesec));
-
         $em = $this->getDoctrine()->getManager();
         $query=$em->createQuery( 'SELECT u FROM AppBundle:Evidencija_dana u WHERE u.userId = :userid and YEAR(u.datum) = :godina and MONTH(u.datum) = :mjesec')
                 ->setParameter('userid', $user->getId())
                 ->setParameter('godina', $godina)
                 ->setParameter('mjesec', $mjesec);
 
-        $data = $query->getResult();
+        $evidencija = $query->getResult();
+
+
+        $query=$em->createQuery( 'SELECT u FROM AppBundle:Evidencija u WHERE u.userId = :userid and YEAR(u.date) = :godina and MONTH(u.date) = :mjesec')
+            ->setParameter('userid', $user->getId())
+            ->setParameter('godina', $godina)
+            ->setParameter('mjesec', $mjesec);
+
+        $dolasci = $query->getResult();
+
+        $god_show = $godina;
+        $mj_show = $mjesec;
 
         $time=0.0;
 
-        foreach($data as $odradeno){
+        foreach($evidencija as $odradeno){
             $time = $time + $odradeno->getDoneBusinessHours();
         }
 
+        $mjeseci = array(); // result
+
+        for ($i = 0; $i <= 12; $i++) {
+            $date = date("Y-m-d");
+            $date = strtotime(date("Y-m-d", strtotime($date)) . "-$i months");
+            $mjesec = date("m", $date);
+            $godina = date("Y", $date);
+            $mjesec_godina = array('user' => $user->getId(),'mjesec' => $mjesec, 'godina' => $godina);
+            array_push($mjeseci, $mjesec_godina);
+        }
 
         return $this->render('dashboard/radnik-mj.html.twig', array(
-            'evidencija' => $data,
+            'evidencija' => $evidencija,
+            'dolasci' => $dolasci,
             'user' => $user,
-            'sati' => $time
+            'sati' => round($time, 2),
+            'mjeseci' => $mjeseci,
+            'mjesec' => $mj_show,
+            'godina' => $god_show
         ));
     }
 
@@ -130,10 +147,6 @@ class DashboardController extends Controller
         $userManager = $this->get('fos_user.user_manager');
         $users = $userManager->findUsers();
 
-        $evidencija = $this->getDoctrine()
-            ->getRepository('AppBundle:Evidencija_dana')->findAll();
-
-        $datum = (new \DateTime('now'));
 
         $god_show = $godina;
         $mj_show = $mjesec;
@@ -155,7 +168,7 @@ class DashboardController extends Controller
                 if($odradeno->getDoneBusinessHours()>7)
                     $prekovremeni = $prekovremeni + $odradeno->getDoneBusinessHours() - 7;
             }
-            $podaci = array('user' => $korisnik, 'odradeno' => $time, 'prekovremeni' => $prekovremeni,
+            $podaci = array('user' => $korisnik, 'odradeno' => round($time, 2), 'prekovremeni' => round($prekovremeni, 2),
                 'mjesec' => $mj_show,
                 'godina' => $god_show);
             array_push($odradeno_sati, $podaci);
@@ -173,24 +186,13 @@ class DashboardController extends Controller
             array_push($mjeseci, $mjesec_godina);
         }
 
-            return $this->render('dashboard/zaposlenici-mj.html.twig', array(
-                'webpage_title' => 'Evidencija zaposlenika ',
-                'odradeno' => $odradeno_sati, //odrađeno radno vrijeme
-                'mjeseci' => $mjeseci,
-                'mjesec' => $mj_show,
-                'godina' => $god_show
+        return $this->render('dashboard/zaposlenici-mj.html.twig', array(
+            'webpage_title' => 'Evidencija zaposlenika ',
+            'odradeno' => $odradeno_sati, //odrađeno radno vrijeme
+            'mjeseci' => $mjeseci,
+            'mjesec' => $mj_show,
+            'godina' => $god_show
 
-            ));
+        ));
     }
-
-
-
-
-
-
-
-
-   
-
-
 }

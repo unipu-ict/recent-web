@@ -27,7 +27,7 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <h4 class="panel-title">
-      <a data-toggle="collapse" href="#collapse2">Mjesec: <strong>11 </strong><small>/2016</small></a>
+      <a data-toggle="collapse" href="#collapse2">Mjesec: <strong>{{ mjesec }} </strong><small>/{{ godina }}</small></a>
     </h4>
   </div>
   <div id="collapse2" class="panel-collapse collapse">
@@ -42,13 +42,9 @@
                   <span aria-hidden="true">&laquo;</span>
                 </a>
               </li>
-              <li><a href="#"><b>10</b> <small>/</small>2016</a></li>
-              <li><a href="#"><b>9</b> <small>/</small>2016</a></li>
-              <li><a href="#"><b>8</b> <small>/</small>2016</a></li>
-              <li><a href="#"><b>7</b> <small>/</small>2016</a></li>
-              <li><a href="#"><b>6</b> <small>/</small>2016</a></li>
-              <li><a href="#"><b>5</b> <small>/</small>2016</a></li>
-
+                {% for mjesec in mjeseci %}
+                  <li><a href="/dashboard/radnik/{{ user.Id }}/{{ mjesec.godina }}/{{ mjesec.mjesec }}"><b>{{ mjesec.mjesec }}</b> <small>/</small>{{ mjesec.godina }}</a></li>
+                {% endfor %}
               <li>
                 <a href="#" aria-label="Next">
                   <span aria-hidden="true">&raquo;</span>
@@ -77,9 +73,9 @@
                 </tr>
               </thead>
               <tbody>
-                
-                {% for dan in evidencija %}
-                <tr>
+                {% set br = range(1,31) %}
+                {% for br, dan in evidencija %}
+                <tr data-toggle="collapse" data-target="#{{ br }}">
                   <td>{{ dan.datum|date("d/m/Y") }}</td>
                   <td>{{ dan.vrijemeDolaska|date('H:i') }}</td>
                   <td>{{ dan.vrijemeOdlaska|date('H:i') }}</td>
@@ -109,6 +105,17 @@
                   <td> 
                     Više informacija <span class="glyphicon glyphicon-chevron-down"></span>
                   </td>
+                </tr>
+                <tr id="{{ br }}" class="collapse">
+
+                    {% for time in dolasci %}
+                        {% if dan.datum|date("d/m/Y")==time.date|date("d/m/Y") %}
+                          <td colspan="1">{{ time.time|date("H:i") }}</td>
+                          <td colspan="1">{{ time.razlogId.razlog }}</td>
+                        {% endif %}
+
+                    {% endfor %}
+
                 </tr>
               {% endfor %}
              
