@@ -4,6 +4,39 @@
 
 {% block maincontent %}
 
+<script type="text/javascript">
+function readTextFile()
+{
+    var elem = document.getElementById("vri");
+    var note = document.getElementById("note");
+    var xhttp = new XMLHttpRequest();
+  	xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    	if(this.responseText != "1" && this.responseText!="0" && this.responseText!="" ){
+    		note.innerHTML = "Tag/Kartica Dohvaćeni!";
+      		elem.value = this.responseText;
+    	}
+    }
+  	};
+  	xhttp.open("GET", "/scanscanget/sfile.txt", true);
+  	xhttp.send();
+    
+}
+
+function startScan()
+{
+    var note = document.getElementById("note");
+    var xhttp = new XMLHttpRequest();
+  	xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      note.innerHTML = "<small>Pokrenuto skeniranje / dohvaćanje</small>";
+    }
+  	};
+  	xhttp.open("GET", "/scanscanget", true);
+  	xhttp.send();
+    
+}
+</script>
 
 <h1 class="page-header">Postavke evidencije zaposlenika</h1>
 <br>
@@ -37,8 +70,11 @@ Definicija tipova taga. <small>( Po defaultu 0 (kod registracije se postavlja na
 			<input type="radio" name="tip" value="2" data-toggle="collapse" data-target=".collapseOne:not(.in)"> Tag / Kartica / NeAndroidAplikacija <small>(2)</small><br>
 			
 		<div class="collapseOne panel-collapse collapse">
+			<div class="panel-body">
+				Za dobivanje identifikatora taga/kartice, najprije pokrenite dohvaćanje klikom na gumb "Pokreni Dohvaćanje", te nakon toga priložite tag/karticu na uređaj za skeniranje/evidentiranje, te nakon što se očita, kliknite na gumb "Osvježi". Kada se dobije uspiješna poruka, identitet taga je dohvećen, te klikom ba gumb "Promjeni" spremite promjene. <b>NAPOMENA!</b> Kako bi se dovatio točan identitet taga/kartice, budite sigurni da nitko drugi ne obavlja skeniranje u vrijeme dok radite dohvaćanje/skeniranje! Dohvatiti će se identitet <b> prvoga</b> taga/kartice koji se evidentira/skenira nakon što je pokrenuto dohvaćanje/skeniranje.
+			</div>
             <div class="panel-body">
-              Vrijednost: <input type="text" name="vrijednost"> <small>(ručno unijeti za sad) </small>
+              Vrijednost: <input type="text" name="vrijednost" id="vri" readonly> <button type="button" onclick="startScan()" >Pokreni dohvaćanje</button><button type="button" onclick="readTextFile()" >Osvježi</button><span id="note" style="margin-left: 20px;"></span>
             </div>
           </div>
 		<button type="submit">Promjeni</button>

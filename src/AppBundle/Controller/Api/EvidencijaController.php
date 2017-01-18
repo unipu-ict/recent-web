@@ -21,7 +21,8 @@ use Symfony\Component\Debug\Exception\FatalThrowableError;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
-use AppBundle\Controller\Zapisi;
+use AppBundle\Controller\ScanGetController;
+
 
 class EvidencijaController extends FOSRestController//potrebno ekstendati FOSRestController zbgo $this->getUser()
 {
@@ -35,12 +36,13 @@ class EvidencijaController extends FOSRestController//potrebno ekstendati FOSRes
         $uID = $content->{'uid'};
         $em = $this->getDoctrine()->getManager(); //dohvati managera
         $uid = $this->getDoctrine() ->getRepository('AppBundle:Tag_user')->findOneBy( array('user_tag' => $uID)); // dohvaca red iz Tag_user s uidom
-        
-        // provjera
-        $myfile = fopen("newfile.txt", "r") or die("Unable to open file!");
-        if ( fread($myfile,filesize("newfile.txt")) == "1"){
-            Zapisi::zapisiUid($uID);
+
+        //dohvacanje taga 
+        $file = fopen("scanscanget/sfile.txt","r");
+        if( fread($file,filesize("scanscanget/sfile.txt")) == "1") {
+            ScanGetController::zapisiUid($uID);
         }
+        fclose($file);
 
         if (!$uid){ // ako nema rezultata, ako nepostoji korisnik s tim uid-om
             $content = array("uspjeh" => "ne"); //, "razlog" => "nepostojeci korisnik")
@@ -120,7 +122,7 @@ class EvidencijaController extends FOSRestController//potrebno ekstendati FOSRes
             $poruka = 0; //postoji evidencija dana za danasnji datum
         }else{
             $result1 = array(); // result
-            $neprisustvo = $this->getDoctrine()->getRepository('AppBundle:Neprisustvo')-> find(1);
+            $neprisustvo = $this->getDoctrine()->getRepository('AppBundle:Neprisustvo')-> find(15);
             foreach ($user as $uv) { // spremanje u result
                 $normal1 =  new EvidencijadanaUserNormalizer();
                 $uv= $normal1->normalize($uv);
@@ -129,8 +131,8 @@ class EvidencijaController extends FOSRestController//potrebno ekstendati FOSRes
                 $evidencija_dana = new Evidencija_dana(); // nova Evidencija_dana
                 $evidencija_dana->setUserId($usr); // postavi usera
                 $evidencija_dana->setDatum(new \DateTime("now")); //postavi vrijeme
-                $evidencija_dana->setVrijemeDolaska(new \DateTime("now"));
-                $evidencija_dana->setVrijemeOdlaska(new \DateTime("now"));
+                $evidencija_dana->setVrijemeDolaska(new \DateTime(date("H:i:s", strtotime("00:00:00"))));
+                $evidencija_dana->setVrijemeOdlaska(new \DateTime(date("H:i:s", strtotime("00:00:00"))));
                 $evidencija_dana->setDoneBusinessHours(0);
                 $evidencija_dana->setNotWorkingId($neprisustvo);
                 $em->persist($evidencija_dana); //pripremi za spremanje
@@ -154,6 +156,7 @@ class EvidencijaController extends FOSRestController//potrebno ekstendati FOSRes
             $evidencija_vrijeme = $this->getDoctrine()->getRepository('AppBundle:Evidencija')->findBy(
                 array('userId' => $id, 'date' => $datum), array('time' => 'ASC')
             );
+            $neprisustvo = $this->getDoctrine()->getRepository('AppBundle:Neprisustvo')-> find(1);
             $vrijeme = array(); // result
             foreach ($evidencija_vrijeme as $v) { // spremanje u result
                 $normalv =  new EvidencijaVrijemeNormalizer();
@@ -210,6 +213,8 @@ class EvidencijaController extends FOSRestController//potrebno ekstendati FOSRes
             }
             //eksperiment kraj
             $ev_dan_user_ob->setDoneBusinessHours($broj_sati);
+            $ev_dan_user_ob->setNotWorkingId($neprisustvo);
+            $em->persist($ev_dan_user_ob);
             $em->flush();
             $poruka = 1; //podaci izmjenjeni
         }else{
@@ -217,5 +222,4 @@ class EvidencijaController extends FOSRestController//potrebno ekstendati FOSRes
         }
         return $poruka;
     }
-
 }

@@ -18,6 +18,7 @@ use FOS\UserBundle\Event\FormEvent;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 
+
 class ZaposleniciController extends Controller
 {
 
@@ -199,6 +200,7 @@ class ZaposleniciController extends Controller
                 $tag_trenutni->setUserTag( $vrijednost);
                 $tag_trenutni->setType(2);
                 $em->flush();
+                ScanGetController::setFalse();
                 return "Uspješno pormjenjeni podaci! tip = 2 , vrijednost: " . $vrijednost . " . ";
             }
             else { return "Ništa nije mijenjano!"; }
