@@ -139,7 +139,7 @@ class DashboardController extends Controller
 
 
     /**
-    * @Route("/dashboard/{godina}/{mjesec}", name="dashboard2")
+    * @Route("/dashboard/{godina}/{mjesec}", name="dashboard2", requirements={ "godina": "\d+" , "mjesec" : "\d+"  } )
     */
     public function pagination2Action($godina, $mjesec)
     {

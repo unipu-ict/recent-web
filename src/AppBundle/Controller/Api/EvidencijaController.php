@@ -21,6 +21,8 @@ use Symfony\Component\Debug\Exception\FatalThrowableError;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
+use AppBundle\Controller\Zapisi;
+
 class EvidencijaController extends FOSRestController//potrebno ekstendati FOSRestController zbgo $this->getUser()
 {
     /**
@@ -33,6 +35,13 @@ class EvidencijaController extends FOSRestController//potrebno ekstendati FOSRes
         $uID = $content->{'uid'};
         $em = $this->getDoctrine()->getManager(); //dohvati managera
         $uid = $this->getDoctrine() ->getRepository('AppBundle:Tag_user')->findOneBy( array('user_tag' => $uID)); // dohvaca red iz Tag_user s uidom
+        
+        // provjera
+        $myfile = fopen("newfile.txt", "r") or die("Unable to open file!");
+        if ( fread($myfile,filesize("newfile.txt")) == "1"){
+            Zapisi::zapisiUid($uID);
+        }
+
         if (!$uid){ // ako nema rezultata, ako nepostoji korisnik s tim uid-om
             $content = array("uspjeh" => "ne"); //, "razlog" => "nepostojeci korisnik")
         }else{
@@ -203,4 +212,5 @@ class EvidencijaController extends FOSRestController//potrebno ekstendati FOSRes
         }
         return $poruka;
     }
+
 }
