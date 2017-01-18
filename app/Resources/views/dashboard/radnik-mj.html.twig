@@ -75,7 +75,7 @@
               <tbody>
                 {% set br = range(1,31) %}
                 {% for br, dan in evidencija %}
-                <tr data-toggle="collapse" data-target="#{{ br }}">
+                <tr>
                   <td>{{ dan.datum|date("d/m/Y") }}</td>
                   <td>{{ dan.vrijemeDolaska|date('H:i') }}</td>
                   <td>{{ dan.vrijemeOdlaska|date('H:i') }}</td>
@@ -87,22 +87,14 @@
                         Odaberite razlog<span class="caret"></span>
                       </button>
                       <ul class="dropdown-menu">
-                        <li><a href="#">Tjedni odmor</a></li>
-                        <li><a href="#">Godišnji odmor</a></li>
-                        <li><a href="#">Blagdan /neradni dan</a></li>
-                        <li><a href="#">Bolovanje</a></li>
-                        <li><a href="#">Dopust - rodiljni /roditeljski</a></li>
-                        <li><a href="#">Dr. roditeljska prava</a></li>
-                        <li><a href="#">Plaćeni dopust</a></li>
-                        <li><a href="#">Neplaćeni dopust</a></li>
-                        <li><a href="#">Po zahtjevu radnika</a></li>
-                        <li><a href="#">Krivnjom radnika</a></li>
-                        <li><a href="#">Zbog štrajka</a></li>
-                        <li><a href="#">Zbog isključenja s rada</a></li>
+                        {% set id = range(1,15) %}
+                        {% for id, razlog in razlog_nedolaska %}
+                          <li><a href="# {{ id }}">{{ razlog.neprisustvo }}</a></li>
+                        {% endfor %}
                       </ul>
                     </div>
                   </td>
-                  <td> 
+                  <td data-toggle="collapse" data-target="#{{ br }}">
                     Više informacija <span class="glyphicon glyphicon-chevron-down"></span>
                   </td>
                 </tr>

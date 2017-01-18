@@ -112,6 +112,8 @@ class DashboardController extends Controller
         $god_show = $godina;
         $mj_show = $mjesec;
 
+        $neprisustvo = $this->getDoctrine()->getRepository('AppBundle:Neprisustvo')->findAll();
+
         $time=0.0;
 
         foreach($evidencija as $odradeno){
@@ -136,7 +138,8 @@ class DashboardController extends Controller
             'sati' => round($time, 2),
             'mjeseci' => $mjeseci,
             'mjesec' => $mj_show,
-            'godina' => $god_show
+            'godina' => $god_show,
+            'razlog_nedolaska' => $neprisustvo
         ));
     }
 
@@ -158,6 +161,7 @@ class DashboardController extends Controller
         foreach ($users as $korisnik){
             $time=0.0;
             $prekovremeni=0.0;
+            $neprisutnost=0.0;
             $em = $this->getDoctrine()->getManager();
             $query=$em->createQuery( 'SELECT u FROM AppBundle:Evidencija_dana u WHERE u.userId = :userid and YEAR(u.datum) = :godina and MONTH(u.datum) = :mjesec')
                 ->setParameter('userid', $korisnik->getId())
