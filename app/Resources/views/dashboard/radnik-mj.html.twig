@@ -79,7 +79,7 @@
                   <td>{{ dan.datum|date("d/m/Y") }}</td>
                   <td>{{ dan.vrijemeDolaska|date('H:i') }}</td>
                   <td>{{ dan.vrijemeOdlaska|date('H:i') }}</td>
-                  <td>{{ dan.doneBusinessHours }}</td>
+                  <td>{{ dan.doneBusinessHours|round(2, 'floor') }}</td>
                   <td>
                     <!-- Small button group -->
                     <div class="btn-group">
