@@ -39,6 +39,7 @@ class DashboardController extends Controller
         foreach ($users as $korisnik){
             $time=0.0;
             $prekovremeni=0.0;
+            $neprisutnost=0.0;
             $em = $this->getDoctrine()->getManager();
             $query=$em->createQuery( 'SELECT u FROM AppBundle:Evidencija_dana u WHERE u.userId = :userid and YEAR(u.datum) = :godina and MONTH(u.datum) = :mjesec')
                 ->setParameter('userid', $korisnik->getId())
@@ -49,10 +50,12 @@ class DashboardController extends Controller
 
             foreach($data as $odradeno){
                 $time = $time + $odradeno->getDoneBusinessHours();//zbroj odradenih sati
-                if($odradeno->getDoneBusinessHours()>7)
-                    $prekovremeni = $prekovremeni + $odradeno->getDoneBusinessHours() - 7;
+                if($odradeno->getDoneBusinessHours()>8)
+                    $prekovremeni = $prekovremeni + $odradeno->getDoneBusinessHours() - 8;
+                if($odradeno->getNotWorkingId()->getId()>1)
+                    $neprisutnost = $neprisutnost + 8;
             }
-            $podaci = array('user' => $korisnik, 'odradeno' => round($time, 2), 'prekovremeni' => round($prekovremeni, 2),
+            $podaci = array('user' => $korisnik, 'odradeno' => round($time, 2), 'neprisutnost' => $neprisutnost, 'prekovremeni' => round($prekovremeni, 2),
                 'mjesec' => $datum->format("m"),
                 'godina' => $datum->format("Y"));
             array_push($odradeno_sati, $podaci);
@@ -99,15 +102,17 @@ class DashboardController extends Controller
         $evidencija = $query->getResult();
 
 
-        $query=$em->createQuery( 'SELECT u FROM AppBundle:Evidencija u WHERE u.userId = :userid and YEAR(u.date) = :godina and MONTH(u.date) = :mjesec')
+        $query2=$em->createQuery( 'SELECT u FROM AppBundle:Evidencija u WHERE u.userId = :userid and YEAR(u.date) = :godina and MONTH(u.date) = :mjesec')
             ->setParameter('userid', $user->getId())
             ->setParameter('godina', $godina)
             ->setParameter('mjesec', $mjesec);
 
-        $dolasci = $query->getResult();
+        $dolasci = $query2->getResult();
 
         $god_show = $godina;
         $mj_show = $mjesec;
+
+        $neprisustvo = $this->getDoctrine()->getRepository('AppBundle:Neprisustvo')->findAll();
 
         $time=0.0;
 
@@ -133,7 +138,8 @@ class DashboardController extends Controller
             'sati' => round($time, 2),
             'mjeseci' => $mjeseci,
             'mjesec' => $mj_show,
-            'godina' => $god_show
+            'godina' => $god_show,
+            'razlog_nedolaska' => $neprisustvo
         ));
     }
 
@@ -155,6 +161,7 @@ class DashboardController extends Controller
         foreach ($users as $korisnik){
             $time=0.0;
             $prekovremeni=0.0;
+            $neprisutnost=0.0;
             $em = $this->getDoctrine()->getManager();
             $query=$em->createQuery( 'SELECT u FROM AppBundle:Evidencija_dana u WHERE u.userId = :userid and YEAR(u.datum) = :godina and MONTH(u.datum) = :mjesec')
                 ->setParameter('userid', $korisnik->getId())
@@ -165,10 +172,12 @@ class DashboardController extends Controller
 
             foreach($data as $odradeno){
                 $time = $time + $odradeno->getDoneBusinessHours();//zbroj odradenih sati
-                if($odradeno->getDoneBusinessHours()>7)
-                    $prekovremeni = $prekovremeni + $odradeno->getDoneBusinessHours() - 7;
+                if($odradeno->getDoneBusinessHours()>8)
+                    $prekovremeni = $prekovremeni + $odradeno->getDoneBusinessHours() - 8;
+                if($odradeno->getNotWorkingId()->getId()>1)
+                    $neprisutnost = $neprisutnost + 8;
             }
-            $podaci = array('user' => $korisnik, 'odradeno' => round($time, 2), 'prekovremeni' => round($prekovremeni, 2),
+            $podaci = array('user' => $korisnik, 'odradeno' => round($time, 2), 'neprisutnost' => $neprisutnost, 'prekovremeni' => round($prekovremeni, 2),
                 'mjesec' => $mj_show,
                 'godina' => $god_show);
             array_push($odradeno_sati, $podaci);
