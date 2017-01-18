@@ -35,6 +35,8 @@ class EvidencijaController extends FOSRestController//potrebno ekstendati FOSRes
         $uid = $this->getDoctrine() ->getRepository('AppBundle:Tag_user')->findOneBy( array('user_tag' => $uID)); // dohvaca red iz Tag_user s uidom
         if (!$uid){ // ako nema rezultata, ako nepostoji korisnik s tim uid-om
             $content = array("uspjeh" => "ne"); //, "razlog" => "nepostojeci korisnik")
+        }elseif ($uid->getType() == 0){
+            $content = array("uspjeh" => "ne");
         }else{
             $user = $this->getDoctrine() ->getRepository('AppBundle:User') -> find( $uid->getUserId() ); //ako ima rzultata, identificiraj korisnika
             // 5 minuta blokada
@@ -109,16 +111,19 @@ class EvidencijaController extends FOSRestController//potrebno ekstendati FOSRes
             $poruka = 0; //postoji evidencija dana za danasnji datum
         }else{
             $result1 = array(); // result
+            $neprisustvo = $this->getDoctrine()->getRepository('AppBundle:Neprisustvo')-> find(1);
             foreach ($user as $uv) { // spremanje u result
                 $normal1 =  new EvidencijadanaUserNormalizer();
                 $uv= $normal1->normalize($uv);
-                array_push($result1, $uv);
+                $usr = $user = $this->getDoctrine() ->getRepository('AppBundle:User') -> find($uv);
+                array_push($result1, $usr);
                 $evidencija_dana = new Evidencija_dana(); // nova Evidencija_dana
-                $evidencija_dana->setUserId($uv); // postavi usera
+                $evidencija_dana->setUserId($usr); // postavi usera
                 $evidencija_dana->setDatum(new \DateTime("now")); //postavi vrijeme
                 $evidencija_dana->setVrijemeDolaska(new \DateTime("now"));
                 $evidencija_dana->setVrijemeOdlaska(new \DateTime("now"));
                 $evidencija_dana->setDoneBusinessHours(0);
+                $evidencija_dana->setNotWorkingId($neprisustvo);
                 $em->persist($evidencija_dana); //pripremi za spremanje
                 $em->flush(); //spremi
             }
