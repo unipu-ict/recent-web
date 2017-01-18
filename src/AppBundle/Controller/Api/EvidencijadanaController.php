@@ -22,6 +22,7 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 
 
@@ -43,6 +44,23 @@ class EvidencijadanaController extends FOSRestController
 //
 //        //$evidencija_dana = $this->getDoctrine()->getRepository('AppBundle:Evidencija_dana')->findAll(); // pronadij user id
         $user = $this->getDoctrine() ->getRepository('AppBundle:User') -> findAll();
+
+//        $em = $this->getDoctrine()->getManager();
+//        $query=$em->createQuery( 'SELECT u.id FROM AppBundle\Entity\User u ');
+//        $data = $query->getResult();
+//
+//        $content = $this->getContentAsArray($data[0]); // poznvana pomocna klasa definirana ispod
+//        $uv = $content->{'id'};
+
+
+//        $result1 = array(); // result
+//
+//            foreach ($data as $uv) { // spremanje u result
+//                $content = $this->getContentAsArray($uv); // poznvana pomocna klasa definirana ispod
+//                $uv = $content->{'id'};
+//                array_push($result1, $uv);
+//            }
+
 //        $ev_dana_datum = $this->getDoctrine() ->getRepository('AppBundle:Evidencija_dana') -> findBy(
 //            array('datum' => $datum), array('datum' => 'ASC'));
 //
@@ -69,37 +87,45 @@ class EvidencijadanaController extends FOSRestController
 //            }
 //        }
 
-        $broje = 3;
-        $date = date("d/m/Y");
-        $date = strtotime(date("d/m/Y", strtotime($date)) . "-$broje months");
-        $date = date("m/Y",$date);
+//        $broje = 3;
+//        $date = date("d/m/Y");
+//        $date = strtotime(date("d/m/Y", strtotime($date)) . "-$broje months");
+//        $date = date("m/Y",$date);
 
-        $mjeseci = array(); // result
-
-        for ($i = 1; $i <= 12; $i++) {
-            $date = date("Y-m-d");
-            $date = strtotime(date("Y-m-d", strtotime($date)) . "-$i months");
-            $mjesec = date("m",$date);
-            $godina = date("Y", $date);
-            $mjesec_godina = array('mjesec' => $mjesec, 'godina' => $godina);
-            array_push($mjeseci, $mjesec_godina);
-        }
+//        $mjeseci = array(); // result
 //
-//            foreach ($evidencija_vrijeme as $v) { // spremanje u result
-//                $normalv =  new EvidencijaVrijemeNormalizer();
-//                $v= $normalv->normalize($v);
-//                array_push($vrijeme, $v);
-//            }
+//        for ($i = 1; $i <= 12; $i++) {
+//            $date = date("Y-m-d");
+//            $date = strtotime(date("Y-m-d", strtotime($date)) . "-$i months");
+//            $mjesec = date("m",$date);
+//            $godina = date("Y", $date);
+//            $mjesec_godina = array('mjesec' => $mjesec, 'godina' => $godina);
+//            array_push($mjeseci, $mjesec_godina);
+//        }
+////
+////            foreach ($evidencija_vrijeme as $v) { // spremanje u result
+////                $normalv =  new EvidencijaVrijemeNormalizer();
+////                $v= $normalv->normalize($v);
+////                array_push($vrijeme, $v);
+////            }
 
-        $em = $this->getDoctrine()->getManager();
-        $query=$em->createQuery( 'SELECT u FROM AppBundle:Evidencija_dana u WHERE YEAR(u.datum) = :godina and MONTH(u.datum) = :mjesec')
-            ->setParameter('godina', $datum->format('Y'))->setParameter('mjesec', $datum->format('m'));
-        $data = $query->getResult();
+//        $em = $this->getDoctrine()->getManager();
+//        $query=$em->createQuery( 'SELECT u FROM AppBundle:Evidencija_dana u WHERE YEAR(u.datum) = :godina and MONTH(u.datum) = :mjesec')
+//            ->setParameter('godina', $datum->format('Y'))->setParameter('mjesec', $datum->format('m'));
+//        $data = $query->getResult();
 
-        return $view = $this->view($mjeseci, Response::HTTP_OK);
+        return $view = $this->view($user, Response::HTTP_OK);
 
     }
 
+
+    protected function getContentAsArray($id){ //pomocna funkcjia za vratit json iz respnsa
+        $content = $id->getContent();
+        if(empty($content)){
+            throw new BadRequestHttpException("Content is empty");
+        }
+        return json_decode($content);
+    }
 
     /**
      * @Rest\View
