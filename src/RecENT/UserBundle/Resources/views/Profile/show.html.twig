@@ -53,12 +53,12 @@
 
               {% set br = range(1,31) %}
               {% for br, dan in evidencija %}
-                  <tr data-toggle="collapse" data-target="#{{ br }}">
+                  <tr>
                       <td>{{ dan.datum|date("d/m/Y") }}</td>
                       <td>{{ dan.vrijemeDolaska|date('H:i') }}</td>
                       <td>{{ dan.vrijemeOdlaska|date('H:i') }}</td>
                       <td>{{ dan.doneBusinessHours()|round(2, 'floor') }}</td>
-                      <td>
+                      <td data-toggle="collapse" data-target="#{{ br }}">
                         Više informacija <span class="glyphicon glyphicon-chevron-down"></span>
                       </td>
                     </tr>
