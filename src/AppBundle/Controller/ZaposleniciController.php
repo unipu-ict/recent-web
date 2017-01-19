@@ -164,9 +164,83 @@ class ZaposleniciController extends Controller
             'tag' => $tag,
             'message' => $poruka
         ));
+    }
+
+    /**
+     * @Route("/dashboard/uredizaposlenika", name="uredizaposlenika")
+     *
+     */
+
+    public function urediZaposlenikaAction(Request $request)
+    {
+
+        $userManager = $this->get('fos_user.user_manager');
+        $users = $userManager->findUsers();
+
+        $poruka ="";
+
+        return $this->render('dashboard/zaposlenici/uredi.html.twig', array(
+            'suser' => "",
+            'users' => $users,
+            'message' => $poruka
+        ));
+
+    }
+
+    /**
+     * @Route("/dashboard/uredizaposlenika/{id}", name="uredizaposlenikaid")
+     *
+     */
+    public function urediZaposlenikaSIdAction($id, Request $request)
+    {
+
+        $userManager = $this->get('fos_user.user_manager');
+        $users = $userManager->findUsers();
+        $suser = $userManager->findUserBy(  array('id' => $id ));
+
+        $message ="";
+        $id_user=$request->request->get('id');
+        $new_user_email=$request->request->get('email');
+        $new_user_username= $request->request->get('username');
+        $new_user_name=$request->request->get('name');
+        $new_user_surname = $request->request->get('surname');
+
+         if($userManager->findUserBy(array('id'=>$id_user)))   {
+             if(isset($id_user)&&isset($new_user_email)&&isset($new_user_name)&&isset($new_user_surname)&&isset($new_user_username)){
+                    $message=$this->updateUserAction($id_user,$new_user_email,$new_user_username,$new_user_name,$new_user_surname);
+             }
+         }
+        
 
 
+        return $this->render('dashboard/zaposlenici/uredi.html.twig', array(
+            'suser' => $suser,
+            'users' => $users,
+            'message' => $message
+        ));
 
+    }
+
+    // update korisnika
+    public function updateUserAction($id,$newEmail,$newUsername,$newName,$newSurname)
+    {
+        $userManager = $this->get('fos_user.user_manager');
+        $user = $userManager->findUserBy(array('id'=>$id));
+
+        $user->setEmail($newEmail);
+        $user->setName($newName);
+        $user->setSurname($newSurname);
+        $user->setUsername($newUsername);
+
+        $this->get('fos_user.user_manager')->updateUser($user, false);
+        $this->getDoctrine()->getManager()->flush();
+
+        return "Uspješno promjenjeni podaci!";
+        
+
+        // make more modifications to the database
+
+        
     }
 
     public function updateTagUserAction(Request $request)
@@ -204,11 +278,6 @@ class ZaposleniciController extends Controller
                 return "Uspješno pormjenjeni podaci! tip = 2 , vrijednost: " . $vrijednost . " . ";
             }
             else { return "Ništa nije mijenjano!"; }
-            
-
-            
-        
-
         
     }
 }

@@ -1,0 +1,75 @@
+{% extends 'dashboard/dashboard-base.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+{% block maincontent %}
+
+
+<h1 class="page-header">Uredi zaposlenika</h1>
+
+
+{% if message!="" %}
+<div class="alert alert-info">
+  <strong>Info!</strong> {{ message }}
+</div>
+{% endif %}
+
+
+{% if suser!="" %}
+<div class="col-md-6 col-xs-12" >
+    <h2>Odabran zaposlenik</h2>
+      <form method="post" action="" class="form-horizontal">
+      <div class="form-group">
+          <label class="control-label col-sm-3">Ime</label>
+          <div class="col-sm-9"> 
+            <input type="text" class="form-control" name="name" placeholder="ime korisnika" value="{{suser.name}}" />
+          </div>  
+      </div>
+            
+      <div class="form-group">
+          <label class="control-label col-sm-3">Prezme</label> 
+          <div class="col-sm-9"> 
+            <input type="text" class="form-control" name="surname" placeholder="prezime korisnika" value="{{suser.surname}}" />
+          </div>  
+      </div>
+      
+      <div class="form-group">
+          <label class="control-label col-sm-3">Korisničko ime</small></label> 
+          <div class="col-sm-9">  
+            <input type="text" class="form-control" name="username" placeholder="username korisnika" value="{{suser.username}}"/>
+          </div>  
+      </div>     
+
+      <div class="form-group">
+          <label class="control-label col-sm-3">Email</label>  
+          <div class="col-sm-9"> 
+            <input type="text" name="email" class="form-control" placeholder="novi email korisnika" value="{{suser.email}}"/>
+          </div>  
+      </div>
+        <input type="hidden" name="id" placeholder="id korisnika" value="{{suser.id}}" />
+      <div class="form-group"> 
+        <div class="col-sm-offset-2 col-sm-9">
+          <button type="submit" class="btn btn-default">Promijeni</button>
+        </div>
+      </div>
+      </form> 
+  </div>
+
+{% endif %}  
+
+<div class="col-md-6 col-xs-12" >
+    <h2>Lista zaposlenika</h2>
+    <ul class="users-list" type="none">
+    {% for user in users %}
+    <li > {{ user.name|e }} {{ user.surname|e }} 
+      <a class="btn btn-primary btn-xs float-right" href="/dashboard/uredizaposlenika/{{ user.id }}" >Detalji/Promjeni</a>
+    </li>
+    {% endfor %}
+    </ul>
+
+    <br>
+  </div>
+  </div>
+
+
+{% endblock %}
