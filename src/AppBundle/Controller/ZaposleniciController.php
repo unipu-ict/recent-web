@@ -166,11 +166,11 @@ class ZaposleniciController extends Controller
         ));
     }
 
+
     /**
      * @Route("/dashboard/uredizaposlenika", name="uredizaposlenika")
      *
      */
-
     public function urediZaposlenikaAction(Request $request)
     {
 
