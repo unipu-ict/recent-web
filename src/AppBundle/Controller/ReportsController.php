@@ -131,7 +131,7 @@ class ReportsController extends Controller
         return $this->render('reports/po_radniku-detaljno.twig', array(
             'evidencija' => $evidencija,
             'user' => $user,
-            'sati' => $time,
+            'sati' => round($time, 2),
             'godina' => $godina,
             'mjesec' => $mjesec,
             'mjeseci' => $mjeseci,
@@ -166,7 +166,7 @@ class ReportsController extends Controller
         return $this->render('reports/po_danu-detaljno.twig', array(
             'evidencija' => $evidencija_dana,
             'datum' => $d,
-            'sati' => $time,
+            'sati' => round($time, 2),
             'users' => $users
         ));
     }
