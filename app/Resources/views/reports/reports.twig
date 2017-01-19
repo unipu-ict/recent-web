@@ -29,10 +29,79 @@
   </div>
   <div class="panel-body">
     <div class="row ">
-      <div class="col-xs-12 "> 
+      <div class="col-xs-12 ">
 
-      <a href="/reports/po_radniku" class="btn btn-primary btn-xl">Evidencije - radno vrijeme po zaposleniku</a><br><br>
-      <a href="/reports/po_danu" class="btn btn-primary btn-xl">Evidencije - radno vrijeme svih zaposlenika po danu</a> 
+
+        <div class="panel-group">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" href="#collapse2">Evidencije - radno vrijeme po zaposleniku</a>
+              </h4>
+            </div>
+            <div id="collapse2" class="panel-collapse collapse form-group">
+            <div class="row" style="padding: 12px 2px 1px 4px;">
+              <form action="reports/po_radniku/detaljno" method="POST">
+                <div class="col-md-3">
+                    <label for="g">Godina</label>
+                    <select name="g" id="g" class="form-control" >
+                        {% for godina in godine %}
+                          <option value="{{ godina }}">{{ godina }}</option>
+                        {% endfor %}
+                    </select> 
+                </div>
+                <div class="col-md-3">
+                  <label for="m">Mjesec</label>
+                  <select name="m" id="m" class="form-control">
+                      {% for mjesec in mjeseci %}
+                        <option value="{{ mjesec }}">{{ mjesec }}</option>
+                      {% endfor %}
+
+                  </select>
+                </div>
+                <div class="col-md-3">
+                  <label for="k">Zaposlenik</label>  
+                  <select name="k" id="k" class="form-control">
+                      {% for user in users %}
+                        <option value="{{ user.id }}">{{ user.name }}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+                <div class="col-md-3">  
+                  <label for="k"> </label>  
+                  <input type="submit" class="form-control btn btn-primary" value="Prikaži">
+                </div> 
+              </form>
+              </div>
+            </div>
+          </div>
+        </div> 
+
+
+        <div class="panel-group">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" href="#collapse3">Evidencije - radno vrijeme svih zaposlenika po danu</a>
+              </h4>
+            </div>
+            <div id="collapse3" class="panel-collapse collapse">
+              <div class="row form-group" style="padding: 12px 2px 1px 4px;">
+                <form action="reports/po_danu/detaljno" method="POST">
+                  <div class="col-md-3">
+                    <label for="k">Odaberite datum</label>  
+                    <input type="date" name="datum" class="form-control">
+                  </div>
+                  <div class="col-md-3">  
+                    <label for="k">   </label>  
+                    <input type="submit" class="form-control btn btn-primary" value="Prikaži">
+                  </div>  
+                </form>
+              </div>  
+            </div>
+          </div>
+        </div> 
+
 
     </div>
   </div>

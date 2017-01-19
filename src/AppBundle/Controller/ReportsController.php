@@ -25,14 +25,32 @@ class ReportsController extends Controller
     public function indexAction()
     {
 
-        $userManager = $this->get('fos_user.user_manager');
-        $users = $userManager->findUsers();
+        $mjeseci = array(); // result
 
-        return $this->render('reports/reports.twig', array(
-            'webpage_title' => 'Evidencija zaposlenika ',
-            'users' => $users
+        for ($i = 0; $i < 12; $i++) {
+            $date = date("Y-m-d");
+            $date = strtotime(date("Y-m-d", strtotime($date)) . "-$i months");
+            $mjesec = date("m",$date);
+            array_push($mjeseci, $mjesec);
+        }
 
-        ));
+        $godine = array(); // result
+
+        for ($i = 0; $i < 3; $i++) {
+            $date = date("Y-m-d");
+            $date = strtotime(date("Y-m-d", strtotime($date)) . "-$i years");
+            $godina = date("Y", $date);
+            array_push($godine, $godina);
+        }
+
+        $users = $this->getDoctrine() ->getRepository('AppBundle:User') -> findAll();
+
+            return $this->render('reports/reports.twig', array(
+                'mjeseci' => $mjeseci,
+                'godine' => $godine,
+                'users' => $users
+            ));
+
     }
 
     /**

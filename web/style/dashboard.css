@@ -229,3 +229,7 @@ border-radius: 4px;
 
 }
 
+.inline-block {
+  display: inline-block !important;
+}
+
