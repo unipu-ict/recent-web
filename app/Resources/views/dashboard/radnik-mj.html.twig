@@ -38,7 +38,7 @@
           <nav aria-label="Page navigation" class="pagination-nav">
             <ul class="pagination">
               <li>
-                <a href="#" aria-label="Previous">
+                <a href="/dashboard/radnik/{{ user.Id }}/{{ next_g }}/{{ next_m }}" aria-label="Previous">
                   <span aria-hidden="true">&laquo;</span>
                 </a>
               </li>
@@ -46,7 +46,7 @@
                   <li><a href="/dashboard/radnik/{{ user.Id }}/{{ mjesec.godina }}/{{ mjesec.mjesec }}"><b>{{ mjesec.mjesec }}</b> <small>/</small>{{ mjesec.godina }}</a></li>
                 {% endfor %}
               <li>
-                <a href="#" aria-label="Next">
+                <a href="/dashboard/radnik/{{ user.Id }}/{{ previous_g }}/{{ previous_m }}" aria-label="Next">
                   <span aria-hidden="true">&raquo;</span>
                 </a>
               </li>
@@ -81,11 +81,22 @@
                   <td>{{ dan.vrijemeOdlaska|date('H:i') }}</td>
                   <td>{{ dan.doneBusinessHours|round(2, 'floor') }}</td>
                   <td>
+                    {% if(dan.notWorkingId.id==1) %}
+                    <button class="btn dropdown-toggle btn-width" type="button" >
+                      {{ dan.notWorkingId.neprisustvo }}
+                    </button>
+                    {% else %}
                     <!-- Small button group -->
                     <div class="btn-group">
-                      <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Odaberite razlog<span class="caret"></span>
+                      <button class="btn btn-primary btn-sm dropdown-toggle btn-width" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ dan.notWorkingId.neprisustvo }}<span class="caret"></span>
                       </button>
+                      {#<select name="change_nedolazak">#}
+                          {#{% set id = range(1,15) %}#}
+                          {#{% for id, razlog in razlog_nedolaska %}#}
+                            {#<option value="{{ id }}">{{ razlog.neprisustvo }}</option>#}
+                          {#{% endfor %}#}
+                      {#</select>#}
                       <ul class="dropdown-menu">
                         {% set id = range(1,15) %}
                         {% for id, razlog in razlog_nedolaska %}
@@ -93,6 +104,7 @@
                         {% endfor %}
                       </ul>
                     </div>
+                    {% endif %}
                   </td>
                   <td data-toggle="collapse" data-target="#{{ br }}">
                     Više informacija <span class="glyphicon glyphicon-chevron-down"></span>

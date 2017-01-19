@@ -57,7 +57,25 @@ class ProfileController extends Controller
             ->getRepository('AppBundle:Evidencija')
             ->findBy(array('userId' => $user->getId()));
 
+        $god_show = $datum->format("Y");
+        $mj_show = $datum->format("m");
 
+        if($mj_show==1){
+            $previous_g=$god_show-1;
+            $previous_m=12;
+            $next_g=$god_show;
+            $next_m=$mj_show+1;
+        }else if($mj_show==12){
+            $previous_g=$god_show;
+            $previous_m=$mj_show-1;
+            $next_g=$god_show+1;
+            $next_m=1;
+        }else{
+            $previous_g=$god_show;
+            $previous_m=$mj_show-1;
+            $next_g=$god_show;
+            $next_m=$mj_show+1;
+        }
 
 
         $time=0.0;
@@ -68,7 +86,7 @@ class ProfileController extends Controller
 
         $mjeseci = array(); // result
 
-        for ($i = 0; $i <= 12; $i++) {
+        for ($i = 0; $i <= 6; $i++) {
             $date = date("Y-m-d");
             $date = strtotime(date("Y-m-d", strtotime($date)) . "-$i months");
             $mjesec = date("m",$date);
@@ -86,7 +104,10 @@ class ProfileController extends Controller
             'dolasci' => $dolazak,
             'odradeno' => round($time, 2), //odrađeno radno vrijeme
             'mjeseci' => $mjeseci,
-
+            'previous_g' =>$previous_g,
+            'previous_m' =>$previous_m,
+            'next_g' => $next_g,
+            'next_m' => $next_m,
             'mjesec' => $datum->format("m"),
             'godina' => $datum->format("Y")
 
@@ -121,7 +142,22 @@ class ProfileController extends Controller
             ->getRepository('AppBundle:Evidencija')
             ->findBy(array('userId' => $user->getId()));
 
-
+        if($mj_show==1){
+            $previous_g=$god_show-1;
+            $previous_m=12;
+            $next_g=$god_show;
+            $next_m=$mj_show+1;
+        }else if($mj_show==12){
+            $previous_g=$god_show;
+            $previous_m=$mj_show-1;
+            $next_g=$god_show+1;
+            $next_m=1;
+        }else{
+            $previous_g=$god_show;
+            $previous_m=$mj_show-1;
+            $next_g=$god_show;
+            $next_m=$mj_show+1;
+        }
 
 
         $time=0.0;
@@ -132,7 +168,7 @@ class ProfileController extends Controller
 
         $mjeseci = array(); // result
 
-        for ($i = 0; $i <= 12; $i++) {
+        for ($i = 0; $i <= 6; $i++) {
             $date = date("Y-m-d");
             $date = strtotime(date("Y-m-d", strtotime($date)) . "-$i months");
             $mjesec = date("m",$date);
@@ -151,7 +187,11 @@ class ProfileController extends Controller
             'odradeno' => round($time, 2), //odrađeno radno vrijeme
             'mjeseci' => $mjeseci,
             'mjesec' => $mj_show,
-            'godina' => $god_show
+            'godina' => $god_show,
+            'previous_g' =>$previous_g,
+            'previous_m' =>$previous_m,
+            'next_g' => $next_g,
+            'next_m' => $next_m
         ));
     }
 

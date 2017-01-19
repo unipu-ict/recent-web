@@ -10,6 +10,7 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\Serializer\Normalizer\EvidencijadanaNeprisustvoNormailzer;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,6 +35,26 @@ class DashboardController extends Controller
         $users = $userManager->findUsers();
 
         $datum = (new \DateTime('now'));
+
+        $god_show = $datum->format("Y");
+        $mj_show = $datum->format("m");
+
+        if($mj_show==1){
+            $previous_g=$god_show-1;
+            $previous_m=12;
+            $next_g=$god_show;
+            $next_m=$mj_show+1;
+        }else if($mj_show==12){
+            $previous_g=$god_show;
+            $previous_m=$mj_show-1;
+            $next_g=$god_show+1;
+            $next_m=1;
+        }else{
+            $previous_g=$god_show;
+            $previous_m=$mj_show-1;
+            $next_g=$god_show;
+            $next_m=$mj_show+1;
+        }
 
         $odradeno_sati = array();
         foreach ($users as $korisnik){
@@ -78,7 +99,11 @@ class DashboardController extends Controller
             'odradeno' => $odradeno_sati, //odrađeno radno vrijeme
             'mjeseci' => $mjeseci,
             'mjesec' => $datum->format("m"),
-            'godina' => $datum->format("Y")
+            'godina' => $datum->format("Y"),
+            'previous_g' =>$previous_g,
+            'previous_m' =>$previous_m,
+            'next_g' => $next_g,
+            'next_m' => $next_m,
 
         ));
     }
@@ -101,7 +126,13 @@ class DashboardController extends Controller
 
         $evidencija = $query->getResult();
 
-
+        $stanje = array(); // result
+        foreach ($evidencija as $u) { // spremanje u result
+            $normal =  new EvidencijadanaNeprisustvoNormailzer();
+            $u= $normal->normalize($u);
+            array_push($stanje, $u);
+        }
+//        exit(dump($this->container,$stanje));
         $query2=$em->createQuery( 'SELECT u FROM AppBundle:Evidencija u WHERE u.userId = :userid and YEAR(u.date) = :godina and MONTH(u.date) = :mjesec')
             ->setParameter('userid', $user->getId())
             ->setParameter('godina', $godina)
@@ -111,6 +142,25 @@ class DashboardController extends Controller
 
         $god_show = $godina;
         $mj_show = $mjesec;
+
+
+        if($mj_show==1){
+            $previous_g=$god_show-1;
+            $previous_m=12;
+            $next_g=$god_show;
+            $next_m=$mj_show+1;
+        }else if($mj_show==12){
+            $previous_g=$god_show;
+            $previous_m=$mj_show-1;
+            $next_g=$god_show+1;
+            $next_m=1;
+        }else{
+            $previous_g=$god_show;
+            $previous_m=$mj_show-1;
+            $next_g=$god_show;
+            $next_m=$mj_show+1;
+        }
+
 
         $neprisustvo = $this->getDoctrine()->getRepository('AppBundle:Neprisustvo')->findAll();
 
@@ -131,6 +181,13 @@ class DashboardController extends Controller
             array_push($mjeseci, $mjesec_godina);
         }
 
+
+
+//        $promjeni = $_POST['change_nedolazak'];
+//        $ev_dan_not_here->setNotWorkingId($promjeni);
+//        $em->persist($ev_dan_not_here);
+//        $em->flush();
+
         return $this->render('dashboard/radnik-mj.html.twig', array(
             'evidencija' => $evidencija,
             'dolasci' => $dolasci,
@@ -139,6 +196,10 @@ class DashboardController extends Controller
             'mjeseci' => $mjeseci,
             'mjesec' => $mj_show,
             'godina' => $god_show,
+            'previous_g' =>$previous_g,
+            'previous_m' =>$previous_m,
+            'next_g' => $next_g,
+            'next_m' => $next_m,
             'razlog_nedolaska' => $neprisustvo
         ));
     }
@@ -156,6 +217,23 @@ class DashboardController extends Controller
 
         $god_show = $godina;
         $mj_show = $mjesec;
+
+        if($mj_show==1){
+            $previous_g=$god_show-1;
+            $previous_m=12;
+            $next_g=$god_show;
+            $next_m=$mj_show+1;
+        }else if($mj_show==12){
+            $previous_g=$god_show;
+            $previous_m=$mj_show-1;
+            $next_g=$god_show+1;
+            $next_m=1;
+        }else{
+            $previous_g=$god_show;
+            $previous_m=$mj_show-1;
+            $next_g=$god_show;
+            $next_m=$mj_show+1;
+        }
 
         $odradeno_sati = array();
         foreach ($users as $korisnik){
@@ -200,7 +278,11 @@ class DashboardController extends Controller
             'odradeno' => $odradeno_sati, //odrađeno radno vrijeme
             'mjeseci' => $mjeseci,
             'mjesec' => $mj_show,
-            'godina' => $god_show
+            'godina' => $god_show,
+            'previous_g' =>$previous_g,
+            'previous_m' =>$previous_m,
+            'next_g' => $next_g,
+            'next_m' => $next_m,
 
         ));
     }

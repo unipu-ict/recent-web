@@ -216,3 +216,7 @@ border-radius: 4px;
   float: none !important;
 }
 
+.btn-width {
+  width: 180px;
+}
+
