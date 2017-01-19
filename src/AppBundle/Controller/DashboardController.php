@@ -109,7 +109,30 @@ class DashboardController extends Controller
     }
 
     /**
-     * @Route("/dashboard/radnik/{user_id}/{godina}/{mjesec}", name="dashboard1")
+     * @Route("/dashboard/radnik/neprisustvo/{evidencija_dana}/{idrazlog}", name="dashboardupdateneprisustvo")
+     *
+     */
+    public function updateNeprisustvoAction($evidencija_dana, $idrazlog)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $ev_dan = $em->getRepository('AppBundle:Evidencija_dana')->find($evidencija_dana);
+        $neprisustvo = $em->getRepository('AppBundle:Neprisustvo')->find($idrazlog);
+
+        if (!$ev_dan) {
+            throw $this->createNotFoundException(
+                'No product found for id '.$evidencija_dana
+            );
+        }
+
+        $ev_dan->setNotWorkingId($neprisustvo );
+        $em->flush();
+
+        return new Response("123");
+    }
+
+
+    /**
+     * @Route("/dashboard/radnik/{user_id}/{godina}/{mjesec}", name="dashboard1" , requirements={ "user_id": "\d+"  })
      *
      */
 

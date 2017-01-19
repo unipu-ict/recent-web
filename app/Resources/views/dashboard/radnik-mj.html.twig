@@ -3,10 +3,24 @@
 
 
 {% block maincontent %}
+  <script>
+      function updateNeprisustvo(evidencija_dana, idrazlog)
+      {
+          var note = document.getElementById("note");
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+              if (this.readyState == 4 && this.status == 200) {
+                  note.innerHTML = "<small>Neprisustvo ažurirano</small>";
+              }
+          };
+          xhttp.open("GET", "/dashboard/radnik/neprisustvo/" + evidencija_dana + "/" + idrazlog, true);
+          xhttp.send();
 
+      }
+  </script>
 
 <h1 class="page-header">Kontrolna ploča</h1>
-
+<p id="note"></p>
 <div class="panel-group">
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -88,21 +102,21 @@
                     {% else %}
                     <!-- Small button group -->
                     <div class="btn-group">
-                      <button class="btn btn-primary btn-sm dropdown-toggle btn-width" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ dan.notWorkingId.neprisustvo }}<span class="caret"></span>
-                      </button>
+                      {#<button class="btn btn-primary btn-sm dropdown-toggle btn-width" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
+                        {#{{ dan.notWorkingId.neprisustvo }}<span class="caret"></span>#}
+                      {#</button>#}
                       {#<select name="change_nedolazak">#}
                           {#{% set id = range(1,15) %}#}
                           {#{% for id, razlog in razlog_nedolaska %}#}
                             {#<option value="{{ id }}">{{ razlog.neprisustvo }}</option>#}
                           {#{% endfor %}#}
                       {#</select>#}
-                      <ul class="dropdown-menu">
+                      <select onchange="updateNeprisustvo({{ dan.id }},this.value)" class="form-control btn-sm btn-width">
                         {% set id = range(1,15) %}
                         {% for id, razlog in razlog_nedolaska %}
-                          <li><a href="# {{ id }}">{{ razlog.neprisustvo }}</a></li>
+                          <option value="{{ razlog.id }}" {% if(razlog.id==dan.notWorkingId.id) %} selected="selected" {% endif %} >{{ razlog.neprisustvo }}</option>
                         {% endfor %}
-                      </ul>
+                      </select>
                     </div>
                     {% endif %}
                   </td>
