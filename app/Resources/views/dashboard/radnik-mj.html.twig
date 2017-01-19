@@ -82,7 +82,7 @@
                   <td>{{ dan.doneBusinessHours|round(2, 'floor') }}</td>
                   <td>
                     {% if(dan.notWorkingId.id==1) %}
-                    <button class="btn dropdown-toggle btn-width" type="button" >
+                    <button class="btn dropdown-toggle btn-sm btn-width" type="button" >
                       {{ dan.notWorkingId.neprisustvo }}
                     </button>
                     {% else %}
@@ -114,8 +114,7 @@
 
                     {% for time in dolasci %}
                         {% if dan.datum|date("d/m/Y")==time.date|date("d/m/Y") %}
-                          <td colspan="1">{{ time.time|date("H:i") }}</td>
-                          <td colspan="1">{{ time.razlogId.razlog }}</td>
+                          <td colspan="1">{{ time.time|date("H:i") }} - {{ time.razlogId.razlog }}</td>
                         {% endif %}
 
                     {% endfor %}
