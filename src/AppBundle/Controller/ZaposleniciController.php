@@ -99,9 +99,6 @@ class ZaposleniciController extends Controller
             'form' => $form->createView(),
             'message' => $poruka
         ));
-
-
-
     }
 
     

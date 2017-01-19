@@ -31,73 +31,12 @@
     <div class="row ">
       <div class="col-xs-12 "> 
 
-        <nav aria-label="Page navigation" class="pagination-nav">
-          <table class="table table-striped tablica-prva">
-          <tbody>
-            <tr>
-              <td><a href="/reports/po_radniku">Evidencije - radno vrijeme po radniku</a></td>
-            </tr>
-            <tr>
-              <td><a href="/reports/po_danu">Evidencije - radno vrijeme po danu</a></td>
-            </tr>
-          </tbody>
-          </table>
-          {#<ul class="pagination">#}
-            {#<li>#}
-              {#<a href="#" aria-label="Previous">#}
-                {#<span aria-hidden="true">&laquo;</span>#}
-              {#</a>#}
-            {#</li>#}
-            {#<li><a href="#"><b>10</b> <small>/</small>2016</a></li>#}
-            {#<li><a href="#"><b>9</b> <small>/</small>2016</a></li>#}
-            {#<li><a href="#"><b>8</b> <small>/</small>2016</a></li>#}
-            {#<li><a href="#"><b>7</b> <small>/</small>2016</a></li>#}
-            {#<li><a href="#"><b>6</b> <small>/</small>2016</a></li>#}
-            {#<li><a href="#"><b>5</b> <small>/</small>2016</a></li>#}
-
-            {#<li>#}
-              {#<a href="#" aria-label="Next">#}
-                {#<span aria-hidden="true">&raquo;</span>#}
-              {#</a>#}
-            {#</li>#}
-          {#</ul>#}
-        </nav>
-
-      </div>  
+      <a href="/reports/po_radniku" class="btn btn-primary btn-xl">Evidencije - radno vrijeme po zaposleniku</a><br><br>
+      <a href="/reports/po_danu" class="btn btn-primary btn-xl">Evidencije - radno vrijeme svih zaposlenika po danu</a> 
 
     </div>
   </div>
 </div>
+</div>
 
-
-
-          {#<div class="table-responsive">#}
-            {#<table class="table table-striped tablica-prva">#}
-              {#<thead>#}
-                {#<tr>#}
-                  {#<th>#</th>#}
-                  {#<th>Ime i prezime</th>#}
-                  {#<th>Odrađeno sati </th>#}
-                  {#<th>Sati neprisustva na <br>poslu(bolovanje, itd.)</th>#}
-                  {#<th>Prekovremeni</th>#}
-                  {#<th>Više</th>#}
-                {#</tr>#}
-              {#</thead>#}
-              {#<tbody>#}
-                {#{% for korisnik in users %}#}
-                {#<tr>#}
-                    {##}
-                    {#<td>{{ korisnik.Id }}</td>#}
-                    {#<td>{{ korisnik.name }} {{ korisnik.surname }}</td>#}
-                    {#<td>{{ time }}</td>#}
-                    {#<td>6</td>#}
-                    {#<td>2</td>#}
-                    {#<td><a href="/dashboard/radnik/{{ korisnik.Id }}"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a></td>#}
-                {#</tr>#}
-                {#{% endfor %}#}
-                {##}
-              {#</tbody>#}
-            {#</table>#}
-          {#</div>#}
-  {##}
 {% endblock %}       

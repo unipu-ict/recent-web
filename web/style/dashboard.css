@@ -220,3 +220,12 @@ border-radius: 4px;
   width: 180px;
 }
 
+
+/** REPORTS */
+
+.report-container {
+  overflow-y:scroll;
+  width:100%;
+
+}
+
