@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 class ScanGetController extends Controller{
 
     /**
-     * @Route("/scanscanget", name="scanscanget")
+     * @Route("/scanscanget/", name="scanscanget")
      */
     public function scanscangetAction()
     {
