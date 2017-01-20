@@ -68,10 +68,10 @@ class MobitelController extends FOSRestController
             foreach($data as $odradeno){
                 $time = $time + $odradeno->getDoneBusinessHours();//zbroj odradenih sati
             }
-            $mjes = $mjesec["mjesec"];
-            $mjes = strtotime(date("m", strtotime($mjes)));
-            $mjes = date("F",$mjes);
-            $podaci = array('id' => $mjesec["id"], 'month' => $mjes, 'year' => $mjesec["godina"], 'total' => round($time, 1));
+//            $mjes = $mjesec["mjesec"];
+//            $mjes = strtotime(date("m", strtotime($mjes)));
+//            $mjes = date("F",$mjes);
+            $podaci = array('id' => $mjesec["id"], 'month' => $mjesec["mjesec"], 'year' => $mjesec["godina"], 'total' => round($time, 1));
             array_push($odradeno_sati, $podaci);
         }
 
@@ -97,7 +97,7 @@ class MobitelController extends FOSRestController
         $user = $this->getDoctrine() ->getRepository('AppBundle:User') -> find($user_id);
 
         $em = $this->getDoctrine()->getManager();
-        $query=$em->createQuery( 'SELECT u FROM AppBundle:Evidencija_dana u WHERE u.userId = :userid and YEAR(u.datum) = :godina and MONTH(u.datum) = :mjesec')
+        $query=$em->createQuery( 'SELECT u FROM AppBundle:Evidencija_dana u WHERE u.userId = :userid and YEAR(u.datum) = :godina and MONTH(u.datum) = :mjesec ORDER BY u.id DESC')
             ->setParameter('userid', $user->getId())
             ->setParameter('godina', $godina)
             ->setParameter('mjesec', $mjesec);
@@ -138,8 +138,12 @@ class MobitelController extends FOSRestController
             array_push($podaci, $item);
         }
 
+        $mjesec_godina = $dan . "." . $mjesec;
 
-        return $view = $this->view($podaci, Response::HTTP_OK);
+        $data = array('date' => $mjesec_godina, 'records' => $podaci);
+
+
+        return $view = $this->view($data, Response::HTTP_OK);
     }
 
 }
