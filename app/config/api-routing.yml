@@ -41,3 +41,24 @@ evidencija_get_id:
     requirements:
         _method: GET
         id: '\d+'
+
+mobitel_get_id:
+    path:  /records/{user_id}
+    defaults: { _controller: AppBundle:Api/Mobitel:mjeseci , _format: json }
+    requirements:
+        _method: GET
+        id: '\d+'
+
+mobitel_get_ev_dan:
+    path:  /records/{user_id}/{godina}/{mjesec}
+    defaults: { _controller: AppBundle:Api/Mobitel:get , _format: json }
+    requirements:
+        _method: GET
+        id: '\d+'
+
+mobitel_get_eviden:
+    path:  /records/{user_id}/{godina}/{mjesec}/{dan}
+    defaults: { _controller: AppBundle:Api/Mobitel:eviden , _format: json }
+    requirements:
+        _method: GET
+        id: '\d+'
