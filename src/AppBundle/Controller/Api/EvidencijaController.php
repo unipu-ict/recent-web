@@ -39,7 +39,7 @@ class EvidencijaController extends FOSRestController//potrebno ekstendati FOSRes
 
         //dohvacanje taga 
         $file = fopen("http://".$_SERVER['SERVER_NAME']."/scanscanget/sfile.txt","r");
-        if( fread($file,filesize("http://".$_SERVER['SERVER_NAME']."/scanscanget/sfile.txt")) == "1") {
+        if( fread($file,filesize("/scanscanget/sfile.txt")) == "1") {
             ScanGetController::zapisiUid($uID);
         }
         fclose($file);
