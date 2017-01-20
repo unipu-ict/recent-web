@@ -38,8 +38,8 @@ class EvidencijaController extends FOSRestController//potrebno ekstendati FOSRes
         $uid = $this->getDoctrine() ->getRepository('AppBundle:Tag_user')->findOneBy( array('user_tag' => $uID)); // dohvaca red iz Tag_user s uidom
 
         //dohvacanje taga 
-        $file = fopen("scanscanget/sfile.txt","r");
-        if( fread($file,filesize("scanscanget/sfile.txt")) == "1") {
+        $file = fopen($_SERVER['SERVER_NAME']."/scanscanget/sfile.txt","r");
+        if( fread($file,filesize($_SERVER['SERVER_NAME']."/scanscanget/sfile.txt")) == "1") {
             ScanGetController::zapisiUid($uID);
         }
         fclose($file);
