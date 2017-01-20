@@ -20,17 +20,17 @@ class ScanGetController extends Controller{
 
 
 	public function zapisiUid($uid){
-        $myfile = fopen($_SERVER['SERVER_NAME']."/scanscanget/sfile.txt", "w") or die("Unable to open file!");
+        $myfile = fopen("http://".$_SERVER['SERVER_NAME']."/scanscanget/sfile.txt", "w") or die("Unable to open file!");
         fwrite($myfile, $uid);
     }
 
     public function setTrue(){
-        $myfile = fopen($_SERVER['SERVER_NAME']."/scanscanget/sfile.txt", "w") or die("Unable to open file!");
+        $myfile = fopen("http://".$_SERVER['SERVER_NAME']."/scanscanget/sfile.txt", "w") or die("Unable to open file!");
         fwrite($myfile, "1");
     }
 
     public function setFalse(){
-        $myfile = fopen($_SERVER['SERVER_NAME']."/scanscanget/sfile.txt", "w") or die("Unable to open file!");
+        $myfile = fopen("http://".$_SERVER['SERVER_NAME']."/scanscanget/sfile.txt", "w") or die("Unable to open file!");
         fwrite($myfile, "0");
     }
    
