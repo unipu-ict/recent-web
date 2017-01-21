@@ -4,9 +4,11 @@
 namespace AppBundle\Controller\Api;
  
 use FOS\RestBundle\Controller\Annotations as Rest;
+use AppBundle\Entity\Tag_user;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use AppBundle\Serializer\Normalizer\Tag_userNormalizer;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -80,6 +82,27 @@ class UsersController extends FOSRestController
         $view = $this->view($data, Response::HTTP_INTERNAL_SERVER_ERROR);
         return $view;
  
+    }
+
+    /**
+     * @Rest\View
+     */
+    public function userLoginAction(Request $request)
+    {
+        $user = $this->getUser();
+        $id = $user->getId();
+        $em = $this->getDoctrine()->getManager();
+        $query=$em->createQuery( 'SELECT u.username, u.email , u.name , u.surname FROM AppBundle\Entity\User u WHERE u.id = :uid')->setParameter('uid', $id);
+        $data = $query->getResult();
+        $tag = $this->getDoctrine() ->getRepository('AppBundle:Tag_user')->findOneBy(array('userId' => $id));
+        $normal1 =  new Tag_userNormalizer();
+        $item= $normal1->normalize($tag);
+
+        $podaci = array('info' => $data, 'user_tag' => $item);
+
+        $view = $this->view($podaci, Response::HTTP_INTERNAL_SERVER_ERROR);
+        return $view;
+
     }
     
     /**

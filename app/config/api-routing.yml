@@ -16,6 +16,12 @@ user_info:
     defaults: { _controller: AppBundle:Api/Users:userInfo , _format: json }
     requirements:
         _method: GET
+
+user_login:
+    path:  /userLogin
+    defaults: { _controller: AppBundle:Api/Users:userLogin , _format: json }
+    requirements:
+        _method: GET
         
 user_update_email:
     path:  /userUpdateEmail
@@ -43,21 +49,21 @@ evidencija_get_id:
         id: '\d+'
 
 mobitel_get_id:
-    path:  /records/{user_id}
+    path:  /record/all
     defaults: { _controller: AppBundle:Api/Mobitel:mjeseci , _format: json }
     requirements:
         _method: GET
         id: '\d+'
 
 mobitel_get_ev_dan:
-    path:  /records/{user_id}/{godina}/{mjesec}
+    path:  /record/{godina}/{mjesec}
     defaults: { _controller: AppBundle:Api/Mobitel:get , _format: json }
     requirements:
         _method: GET
         id: '\d+'
 
 mobitel_get_eviden:
-    path:  /records/{user_id}/{godina}/{mjesec}/{dan}
+    path:  /record/{godina}/{mjesec}/{dan}
     defaults: { _controller: AppBundle:Api/Mobitel:eviden , _format: json }
     requirements:
         _method: GET

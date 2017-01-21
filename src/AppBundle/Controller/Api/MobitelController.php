@@ -39,10 +39,11 @@ class MobitelController extends FOSRestController
     /**
      * @Rest\View
      */
-    public function mjeseciAction($user_id)
+    public function mjeseciAction(Request $request)
     {
 
-        $user = $this->getDoctrine() ->getRepository('AppBundle:User') -> find($user_id);
+        $user = $this->getUser();
+        $id = $user->getId();
         $mjeseci = array(); // result
         $b = 0;
         for ($i = 0; $i <= 6; $i++) {
@@ -59,7 +60,7 @@ class MobitelController extends FOSRestController
 
             $em = $this->getDoctrine()->getManager();
             $query=$em->createQuery( 'SELECT u FROM AppBundle:Evidencija_dana u WHERE u.userId = :userid and YEAR(u.datum) = :godina and MONTH(u.datum) = :mjesec')
-                ->setParameter('userid', $user->getId())
+                ->setParameter('userid', $id)
                 ->setParameter('godina', $mjesec["godina"])
                 ->setParameter('mjesec', $mjesec["mjesec"]);
 
@@ -91,14 +92,15 @@ class MobitelController extends FOSRestController
     /**
      * @Rest\View
      */
-    public function getAction($user_id, $godina, $mjesec)
+    public function getAction(Request $request, $godina, $mjesec)
     {
 
-        $user = $this->getDoctrine() ->getRepository('AppBundle:User') -> find($user_id);
+        $user = $this->getUser();
+        $id = $user->getId();
 
         $em = $this->getDoctrine()->getManager();
         $query=$em->createQuery( 'SELECT u FROM AppBundle:Evidencija_dana u WHERE u.userId = :userid and YEAR(u.datum) = :godina and MONTH(u.datum) = :mjesec ORDER BY u.id DESC')
-            ->setParameter('userid', $user->getId())
+            ->setParameter('userid', $id)
             ->setParameter('godina', $godina)
             ->setParameter('mjesec', $mjesec);
 
@@ -118,14 +120,15 @@ class MobitelController extends FOSRestController
     /**
      * @Rest\View
      */
-    public function evidenAction($user_id, $godina, $mjesec, $dan)
+    public function evidenAction(Request $request, $godina, $mjesec, $dan)
     {
 
-        $user = $this->getDoctrine() ->getRepository('AppBundle:User') -> find($user_id);
+        $user = $this->getUser();
+        $id = $user->getId();
 
         $em = $this->getDoctrine()->getManager();
         $query=$em->createQuery( 'SELECT u FROM AppBundle:Evidencija u WHERE u.userId = :userid and YEAR(u.date) = :godina and MONTH(u.date) = :mjesec AND DAY(u.date) = :dan')
-            ->setParameter('userid', $user->getId())
+            ->setParameter('userid', $id)
             ->setParameter('godina', $godina)
             ->setParameter('mjesec', $mjesec)
             ->setParameter('dan', $dan);
