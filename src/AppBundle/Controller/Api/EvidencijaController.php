@@ -38,14 +38,14 @@ class EvidencijaController extends FOSRestController//potrebno ekstendati FOSRes
         $uid = $this->getDoctrine() ->getRepository('AppBundle:Tag_user')->findOneBy( array('user_tag' => $uID)); // dohvaca red iz Tag_user s uidom
 
         //dohvacanje taga 
-        /*
-        $file = fopen("http://".$_SERVER['SERVER_NAME']."/scanscanget/sfile.txt","r");
-        if( fread($file,filesize("/scanscanget/sfile.txt")) == "1") {
+        
+        $file = fopen($_SERVER['DOCUMENT_ROOT']."/scanscanget/sfile.txt","r");
+        if( fread($file,filesize($_SERVER['DOCUMENT_ROOT']."/scanscanget/sfile.txt")) == "1") {
             ScanGetController::zapisiUid($uID);
         }
         fclose($file);
 
-        */
+        
 
         if (!$uid){ // ako nema rezultata, ako nepostoji korisnik s tim uid-om
             $content = array("uspjeh" => "ne"); //, "razlog" => "nepostojeci korisnik")
