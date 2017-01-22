@@ -98,9 +98,13 @@ class UsersController extends FOSRestController
         $normal1 =  new Tag_userNormalizer();
         $item= $normal1->normalize($tag);
 
-        $podaci = array('info' => $data, 'user_tag' => $item);
+        $podaci = array();
+        foreach ($data as $stvar){
+            $podatak = array('username' => $stvar["username"], 'email' => $stvar["email"], 'name' => $stvar["name"], 'surname' => $stvar["surname"], 'user_tag' => $item);
+            array_push($podaci, $podatak);
+        }
 
-        $view = $this->view($podaci, Response::HTTP_INTERNAL_SERVER_ERROR);
+        $view = $this->view($podaci, Response::HTTP_OK);
         return $view;
 
     }
