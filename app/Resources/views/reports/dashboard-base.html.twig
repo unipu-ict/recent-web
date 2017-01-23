@@ -46,7 +46,7 @@
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
           <div class="sidebar-nav">
-             <h1 class="sidebar-brand logo-font" href="#">RecENT</h1>
+             <h1 class="sidebar-brand logo-font" href="#">RECENT</h1>
                <div class="login-info">
             <p class="">  <strong> {{ 'layout.logged_in_as'|trans({'%username%':  app.user.username}, 'FOSUserBundle') }} </strong> </p>
                     <a class="btn btn-default" href="{{ path('fos_user_security_logout') }}">
@@ -79,7 +79,7 @@
         <div id="page-content-wrapper">
         <div>
          <a href="#menu-toggle" class="btn btn-default " id="menu-toggle"><span class="glyphicon glyphicon-menu-hamburger"></a>
-         <a class="float-right">Dobrodošli {{ app.user.username }}.</a>
+         <a class="float-right">Dobrodošli {{ app.user.name }}  {{ app.user.surname }}.</a>
         </div> 
             {% block maincontent%}
         {% endblock %}
