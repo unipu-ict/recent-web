@@ -167,55 +167,31 @@ class EvidencijaController extends FOSRestController//potrebno ekstendati FOSRes
                 array_push($vrijeme, $v);
             }
             $vrijeme_count = count($vrijeme);
-// treba sredit, nije lijepo na ovkav naci radit, trba osmislit algoritam, ovo radi ako su u evidenciji 4 zapisa
-            if($vrijeme_count == 0){
-                $broj_sati = 0.0;
-            }elseif($vrijeme_count == 1){
-                $ev_dan_user_ob->setVrijemeDolaska($vrijeme[0]);
-                $broj_sati = 0.0;
-            }elseif($vrijeme_count == 2){
-                $vrijeme1 = strtotime($vrijeme[0]->format('H:i:s'));
-                $vrijeme2 = strtotime($vrijeme[1]->format('H:i:s'));
-                $ev_dan_user_ob->setVrijemeDolaska($vrijeme[0]);
-                $ev_dan_user_ob->setVrijemeOdlaska($vrijeme[1]);
-                $broj_sati = (($vrijeme2 - $vrijeme1) / 60 / 60);
-            }elseif($vrijeme_count == 3){
-                $vrijeme1 = strtotime($vrijeme[0]->format('H:i:s'));
-                $vrijeme2 = strtotime($vrijeme[1]->format('H:i:s'));
-                $ev_dan_user_ob->setVrijemeDolaska($vrijeme[0]);
-                $ev_dan_user_ob->setVrijemeOdlaska($vrijeme[1]);
-                $broj_sati = (($vrijeme2 - $vrijeme1) / 60 / 60);
-            }elseif($vrijeme_count == 4){
-                $vrijeme1 = strtotime($vrijeme[0]->format('H:i:s'));
-                $vrijeme2 = strtotime($vrijeme[1]->format('H:i:s'));
-                $vrijeme3 = strtotime($vrijeme[2]->format('H:i:s'));
-                $vrijeme4 = strtotime($vrijeme[3]->format('H:i:s'));
-                $ev_dan_user_ob->setVrijemeDolaska($vrijeme[0]);
-                $ev_dan_user_ob->setVrijemeOdlaska($vrijeme[3]);
-                $broj_sati = (($vrijeme2 - $vrijeme1 + $vrijeme4 - $vrijeme3) / 60 / 60) + 0.5;
-            }elseif($vrijeme_count == 5){
-                $vrijeme1 = strtotime($vrijeme[0]->format('H:i:s'));
-                $vrijeme2 = strtotime($vrijeme[1]->format('H:i:s'));
-                $vrijeme3 = strtotime($vrijeme[2]->format('H:i:s'));
-                $vrijeme4 = strtotime($vrijeme[3]->format('H:i:s'));
-                $ev_dan_user_ob->setVrijemeDolaska($vrijeme[0]);
-                $ev_dan_user_ob->setVrijemeOdlaska($vrijeme[3]);
-                $broj_sati = (($vrijeme2 - $vrijeme1 + $vrijeme4 - $vrijeme3) / 60 / 60) + 0.5;
-            }elseif($vrijeme_count == 6){
-                $vrijeme1 = strtotime($vrijeme[0]->format('H:i:s'));
-                $vrijeme2 = strtotime($vrijeme[1]->format('H:i:s'));
-                $vrijeme3 = strtotime($vrijeme[2]->format('H:i:s'));
-                $vrijeme4 = strtotime($vrijeme[3]->format('H:i:s'));
-                $vrijeme5 = strtotime($vrijeme[4]->format('H:i:s'));
-                $vrijeme6 = strtotime($vrijeme[5]->format('H:i:s'));
-                $ev_dan_user_ob->setVrijemeDolaska($vrijeme[0]);
-                $ev_dan_user_ob->setVrijemeOdlaska($vrijeme[5]);
-                $broj_sati = (($vrijeme2 - $vrijeme1 + $vrijeme4 - $vrijeme3 + $vrijeme6 - $vrijeme5) / 60 / 60) + 0.5;
-            }else{
-                $broj_sati = 0.0;
+
+
+            $zadnji_odlazak = $vrijeme_count-1;
+            $prvi_dolazak = 0;
+            if($vrijeme_count%2 != 0)
+                $zadnji_odlazak = $vrijeme_count - 2;
+
+            $odradeno_sati = 0.0;
+
+            // algoritam za računjnje odrađenih sati
+
+            for($korak = 0 ; $korak < $zadnji_odlazak ; $korak += 2){
+                $odlazak = strtotime($vrijeme[$korak+1]->format('H:i:s'));
+                $dolazak = strtotime($vrijeme[$korak]->format('H:i:s'));
+                $odradeno_sati = $odradeno_sati + ($odlazak - $dolazak);
             }
-            //eksperiment kraj
-            $ev_dan_user_ob->setDoneBusinessHours($broj_sati);
+
+            $odradeno_sati = $odradeno_sati / 3600;
+            if($vrijeme_count > 3)
+                $odradeno_sati = $odradeno_sati + 0.5;
+
+            $ev_dan_user_ob->setVrijemeDolaska($vrijeme[$prvi_dolazak]);
+            $ev_dan_user_ob->setVrijemeOdlaska($vrijeme[$zadnji_odlazak]);
+            $ev_dan_user_ob->setDoneBusinessHours($odradeno_sati);
+
             $ev_dan_user_ob->setNotWorkingId($neprisustvo);
             $em->persist($ev_dan_user_ob);
             $em->flush();
