@@ -16,7 +16,7 @@
 
 
 {% if suser!="" %}
-<div class="col-md-6 col-xs-12" >
+<div class="col-md-7 col-xs-12" >
     <h2>Odabran zaposlenik</h2>
       <form method="post" action="" class="form-horizontal">
       <div class="form-group">
@@ -57,12 +57,12 @@
 
 {% endif %}  
 
-<div class="col-md-6 col-xs-12" >
+<div class="col-md-7 col-xs-12" >
     <h2>Lista zaposlenika</h2>
     <ul class="users-list" type="none">
     {% for user in users %}
-    <li > {{ user.name|e }} {{ user.surname|e }} 
-      <a class="btn btn-primary btn-xs float-right" href="/dashboard/uredizaposlenika/{{ user.id }}" >Detalji/Promjeni</a>
+    <li > <span class="lista-zap" ><strong> {{ user.name|e }} {{ user.surname|e }} </strong></span>
+      <a class="btn btn-primary btn-sm float-right" href="/dashboard/uredizaposlenika/{{ user.id }}" >UREDI</a>
     </li>
     {% endfor %}
     </ul>

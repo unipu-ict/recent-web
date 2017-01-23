@@ -86,14 +86,14 @@ Definicija tipova taga. <small>( Po defaultu 0 (kod registracije se postavlja na
 
 {% else%}
 <h4>Odaberite zaposlenika za kojeg želite promjeniti postavke evidencije</h4>
-<div class="col-md-5 " >
+<div class="col-md-8 " >
 		<ul class="users-list" type="none">
-		{% for user in users %}
-		<li > {{ user.name|e }} {{ user.surname|e }} 
-			<a class="btn btn-primary btn-xs float-right-max" href="/dashboard/postavkeevidencije/{{ user.id}}">Detalji/Promjeni</a>
-		</li>
-		{% endfor %}
-		</ul>
+	    {% for user in users %}
+	    <li > <span class="lista-zap" ><strong> {{ user.name|e }} {{ user.surname|e }} </strong></span>
+	      <a class="btn btn-primary btn-sm float-right" href="/dashboard/postavkeevidencije/{{ user.id }}" >PROMIJENI</a>
+	    </li>
+	    {% endfor %}
+	    </ul>
 
 		<br>
 	</div>

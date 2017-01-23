@@ -2,19 +2,24 @@
 
 {% block fos_user_content %}
 {% include "FOSUserBundle:Profile:show_content.html.twig" %}
-<hr></hr>
 
 
-
-<div class="row row-eq-height mjesec-suma" >
-	<div class="col-xs-12 col-sm-4 col-md-2 bottom-column">
-		<p class="bottom-column"> <small>Mjesec:</small> <strong>{{ mjesec }}/{{ godina }}</strong></p>
+<div class="row" >
+	<div class="col-md-3 ">
+    <blockquote>
+      <h5> Mjesec / Godina </h5>
+      <h3><strong>{{ mjesec }}/{{ godina }}</strong></h3>
+    </blockquote>
 	</div>	
-	<div class="col-xs-12 col-sm-8 col-md-3 bottom-column">
-		<p class="manji"><small>Odrađeno sati:</small> <strong> {{ odradeno }} </strong> </p>
+	<div class="col-md-2">
+    <blockquote>
+      <h5> Odrađeno sati: </h5>
+      <h3><strong>{{ odradeno }} </strong></h3>
+    </blockquote>
 	</div>	
-	<div class="col-xs-12 col-sm-8 col-md-8 bottom-column vertical-middle">
-		<nav aria-label="Page navigation" class="pagination float-right">
+	<div class="col-md-7">
+
+		<nav aria-label="Page navigation" class="pagination float-right top-30">
           <ul class="pagination inline-block">
             <li>
               <a href="/profile/{{ next_g }}/{{ next_m }}" aria-label="Previous">
@@ -35,11 +40,8 @@
 	</div>	
 </div>
 
-<hr></hr>
 
-
-
- <table class="table main-table">
+ <table class="table main-table table-bordered">
               <thead>
                 <tr>
                   <th>Datum</th>

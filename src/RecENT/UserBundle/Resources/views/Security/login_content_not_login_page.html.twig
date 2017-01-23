@@ -5,11 +5,11 @@
 
         <p class="text-right text-success tekst-statusa-prijave"> 
         {{ app.request.attributes.get('_route') }}
-          {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-                <a href="{{ path('fos_user_security_logout') }}">
+          {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} 
+                <a href="{{ path('fos_user_security_logout') }}" class="btn btn-default  but-log"> 
                     {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                </a> |
-                <a href="{{ path('fos_user_profile_show') }}">
+                </a> 
+                <a href="{{ path('fos_user_profile_show') }}" class="btn btn-default but-log">
                    Profil
                 </a>
                 </p> 
