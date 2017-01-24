@@ -141,7 +141,7 @@ class MobitelController extends FOSRestController
             array_push($podaci, $item);
         }
 
-        $mjesec_godina = $dan . "." . $mjesec;
+        $mjesec_godina = $dan . "." . $mjesec . "." . $godina;
 
         $data = array('date' => $mjesec_godina, 'records' => $podaci);
 
