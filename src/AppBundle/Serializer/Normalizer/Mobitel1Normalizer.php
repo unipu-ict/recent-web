@@ -21,7 +21,7 @@ class Mobitel1Normalizer implements NormalizerInterface
 
         return [
             'id'     => $object->getId(),
-            'date'   => $object->getDatum()->format('d.m'),
+            'date'   => $object->getDatum()->format('d.m.Y'),
             'arrived'   => $object->getVrijemeDolaska()->format('H:i'),
             'left'   => $object->getVrijemeOdlaska()->format('H:i'),
             'workHours'   => round($object->getDoneBusinessHours(), 2)
