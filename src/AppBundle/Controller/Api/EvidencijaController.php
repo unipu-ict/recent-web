@@ -169,27 +169,37 @@ class EvidencijaController extends FOSRestController//potrebno ekstendati FOSRes
             $vrijeme_count = count($vrijeme);
 
 
-            $zadnji_odlazak = $vrijeme_count-1;
-            $prvi_dolazak = 0;
-            if($vrijeme_count%2 != 0)
-                $zadnji_odlazak = $vrijeme_count - 2;
-
             $odradeno_sati = 0.0;
 
             // algoritam za računjnje odrađenih sati
+            if($vrijeme_count > 1){
 
-            for($korak = 0 ; $korak < $zadnji_odlazak ; $korak += 2){
-                $odlazak = strtotime($vrijeme[$korak+1]->format('H:i:s'));
-                $dolazak = strtotime($vrijeme[$korak]->format('H:i:s'));
-                $odradeno_sati = $odradeno_sati + ($odlazak - $dolazak);
+                $zadnji_odlazak = $vrijeme_count-1;
+                $prvi_dolazak = 0;
+                if($vrijeme_count%2 != 0)
+                    $zadnji_odlazak = $vrijeme_count - 2;
+
+
+                for($korak = 0 ; $korak < $zadnji_odlazak ; $korak += 2){
+                    $odlazak = strtotime($vrijeme[$korak+1]->format('H:i:s'));
+                    $dolazak = strtotime($vrijeme[$korak]->format('H:i:s'));
+                    $odradeno_sati = $odradeno_sati + ($odlazak - $dolazak);
+                }
+
+                $odradeno_sati = $odradeno_sati / 3600;
+                if($vrijeme_count > 3)
+                    $odradeno_sati = $odradeno_sati + 0.5;
+
+                $ev_dan_user_ob->setVrijemeDolaska($vrijeme[$prvi_dolazak]);
+                $ev_dan_user_ob->setVrijemeOdlaska($vrijeme[$zadnji_odlazak]);
+            }else{
+                $ev_dan_user_ob->setVrijemeDolaska($vrijeme[0]);
             }
 
-            $odradeno_sati = $odradeno_sati / 3600;
-            if($vrijeme_count > 3)
-                $odradeno_sati = $odradeno_sati + 0.5;
 
-            $ev_dan_user_ob->setVrijemeDolaska($vrijeme[$prvi_dolazak]);
-            $ev_dan_user_ob->setVrijemeOdlaska($vrijeme[$zadnji_odlazak]);
+
+
+
             $ev_dan_user_ob->setDoneBusinessHours($odradeno_sati);
 
             $ev_dan_user_ob->setNotWorkingId($neprisustvo);
